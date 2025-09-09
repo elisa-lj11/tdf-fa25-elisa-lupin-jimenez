@@ -94,6 +94,8 @@ Now, I wanted to try incorporating a second LED into my existing setup. I set up
 
 [Full video of red LED blue LED toggle](/assets/sept2-8/take-the-red-pill.MP4)
 
-----------
+<img width="300" alt="" src="/assets/sept2-8/red-blue-schematic.png">
+
+*Schematic of Matrix board, generated with [circuit-diagram.org](https://www.circuit-diagram.org/editor/)*
 
 This round of Arduino experimentation was fun! Felt the (metaphorical) sparks of creativity flowing and excited to try more things out.
