@@ -1,7 +1,7 @@
 /*
-  Blink
+  BlinkHello
 
-  Turns an LED on for one second, then off for one second, repeatedly.
+  Turns an LED on for one second, then off for one second, repeatedly, printing "Hello, World" with each toggle.
 
   Most Arduinos have an on-board LED you can control. 
   On the UNO it is attached to digital pin 13
