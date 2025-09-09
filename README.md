@@ -25,13 +25,13 @@ I started by taking the code from the `loop()` function in `HelloWorld.ino` and 
 
 [Full video of light blinking and "Hello, World" printing](/assets/sept2-8/blink-hello.MP4)
 
-----------
-
 Lots to think about leaving class, kit in hand. How did I plan to address the next big challenge:
 
 > Make “something interesting” happen with: 1 LEDs + 1 LDR, or 2 or more LEDs.
 
 I'd need to sleep on it.
+
+----------
 
 ### 9/4
 In our fab-shop class of the week, we received our first fabrication assignment:
