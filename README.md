@@ -25,6 +25,8 @@ I started by taking the code from the `loop()` function in `HelloWorld.ino` and 
 
 [Full video of light blinking and "Hello, World" printing](/assets/sept2-8/blink-hello.MP4)
 
+----------
+
 Lots to think about leaving class, kit in hand. How did I plan to address the next big challenge:
 
 > Make “something interesting” happen with: 1 LEDs + 1 LDR, or 2 or more LEDs.
@@ -68,6 +70,7 @@ Then I ran the sketch and tested hovering my hand over the LDR to see how the va
 <img width="300" alt="" src="/assets/sept2-8/ldr-light-readout-1.gif">
 
 *LDR hand hover*
+
 [Full video of LDR hand hover](/assets/sept2-8/ldr-light-readout-1.MP4)
 
 The LDR readout dipped below 200 whenever my hand hovered close, so I set `ldrToggleValue` to `200`. I also wanted it to have a faster response time (in case I moved my hand over it quickly), so I reduced the delay time to `20` milliseconds.
@@ -75,6 +78,7 @@ The LDR readout dipped below 200 whenever my hand hovered close, so I set `ldrTo
 <img width="300" alt="" src="/assets/sept2-8/ldr-light-readout-2.gif">
 
 *LDR hand hover take 2*
+
 [Full video of LDR hand hover take 2](/assets/sept2-8/ldr-light-readout-2.MP4)
 
 
@@ -87,4 +91,9 @@ Now, I wanted to try incorporating a second LED into my existing setup. I set up
 <img width="300" alt="" src="/assets/sept2-8/take-the-red-pill.gif">
 
 *Take the red pill!*
+
 [Full video of red LED blue LED toggle](/assets/sept2-8/take-the-red-pill.MP4)
+
+----------
+
+This round of Arduino experimentation was fun! Felt the (metaphorical) sparks of creativity flowing and excited to try more things out.
