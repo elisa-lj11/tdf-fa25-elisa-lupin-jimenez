@@ -17,7 +17,8 @@ We then received our first electronics challenge:
 
 I started by taking the code from the `loop()` function in `HelloWorld.ino` and copying it into [Blink.ino](/scripts/Blink.ino), which was also pre-written for us. When I ran the sketch, the light blinked but "Hello, World!" did not print. I realized that I also needed to copy `Serial.begin(9600);` into `setup()` in order to monitor the serial data transmission feed. My first woopsie!
 
-![Video of light blinking and "Hello, World" printing](/assets/sept2-8/blink-hello.MP4)
+https://github.com/elisa-lj11/tdf-fa25-elisa-lupin-jimenez/blob/de449a1ad2770c0b227a963bfeaac8aa0588b015/assets/sept2-8/blink-hello.MP4
+*Video of light blinking and "Hello, World" printing*
 
 Lots to think about leaving class, kit in hand. How did I plan to address the next big challenge:
 
@@ -51,15 +52,17 @@ I followed the Arduino guide and used code from [03a_LDR_LightSensor.ino](https:
 
 Then I ran the sketch and tested hovering my hand over the LDR to see how the values would change.
 
-![LDR hand hover](/assets/sept2-8/ldr-light-readout-1.MP4)
+https://github.com/elisa-lj11/tdf-fa25-elisa-lupin-jimenez/blob/de449a1ad2770c0b227a963bfeaac8aa0588b015/assets/sept2-8/ldr-light-readout-1.MP4
+*LDR hand hover*
 
 The LDR readout dipped below 200 whenever my hand hovered close, so I set `ldrToggleValue` to `200`. I also wanted it to have a faster response time (in case I moved my hand over it quickly), so I reduced the delay time to `20` milliseconds.
 
-![LDR hand hover take 2](/assets/sept2-8/ldr-light-readout-2.MP4)
+https://github.com/elisa-lj11/tdf-fa25-elisa-lupin-jimenez/blob/de449a1ad2770c0b227a963bfeaac8aa0588b015/assets/sept2-8/ldr-light-readout-2.MP4
+*LDR hand hover take 2*
 
 Now, I wanted to try incorporating a second LED into my existing setup. I set up the red LED in the same way that I set up the original blue LED, and I modified my sketch to toggle on and off the LEDs with a toggle in the LDR (see [Matrix.ino](/scripts/Matrix.ino)). I could still get the blue LED to toggle on and off, but the red LED did not turn on. I troubleshooted by swapping the int values assigned at the beginning of the sketch, no luck. I tried swapping the actual LED positions on the breadboard, now the red LED did turn on, and when I hovered, the blue LED turned on. Huh, maybe I hadn't pushed the red LED in enough the first time. Swapped them back, and sure enough, it was working as expected!
 
 ![Red and blue LEDs with LDR](/assets/sept2-8/red-blue-light.JPEG);
 
-![Take the red pill!](/assets/sept2-8/take-the-red-pill.MP4)
+https://github.com/elisa-lj11/tdf-fa25-elisa-lupin-jimenez/blob/de449a1ad2770c0b227a963bfeaac8aa0588b015/assets/sept2-8/take-the-red-pill.MP4
 *Take the red pill!*
