@@ -1,9 +1,11 @@
 # Overview
 Hello! I'm an MDes student at UC Berkeley, and this is my design journal for "DESINV 202: Technology Design Foundations." I will keep track of my progress per week below:
 
-[Week 1](#week-1)
+*No journal entries for Week 1*
+[Week 2](#week-2)
+[Week 3](#week-3)
 
-## Week 1
+## Week 2
 *(9/2 - 9/8)*
 ### 9/2
 Tuesday, September 2nd was the day that we received our electronic kits. I was so excited to get my hardware because I love tinkering around with mini electronics, kind of makes me feel like a baby mechanic.
@@ -99,3 +101,66 @@ Now, I wanted to try incorporating a second LED into my existing setup. I set up
 *Schematic of Matrix board, generated with [circuit-diagram.org](https://www.circuit-diagram.org/editor/)*
 
 This round of Arduino experimentation was fun! Felt the (metaphorical) sparks of creativity flowing and excited to try more things out.
+
+----------
+
+## Week 3
+
+### 9/9
+
+I started designing my ring idea in Illustrator. Before I made any of the ring shapes, I thought about how I wanted the rings to sit on my fingers. Because I want to add prongs to represent the sun rays coming out of the sun, I decided to make the sun half of the ring fit on my pinky finger; that way, the prongs don't jut into my other fingers in the resting position. That means that the moon part of the ring needs to fit on my ring finger. I took loose measurements for both around the thickest part of the fingers, rounding up to the nearest tenth millimeter:
+
+Pinkie finger: 5.3 mm => 0.209 cm
+Ring finger: 5.9 mm => 0.233 inches
+
+<img width="300" alt="" src="/assets/sept9-15/measuring-pinkie.JPEG">
+
+*the wire is all I could find  ¯\\_(ツ)_/¯*
+
+<img width="300" alt="" src="/assets/sept9-15/measuring-string.JPEG">
+
+Turns out, this is not a great way to measure diameter. Since I was in the Jacobs Maker Space, I was fortunate to be able to ask Cody for his expertise. He advised me to use a caliper. I took an external measurement of my ring finger, an external measurement of my pinkie finger, and an internal measurement between the two fingers to determine the distance of separation for the rings.
+
+<img width="300" alt="" src="/assets/sept9-15/measuring-finger-with-caliper.JPEG">
+
+*Using the caliper*
+
+Once I had accurate measurements of my fingers, I made my initial ring layout in Adobe Illustrator.
+
+<img width="300" alt="" src="/assets/sept9-15/initial-ring-spacing.png">
+
+*Circle-dash-circle*
+
+I then added the outer circles to the initial layout so the ring has volume. Because I planned to use 1/4" plywood, Cody advised me to make the thickness of the ring at least 1/4" for stability. To make the shape of the moon crescent, I offset the outer circle and used the cut tool to take out the unnecessary lines.
+
+<img width="300" alt="" src="/assets/sept9-15/sun-moon-cut-1.png">
+
+*First sun-moon outline attempt*
+
+I wasn't happy with the intersection point between the sun and moon (felt too high up to me), so I tried the offset circle technique with a more elliptical shape.
+
+<img width="300" alt="" src="/assets/sept9-15/sun-moon-cut-2.png">
+
+*Much better!*
+
+I free-handed the rays on the sun and cut unnecessary lines from the outline.
+
+<img width="300" alt="" src="/assets/sept9-15/sun-moon-with-rays-1.png">
+
+*Actually looks like a sun now*
+
+I was ready to do my first laser-cut test with my Illustrator file to see if the ring would fit.
+
+<img width="300" alt="" src="/assets/sept9-15/first-laser-cut.gif">
+
+*Baby's first laser cut in Jacobs!*
+
+[Full video of first laser cut](/assets/sept9-15/first-laser-cut.MP4)
+
+Oh no, it doesn't fit! Guess I messed up the caliper measurement (or squeezed it too tight around my finger). Alas, I ran out of time for the day to try again, so I'd have to try again later.
+
+<img width="300" alt="" src="/assets/sept9-15/doesnt-fit.JPEG">
+
+*Woops*
+
+### 9/10
