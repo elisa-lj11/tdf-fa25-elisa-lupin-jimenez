@@ -7,6 +7,7 @@ Hello! I'm an MDes student at UC Berkeley, and this is my design journal for "DE
 
 ## Week 2
 *(9/2 - 9/8)*
+
 ### 9/2
 Tuesday, September 2nd was the day that we received our electronic kits. I was so excited to get my hardware because I love tinkering around with mini electronics, kind of makes me feel like a baby mechanic.
 
@@ -47,9 +48,11 @@ I started sketching some ideas out. The term "protest ring" was brought up in cl
 
 <img width="300" alt="" src="/assets/sept2-8/scorpious-constellation.jpg">
 
-*Image Scorpius constellation sourced from [space.com](https://www.space.com/16947-scorpius-constellation.html)*
+*Image Scorpius constellation sourced from [Chandra X-ray Observatory](https://www.chandra.harvard.edu/graphics/constellations/scorpius.jpg)*
 
 At first, I drew two female symbols side-by-side, but it felt a bit on the nose and uninspired, so I asked myself what a more subtle way to convey gayness could be; in other words, "IYKYK" vibes. I landed on astrology: asking for your sign is the first page in the classic lesbian playbook. Luckily for me, my sun and moon signs are both Scorpio, so I had the idea of creating a double-ring setup with an engraving of the Scorpio constellation bridging between the sun and the moon. This felt like a more subtle way to express my queer identity while also capturing some of the qualities of a Scorpio that I resonate with: somewhat dark and mysterious, but fiercely passionate and loyal. Time to learn how to bring these sketches to life through Illustrator.
+
+----------
 
 ### 9/8
 After a busy weekend, I was ready to experiment with Arduino components. I followed the [Arduino Tutorial](https://github.com/loopstick/ArduinoTutorial) guide to wire up an external LED to the breadboard. When I tried to run the same `BlinkHello.ino` sketch, the LED didn't turn on. Another oopsie! Can't forget to ground. I plugged in the grounding wire to complete the circuit, and ouila! Let there be light!
@@ -105,6 +108,7 @@ This round of Arduino experimentation was fun! Felt the (metaphorical) sparks of
 ----------
 
 ## Week 3
+*(9/9 - 9/16)*
 
 ### 9/9
 
@@ -161,6 +165,70 @@ Oh no, it doesn't fit! Guess I messed up the caliper measurement (or squeezed it
 
 <img width="300" alt="" src="/assets/sept9-15/doesnt-fit.JPEG">
 
-*Woops*
+*Woops!*
+
+----------
 
 ### 9/10
+
+I enlarged the inner circle in the sun part of the ring in Illustrator so it would fit around my pinkie. I also wanted to make the sun rays more symmetrical, so I copied the top sun ray and duplicated it to replace the other rays along the ring. I also reduced the outline thickness to 0.0001 to work with the laser cutter, which is why the lines are much thinner now.
+
+<img width="300" alt="" src="/assets/sept9-15/sun-moon-with-rays-2.png">
+
+*Looks more professional now*
+
+I ran the design through the laser cutter again, and this time the ring fits!
+
+<img width="300" alt="" src="/assets/sept9-15/it-fits.JPEG">
+
+*Fits like a glove*
+
+Having confirmed my ring fit, I was ready to make the engraving of the Scorpio constellation on the ring. I used the image of Scorpius constellation from earlier and pasted it into my Illustrator canvas. I then extracted the trace from the original image, increased the contrast, then placed it on top of my ring outline.
+
+<img width="300" alt="" src="/assets/sept9-15/scorpius-image-trace.png">
+
+*Double Scorpio like me*
+
+After placement, I traced the Scorpius image using red circles to cut out stars and blue lines to engrave the lines connecting the stars.
+
+<img width="300" alt="" src="/assets/sept9-15/scorpio-constellation-on-ring.png">
+
+*Ready for printing!*
+
+I ran the design through the laser cutter, hoping that this would be my final iteration... Oh no, I overestimated the precision of the laser cutter with my tiny holes--it clipped right through the edges of the ring!
+
+<img width="300" alt="" src="/assets/sept9-15/holes-clipping-outline.JPEG">
+
+*This will give me splinters!*
+
+I went back to my Illustrator outline and decided to take a little creative freedom. I increased the size of the holes and spread the stars out so that they would take up more space on the ring without being too close to any of the edges.
+
+<img width="300" alt="" src="/assets/sept9-15/scorpio-constellation-on-ring-2.png">
+
+*It's not a perfect match to the real constellation, but who will know? (Besides you)*
+
+I cut out the new ring design, and voila! Finally, a ring that fits AND looks good!
+
+<img width="300" alt="" src="/assets/sept9-15/scorpio-final-cut.JPEG">
+
+*I can't wait to wear this out*
+
+I printed a second copy of the ring *just in case* and, to put a final touch on the ring, I sanded it out to remove burn marks.
+
+<img width="300" alt="" src="/assets/sept9-15/ring-sandpaper.JPEG">
+
+*Scorpios and sand do go together*
+
+Aaaaand here's how they look worn!
+
+<img width="300" alt="" src="/assets/sept9-15/wearing-ring-1.JPEG">
+
+<img width="300" alt="" src="/assets/sept9-15/wearing-ring-2.JPEG">
+
+<img width="300" alt="" src="/assets/sept9-15/wearing-ring-3.JPEG">
+
+This was such a fun project! I didn't know I had it in me to make jewelry. I'm proud to be able to show off a piece of my identity just by wearing a simple ring.
+
+<img width="300" alt="" src="/assets/sept9-15/ring-iterations.JPEG">
+
+*This ring has a sting (stolen from ChatGPT)*
