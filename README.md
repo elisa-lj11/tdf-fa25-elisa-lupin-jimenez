@@ -8,7 +8,7 @@ Hello! I'm an MDes student at UC Berkeley, and this is my design journal for "DE
 ## Week 2
 *(9/2 - 9/8)*
 
-### 9/2
+### 9/2 - LED Warm-Up
 Tuesday, September 2nd was the day that we received our electronic kits. I was so excited to get my hardware because I love tinkering around with mini electronics, kind of makes me feel like a baby mechanic.
 
 <img width="300" alt="" src="/assets/sept2-8/TDF-electronic-kit.JPEG">
@@ -36,7 +36,7 @@ I'd need to sleep on it.
 
 ----------
 
-### 9/4
+### 9/4 - Sketching My Personality Ring
 In our fab-shop class of the week, we received our first fabrication assignment:
 > Create a ring that describes a part of your personality or a cause you believe in.
 
@@ -54,7 +54,7 @@ At first, I drew two female symbols side-by-side, but it felt a bit on the nose 
 
 ----------
 
-### 9/8
+### 9/8 - LED and LDR Experimentation
 After a busy weekend, I was ready to experiment with Arduino components. I followed the [Arduino Tutorial](https://github.com/loopstick/ArduinoTutorial) guide to wire up an external LED to the breadboard. When I tried to run the same `BlinkHello.ino` sketch, the LED didn't turn on. Another oopsie! Can't forget to ground. I plugged in the grounding wire to complete the circuit, and ouila! Let there be light!
 
 <img width="300" alt="" src="/assets/sept2-8/first-light.JPEG">
@@ -86,7 +86,6 @@ The LDR readout dipped below 200 whenever my hand hovered close, so I set `ldrTo
 
 [Full video of LDR hand hover take 2](/assets/sept2-8/ldr-light-readout-2.MP4)
 
-
 Now, I wanted to try incorporating a second LED into my existing setup. I set up the red LED in the same way that I set up the original blue LED, and I modified my sketch to toggle on and off the LEDs with a toggle in the LDR (see [Matrix.ino](/scripts/Matrix.ino)). I could still get the blue LED to toggle on and off, but the red LED did not turn on. I troubleshooted by swapping the int values assigned at the beginning of the sketch, no luck. I tried swapping the actual LED positions on the breadboard, now the red LED did turn on, and when I hovered, the blue LED turned on. Huh, maybe I hadn't pushed the red LED in enough the first time. Swapped them back, and sure enough, it was working as expected!
 
 <img width="300" alt="" src="/assets/sept2-8/red-blue-light.JPEG">
@@ -110,7 +109,7 @@ This round of Arduino experimentation was fun! Felt the (metaphorical) sparks of
 ## Week 3
 *(9/9 - 9/15)*
 
-### 9/9
+### 9/9 - Laser-Cutting the Scorpio Ring
 
 I started designing my ring idea in Illustrator. Before I made any of the ring shapes, I thought about how I wanted the rings to sit on my fingers. Because I want to add prongs to represent the sun rays coming out of the sun, I decided to make the sun half of the ring fit on my pinky finger; that way, the prongs don't jut into my other fingers in the resting position. That means that the moon part of the ring needs to fit on my ring finger. I took loose measurements for both around the thickest part of the fingers, rounding up to the nearest tenth millimeter:
 
@@ -169,7 +168,7 @@ Oh no, it doesn't fit! Guess I messed up the caliper measurement (or squeezed it
 
 ----------
 
-### 9/10
+### 9/10 - Refining the Scorpio Ring
 
 I enlarged the inner circle in the sun part of the ring in Illustrator so it would fit around my pinkie. I also wanted to make the sun rays more symmetrical, so I copied the top sun ray and duplicated it to replace the other rays along the ring. I also reduced the outline thickness to 0.0001 to work with the laser cutter, which is why the lines are much thinner now.
 
@@ -235,7 +234,7 @@ This was such a fun project! I didn't know I had it in me to make jewelry. I'm p
 
 [Link to Adobe Illustrator scorpio rings file](/assets/sept9-16/scorpio-rings.ai)
 
-### 9/15
+### 9/15 - Serving Servos
 
 It was a long weekend of traveling, so now I'm back trying to figure out how to combine a button, potentiometer, and servo altogether. I had the idea to set up the button as an on/off switch, the potentiometer as an adjustable speed knob, and the servo as the output of the previous two sensors' interplay. I referenced the [Arduino Guide](https://github.com/loopstick/ArduinoTutorial?tab=readme-ov-file) to set up the button first, and then I wrote a sketch called [ButtonTest.ino](/scripts/ButtonTest.ino) based off of the Arduino guide's [07a_Button.ino](https://github.com/loopstick/ArduinoTutorial/blob/master/examples/07_Button/07a_Button/07a_Button.ino) sketch.
 
@@ -261,5 +260,14 @@ Finally, the trickiest looking sensor in this experimental session: the servo. I
 
 [Full video of servo test](/assets/sept9-15/servo-test.MP4)
 
+I added back in a LED because I realized too late that the potentiometer is position based, so my original idea of using the potentiometer as a speed knob would need to be tabled. Now, the button controls the LED. I'll need to think on how to incorporate the button feedback directly into the potentiometer and servo, but for now I'll slap a llama on it as a distraction.
+
+<img width="300" alt="" src="/assets/sept9-15/llama-drama.gif">
+
+*Lllama drama!*
+
+[Full video of llama spin](/assets/sept9-15/llama-drama.MP4)
+
+<img width="300" alt="" src="/assets/sept9-15/llama-drama.JPEG">
 
 ----------
