@@ -131,6 +131,35 @@ This was such a fun project! I didn't know I had it in me to make jewelry. I'm p
 
 *This ring has a sting (stolen from ChatGPT)*
 
+[Link to Adobe Illustrator scorpio rings file](/assets/sept9-16/scorpio-rings.ai)
+
+### 9/15
+
+It was a long weekend of traveling, so now I'm back trying to figure out how to combine a button, potentiometer, and servo altogether. I had the idea to set up the button as an on/off switch, the potentiometer as an adjustable speed knob, and the servo as the output of the previous two sensors' interplay. I referenced the [Arduino Guide](https://github.com/loopstick/ArduinoTutorial?tab=readme-ov-file) to set up the button first, and then I wrote a sketch called [ButtonTest.ino](/scripts/ButtonTest.ino) based off of the Arduino guide's [07a_Button.ino](https://github.com/loopstick/ArduinoTutorial/blob/master/examples/07_Button/07a_Button/07a_Button.ino) sketch.
+
+<img width="300" alt="" src="/assets/sept9-15/button-test.gif">
+
+*Testing the print out for the button press*
+
+[Full video of button press test](/assets/sept9-15/button-test.MP4)
+
+I then tested the potentiometer by wiring it according to the Arduino Guide, then I wrote a sketch based off of [08c_Pot_AnalogInOutSerial.ino](https://github.com/loopstick/ArduinoTutorial/blob/master/examples/08_Potentiometer/08c_Pot_AnalogInOutSerial/08c_Pot_AnalogInOutSerial.ino) called [PotentiometerTest.ino](/scripts/PotentiometerTest.ino).
+
+<img width="300" alt="" src="/assets/sept9-15/potentiometer-test.gif">
+
+*Testing the potentiometer reading*
+
+[Full video of button press test](/assets/sept9-15/potentiometer-test.MP4)
+
+Finally, the trickiest looking sensor in this experimental session: the servo. I wired it up according to the Arduino Guide, then I used the [09a_Servo_Knob.ino](https://github.com/loopstick/ArduinoTutorial/blob/master/examples/09_Servo/09a_Servo_Knob/09a_Servo_Knob.ino) sketch from the guide to test the servo hooked up to the potentiometer (renamed to [ServoPotTest](/scripts/ServoPotTest.ino) in my repo).
+
+<img width="300" alt="" src="/assets/sept9-15/servo-test.gif">
+
+*Testing the potentiometer-servo link*
+
+[Full video of servo test](/assets/sept9-15/servo-test.MP4)
+
+
 ----------
 
 ## Week 2
