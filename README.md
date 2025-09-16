@@ -260,7 +260,7 @@ Finally, the trickiest looking sensor in this experimental session: the servo. I
 
 [Full video of servo test](/assets/sept9-15/servo-test.MP4)
 
-I added back in a LED because I realized too late that the potentiometer is position based, so my original idea of using the potentiometer as a speed knob would need to be tabled. Now, the button controls the LED. I'll need to think on how to incorporate the button feedback directly into the potentiometer and servo, but for now I'll slap a llama on it as a distraction.
+I added back in a LED because I realized too late that the potentiometer is position based, so my original idea of using the potentiometer as a speed knob would need to be tabled. Now, the button controls the LED. I'll need to think on how to incorporate the button feedback directly into the potentiometer and servo, but for now I'll slap a llama on it as a distraction. Here's the [sketch](/scripts/LlamaDrama.ino).
 
 <img width="300" alt="" src="/assets/sept9-15/llama-drama.gif">
 
