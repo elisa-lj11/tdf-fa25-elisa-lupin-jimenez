@@ -264,10 +264,55 @@ I added back in a LED because I realized too late that the potentiometer is posi
 
 <img width="300" alt="" src="/assets/sept9-15/llama-drama.gif">
 
-*Lllama drama!*
+*Llama drama!*
 
 [Full video of llama spin](/assets/sept9-15/llama-drama.MP4)
 
 <img width="300" alt="" src="/assets/sept9-15/llama-drama.JPEG">
 
+*Llama servo breadboard layout*
+
 ----------
+
+## Week 4
+*(9/16-9/22)*
+
+### 9/17 - Converting Laser-Cut Ring to 3D Print
+
+I took my scorpio rings Illustrator file and exported it as a .svg file to import into Fusion.
+
+<img width="300" alt="" src="/assets/sept16-22/initial-scorpio-rings-fusion.JPEG">
+
+*I don't think the shading is in the right part...*
+
+I re-exported the rings from Illustrator as a .dxf after going through and joining all the original line segments.
+
+<img width="300" alt="" src="/assets/sept16-22/scorpio-rings-as-dxf-joined-lines.png">
+
+*Now I'm seeing the blue shade*
+
+I then extruded the ring body to 3 mm.
+
+<img width="300" alt="" src="/assets/sept16-22/scorpio-ring-extruded.png">
+
+*Chunky*
+
+I exported the Fusion file to a .stl, which I then loaded into the Prusa GUI to prepare for printing.
+
+<img width="300" alt="" src="/assets/sept16-22/initial-scorpio-print-whole.png">
+
+*Whole model of scorpio rings in Prusa preview*
+
+<img width="300" alt="" src="/assets/sept16-22/initial-scorpio-print-layers.png">
+
+*Layered model of scorpio rings in Prusa preview*
+
+I ran the print, which lasted 40 minutes.
+
+<img width="300" alt="" src="/assets/sept16-22/scorpio-3d-print-in-progress.gif">
+
+*Printing the scorpio ring*
+
+[Full video of scorpio ring 3D pring](/assets/sept16-22/scorpio-3d-print-in-progress.MP4)
+
+[Link to scorpio-rings.stl](/assets/sept16-22/scorpio-rings-as-dxf-joined-lines.png)
