@@ -4,6 +4,7 @@ Hello! I'm an MDes student at UC Berkeley, and this is my design journal for "DE
 *No journal entries for Week 1*  
 [Week 2](#week-2)  
 [Week 3](#week-3)  
+[Week 4](#week-4)  
 
 ## Week 2
 *(9/2 - 9/8)*
