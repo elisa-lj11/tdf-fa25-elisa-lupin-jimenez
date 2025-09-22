@@ -313,6 +313,87 @@ I ran the print, which lasted 40 minutes.
 
 *Printing the scorpio ring*
 
-[Full video of scorpio ring 3D pring](/assets/sept16-22/scorpio-3d-print-in-progress.MP4)
+[Full video of scorpio ring 3D printing](/assets/sept16-22/scorpio-3d-print-in-progress.MP4)
+
+It came out pretty well! That said, I want to explore a new ring that is custom-designed for a 3D printer.
+
+<img width="300" alt="" src="/assets/sept16-22/original-scorpio-ring-3d-print.JPEG">
+
+*Looks pretty similar!*
 
 [Link to scorpio-rings.stl](/assets/sept16-22/scorpio-rings-as-dxf-joined-lines.png)
+
+----------
+
+### 9/18 - Second Pass on 3D-Printed Ring
+
+I started with what I thought would be a simple flower/gear idea: using the [Spur Gear Add-In](https://productdesignonline.com/fusion-360-tutorials/create-custom-3d-printable-gears-in-fusion-360/#:~:text=Accessing%20the%20Spur%20Gear%20Add,matter%20which%20one%20you%20choose.), I could make a standalone gear that would sit on top of a peg protruding from the original ring. I opened up Fusion and created a basic ring shape that would fit around my pinkie and stand 3 mm tall.
+
+<img width="300" alt="" src="/assets/sept16-22/base-3d-ring-fusion.png">
+
+*Ring of power*
+
+I messed around with the fillet feature in fusion to give the ring a nice, rounded shape.
+
+<img width="300" alt="" src="/assets/sept16-22/fillet-3d-ring.png">
+
+*I learned it is not pronounced like the steak*
+
+I then used the Spur Gear Add-In to make a 7-pronged gear, then I aligned it with the ring to create a peg that would fit through the gear hole. I also made a cap that would go on the end of the peg so the gear doesn't slide off, which I had planned to glue in place.
+
+<img width="300" alt="" src="/assets/sept16-22/first-gear.png">
+
+<img width="300" alt="" src="/assets/sept16-22/flower-gear-1.png">
+
+<img width="300" alt="" src="/assets/sept16-22//ring-peg.png">
+
+<img width="300" alt="" src="/assets/sept16-22/gear-cap.png">
+
+*Can't wait to fidget with this*
+
+I then loaded the .stl of each standalone shape onto the Prusa printer preview and ran the print.
+
+<img width="300" alt="" src="/assets/sept16-22/flower-gear-ring-prusa.png">
+
+<img width="300" alt="" src="/assets/sept16-22/flower-gear-ring-prusa-layers.png">
+
+*Pretty colors*
+
+Unfortunately, when I printed it, the details were way too small for the printer to delineate between pieces, so it came out as a total mess. The cherry on top was that the ring didn't even fit on my pinkie finger. Back to the drawing board, I suppose.
+
+<img width="300" alt="" src="/assets/sept16-22/3d-print-flower-gear-ring-1.JPEG">
+
+<img width="300" alt="" src="/assets/sept16-22/3d-print-flower-gear-ring-2.JPEG">
+
+*What is this stringy mess?*
+
+<img width="300" alt="" src="/assets/sept16-22/3d-print-ring-no-fit.JPEG">
+
+*A ring made for ants*
+
+I started messing around in Fusion, and as I was playing with some of the built-in 3D shape features, I had the idea to make a children's peg shape game out of a ring with a cube, a triangular prism, and a cylinder. I put the .stl of each standalone shape in the Prusa preview and printed. Sadly, I got so excited by my peg idea that I forgot I was going to run into the same issue as before with the print accuracy. Alas, perhaps the third time will be the charm.
+
+<img width="300" alt="" src="/assets/sept16-22/peg-ring-fusion.png">
+
+<img width="300" alt="" src="/assets/sept16-22/peg-ring-prusa-layers.png">
+
+<img width="300" alt="" src="/assets/sept16-22/peg-ring-prusa-layers.png">
+
+*Even more of a mess, not worth breaking apart*
+
+I decided to go with a more simple design, using the same shape exploration I had in my last iteration but this time just leave the holes in the ring.
+
+<img width="300" alt="" src="/assets/sept16-22/game-controller-ring.png">
+
+*Looks like the symbols on a game controller*
+
+I exported the model as [game-controller.stl](/assets/sept16-22/game-controller.stl) and printed it. Finally, a decent print!
+
+<img width="300" alt="" src="/assets/sept16-22/gamer-ring.JPEG">
+
+*Surprised the holes didn't collapse while the filament was still warm*
+
+Here are all my attempts side-by-side.
+
+<img width="300" alt="" src="/assets/sept16-22/all-3d-ring-print-attempts.JPEG">
+
