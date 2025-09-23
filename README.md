@@ -398,3 +398,29 @@ Here are all my attempts side-by-side.
 
 <img width="300" alt="" src="/assets/sept16-22/all-3d-ring-print-attempts.JPEG">
 
+----------
+
+### 9/20 - Combining the Servo with the Ultrasonic Sensor
+
+I hooked up the ultrasonic sensor to the breadboard using the Arduino tutorial. I left my servo plugged in but took out the potentiometer so the breadboard would be less cluttered. I installed the Ultrasonic library to my Arduino IDE by searching for the [Eric Simoes Ultrasonic library](https://github.com/ErickSimoes/Ultrasonic) within Arduino's library manager.
+
+<img width="300" alt="" src="/assets/sept16-22/ultrasonic-library.png">
+
+I tested that the ultrasonic sensor was taking measurements correctly by using the [UltrasonicSimple](/scripts/UltrasonicSimple.ino) sketch included with the library.
+
+I then modified the code to make [UltrasonicServoTest.ino](/scripts/UltrasonicServoTest.ino), where I mapped the distance between an object and the ultrasonic sensor to a position on the servo.
+
+<img width="300" alt="" src="/assets/sept16-22/servo-ultrasonic-test.gif">
+
+*GIF of light blinking and "Hello, World" printing*
+
+[Full video of ultrasonic sensor linked to servo movement](/assets/sept16-22/servo-ultrasonic-test.MP4)
+
+<img width="300" alt="" src="/assets/sept16-22/servo-ultrasonic-wiring.JPEG">
+
+*Servo-ultrasonic wiring*
+
+Maybe I can use this for my emotive origami...
+
+----------
+
