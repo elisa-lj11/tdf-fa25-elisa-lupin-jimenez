@@ -412,7 +412,7 @@ I then modified the code to make [UltrasonicServoTest.ino](/scripts/UltrasonicSe
 
 <img width="300" alt="" src="/assets/sept16-22/servo-ultrasonic-test.gif">
 
-*GIF of light blinking and "Hello, World" printing*
+*GIF of servo-ultrasonic test*
 
 [Full video of ultrasonic sensor linked to servo movement](/assets/sept16-22/servo-ultrasonic-test.MP4)
 
@@ -421,6 +421,46 @@ I then modified the code to make [UltrasonicServoTest.ino](/scripts/UltrasonicSe
 *Servo-ultrasonic wiring*
 
 Maybe I can use this for my emotive origami...
+
+----------
+
+### 9/22 - Exploring origami options
+
+I had the idea to make a "blooming" flower using string attached to paper petals that could rise and fall with tension and slack in the string. The tension in the string would be created by tying the string around a ring that is fixed to the servo. Whenever the servo rotates along the z axis, the strings are pulled along with the ring rotating. I imagined making an origami-style lily since it looked like it would be easy enough to fold and have petals long enough to manipulate.
+
+<img width="300" alt="" src="/assets/sept16-22/folding-lily-sketch.JPEG">
+
+*Initial mechanism idea*
+
+I practiced folding the lily using [this guide](https://www.beecreativewithseijas.com/uploads/1/2/1/3/121378154/origami-lily-print.pdf).
+
+<img width="300" alt="" src="/assets/sept16-22/lily-origami-first-attempt.JPEG">
+
+*A very rough start*
+
+Maybe my paper was too small and thick. I tried again with larger, thinner diffusion paper that I found in the studio. I also looked up a [Youtube video](https://www.youtube.com/watch?v=yCn-YTti1M0) to fold so I could pay extra attention to how the folds are made.
+
+<img width="300" alt="" src="/assets/sept16-22/lily-origami-second-attempt.JPEG">
+
+*Not looking promising...*
+
+I tried a third time, but it was still a failure.
+
+<img width="300" alt="" src="/assets/sept16-22/origami-graveyard.JPEG">
+
+*Origami graveyard*
+
+I needed to cut my losses (quite literally) and decided to go about my moving figure in a different way.
+
+I simplified the petals into slips of paper. As a test to see if my string method would work with the new petal, I used a boba straw, taped the string to the end of the petal, and fed the string through the straw. To my surprise, I got a curling movement instead of a "flipping" movement, which I found much more interesting than my original idea.
+
+<img width="300" alt="" src="/assets/sept16-22/curling-leaves-with-string.gif">
+
+*GIF of curling leaf with string*
+
+[Full video of curling leaf with string](/assets/sept16-22/curling-leaves-with-string.MP4)
+
+Satisfied with my new mechanism, I was ready to flesh out the programming part of the project.
 
 ----------
 
