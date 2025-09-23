@@ -5,6 +5,7 @@ Hello! I'm an MDes student at UC Berkeley, and this is my design journal for "DE
 [Week 2](#week-2)  
 [Week 3](#week-3)  
 [Week 4](#week-4)  
+[Week 5](#week-5)  
 
 ## Week 2
 *(9/2 - 9/8)*
@@ -463,4 +464,22 @@ I simplified the petals into slips of paper. As a test to see if my string metho
 Satisfied with my new mechanism, I was ready to flesh out the programming part of the project.
 
 ----------
+
+## Week 5
+### 9/23 - Emotive Origami Crunch Time
+
+I wanted to build off of my previous `UltrasonicServoTest.ino` sketch and remove the jittering and `delay()` call, so I consulted ChatGPT to help me generate a smoothing function based off the original code. ChatGPT suggested that I use an `alpha` constant to control the strength of the smoothing, and an exponential moving average function that takes a fraction of the new reading (`rawDistance`) and adds it to the remaining fraction of the old distance (`distance`) to set the new smoothed distance. Since the smoothing function is called continuously, there is no need to run the `delay()` line to make updates.
+
+```distance = alpha * rawDistance + (1 - alpha) * distance;```
+
+
+<img width="300" alt="" src="/assets/sept23-29/smooth-servo.gif">
+
+*GIF of of the servo with the new smoothing code*
+
+[Full video of smooth servo](/assets/sept23-29/smooth-servo.MP4)
+
+It worked like a charm! Only thing I need to be mindful of when I am placing the ultrasonic sensor within the containing box is that the readings get confused within 2 cm (I think the ultrasonic sensor stops reading accurately when the noise is bouncing off too close to its origin), so I may want to place the sensor a little deeper into the box so that users don't run into this issue.
+
+Here is the [ShyGuy.ino](/scripts/ShyGuy.ino) sketch, which I affectionately named because I'm envisioning the paper curling like it's shy when it gets attention (i.e., a hand moving toward it).
 
