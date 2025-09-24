@@ -472,14 +472,31 @@ I wanted to build off of my previous `UltrasonicServoTest.ino` sketch and remove
 
 ```distance = alpha * rawDistance + (1 - alpha) * distance;```
 
-
 <img width="300" alt="" src="/assets/sept23-29/smooth-servo.gif">
 
-*GIF of of the servo with the new smoothing code*
+*GIF of the servo with the new smoothing code*
 
 [Full video of smooth servo](/assets/sept23-29/smooth-servo.MP4)
 
 It worked like a charm! Only thing I need to be mindful of when I am placing the ultrasonic sensor within the containing box is that the readings get confused within 2 cm (I think the ultrasonic sensor stops reading accurately when the noise is bouncing off too close to its origin), so I may want to place the sensor a little deeper into the box so that users don't run into this issue.
 
 Here is the [ShyGuy.ino](/scripts/ShyGuy.ino) sketch, which I affectionately named because I'm envisioning the paper curling like it's shy when it gets attention (i.e., a hand moving toward it).
+
+To confirm that my idea for the project would work with the servo, I taped a dowel to the servo arm and held the boba straw with the strip of paper and string, which I taped to the end of the dowel.
+
+<img width="300" alt="" src="/assets/sept23-29/curly-paper-servo-first-try.gif">
+
+*GIF of the servo with the boba paper prototype*
+
+[Full video of curly paper servo](/assets/sept23-29/curly-paper-servo-first-try.MP4)
+
+Feeling more confident with my rough prototype, I tried it again with two leaves and cardstock paper. I flipped the string to the top and curled the paper on the edge of scissors to give it a natural curl in the resting position. I attached the two strings to the dowel and ran the 
+
+<img width="300" alt="" src="/assets/sept23-29/curly-paper-servo-second-try.gif">
+
+*GIF of the second attempt with cardstock and the servo*
+
+[Full video of curly paper servo second attempt](/assets/sept23-29/curly-paper-servo-second-try.MP4)
+
+On to the laser cut for my flower, which is making a comeback now that I've figured out how to get it to bloom.
 
