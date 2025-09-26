@@ -1,4 +1,4 @@
-# Overview
+# Technology Design Foundations Journal
 Hello! I'm an MDes student at UC Berkeley, and this is my design journal for "DESINV 202: Technology Design Foundations." I will keep track of my progress per week below:
 
 *No journal entries for Week 1*  
@@ -538,15 +538,15 @@ I went back to Fusion and added in the slits. I also cleaned up the geometry whi
 
 I imported this into Illustrator and ran a cut. Unfortunately, the slits were way too small, so I had to go back to Illustrator and size them up, which is contained in [flower-cut-2.ai](/assets/sept23-29/flower-cut-2.ai).
 
-<img width="300" alt="" src="/assets/sept23-29/flower-laser-cut-2.JPEG">
+<img width="300" alt="" src="/assets/sept23-29/flower-cut-illustrator-2.png">
 
-*Second flower laser cut*
+*Second flower design in Illustrator*
 
 With my final flower cut design, I used a sewing needle to thread the string into the four petals.
 
 <img width="300" alt="" src="/assets/sept23-29/sewing-flower.JPEG">
 
-*Never though I'd be sewing paper*
+*Never thought I'd be sewing paper*
 
 <img width="300" alt="" src="/assets/sept23-29/flower-strung-out.JPEG">
 
@@ -556,7 +556,7 @@ Now that I had all the individual parts ready, I needed to put it all together. 
 
 <img width="300" alt="" src="/assets/sept23-29/components-taped-inside-box.JPEG">
 
-*Tape is temporary I promise*
+*Tape is temporary, I promise*
 
 <img width="300" alt="" src="/assets/sept23-29/flower-cut-medfi-prototype.gif">
 
@@ -600,7 +600,7 @@ I still needed some kind of fixture to prevent the straw from wiggling so much w
 
 <img width="300" alt="" src="/assets/sept23-29/flower-ring-hold.png">
 
-<img width="300" alt="" src="/assets/sept23-29/flower-ring-hold-cut.png">
+<img width="300" alt="" src="/assets/sept23-29/flower-ring-hold-cut.JPEG>
 
 *Huh, wonder where I got all that practice making rings...*
 
@@ -642,8 +642,8 @@ See gifs below for a quick demonstration of Shy Guy in action.
 
 <img width="300" alt="" src="/assets/sept23-29/shy-guy-demo-3.gif">
 
-[Full video of shy guy demo 1](/assets/sept23-29/shy-guy-demo-1.MP4)
-[Full video of shy guy demo 2](/assets/sept23-29/shy-guy-demo-2.MP4)
-[Full video of shy guy demo 2](/assets/sept23-29/shy-guy-demo-3.MP4)
+[Full video of shy guy demo 1](/assets/sept23-29/shy-guy-demo-1.MP4)  
+[Full video of shy guy demo 2](/assets/sept23-29/shy-guy-demo-2.MP4)  
+[Full video of shy guy demo 2](/assets/sept23-29/shy-guy-demo-3.MP4)  
 
-What a fun week! I'm glad I got to experiment with the Arduino, laser cutting, and 3D printing (even if I didn't end up printing anything) all in one project. I'm excited to do more hybrid technology development like this over the semester, and I'm especially excited to work with my brilliant cohort on more projects together.
+What a fun week! I'm glad I got to experiment with the Arduino, laser cutting, and 3D printing (even if I didn't end up printing anything) all in one project. I'm proud of what I came up with; I didn't think I could make a flower like this in just a week's time! I'm excited to do more hybrid technology development like this over the semester, and I'm especially excited to work with my brilliant cohort on more projects together.
