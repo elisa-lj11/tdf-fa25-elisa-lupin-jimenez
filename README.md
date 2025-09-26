@@ -472,7 +472,7 @@ I wanted to build off of my previous `UltrasonicServoTest.ino` sketch and remove
 
 ```distance = alpha * rawDistance + (1 - alpha) * distance;```
 
-<img width="300" alt="" src="/assets/sept23-29/smooth-servo.gif">
+<img width="600" alt="" src="/assets/sept23-29/smooth-servo.gif">
 
 *GIF of the servo with the new smoothing code*
 
@@ -484,7 +484,7 @@ Here is the [ShyGuy.ino](/scripts/ShyGuy.ino) sketch, which I affectionately nam
 
 To confirm that my idea for the project would work with the servo, I taped a dowel to the servo arm and held the boba straw with the strip of paper and string, which I taped to the end of the dowel.
 
-<img width="600" alt="" src="/assets/sept23-29/curly-paper-servo-first-try.gif">
+<img width="300" alt="" src="/assets/sept23-29/curly-paper-servo-first-try.gif">
 
 *GIF of the servo with the boba paper low fidelity prototype*
 
