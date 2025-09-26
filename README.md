@@ -630,7 +630,13 @@ Here's the high fidelity wiring and mechanism:
 
 And with that, Shy Guy was ready to ~see~ hide from the world!
 
-<img width="600" alt="" src="/assets/sept23-29/shy_guy_hifi_prototype.JPEG">
+<img width="600" alt="" src="/assets/sept23-29/shy-guy-hifi-prototype.JPEG">
+
+<img width="600" alt="" src="/assets/sept23-29/shy-guy-hifi-prototype-2.JPEG">
+
+<img width="600" alt="" src="/assets/sept23-29/shy-guy-hifi-prototype-3.JPEG">
+
+<img width="600" alt="" src="/assets/sept23-29/shy-guy-hifi-prototype-4.JPEG">
 
 *He's my baby*
 
