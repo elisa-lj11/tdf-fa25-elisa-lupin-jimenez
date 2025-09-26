@@ -486,7 +486,7 @@ To confirm that my idea for the project would work with the servo, I taped a dow
 
 <img width="300" alt="" src="/assets/sept23-29/curly-paper-servo-first-try.gif">
 
-*GIF of the servo with the boba paper prototype*
+*GIF of the servo with the boba paper low fidelity prototype*
 
 [Full video of curly paper servo](/assets/sept23-29/curly-paper-servo-first-try.MP4)
 
@@ -500,3 +500,150 @@ Feeling more confident with my rough prototype, I tried it again with two leaves
 
 On to the laser cut for my flower, which is making a comeback now that I've figured out how to get it to bloom.
 
+I made the sketch for the flower in Fusion. I started with a simple circle and put a much smaller circle inside (where the string would be fed through), then used the fit point spline tool to shape the first petal. I copied the petal to make four petals total and spaced them around the circle. I used the fillet tool to round the edges between the petal root and the edge of the circle.
+
+<img width="300" alt="" src="/assets/sept23-29/flower-cut-fusion-1.png">
+
+*First pass at flower design in Fusion*
+
+I then exported the file from Fusion as [flower-cut.dxf](/assets/sept23-29/flower-cut.dxf) and imported into an Illustrator file called [flower-cut.ai](/assets/sept23-29/flower-cut.ai). I cleaned up some of the extra circles and edges, then I ran the print.
+
+<img width="300" alt="" src="/assets/sept23-29/flower-cut-illustrator-1.png">
+
+*Flower design imported into Illustrator and cleaned up*
+
+<img width="300" alt="" src="/assets/sept23-29/flower-laser-cut-1.JPEG">
+
+*First flower laser cut*
+
+I taped a piece of string to each petal, pushed the string through the boba straw, then taped them all to a point on the dowel taped to the servo.
+
+<img width="300" alt="" src="/assets/sept23-29/flower-cut-attached-to-servo.gif">
+
+*The prototype is working!*
+
+[Full video of first flower prototype](/assets/sept23-29/flower-cut-attached-to-servo.MP4)
+
+I realized I did not want tape to be externally visible in my final prototype, so I used an exact knife to cut a couple slits into the edge of the petal so that I could tie the string around it.
+
+<img width="300" alt="" src="/assets/sept23-29/slits-in-flower.JPEG">
+
+*Starting to look more refined*
+
+I went back to Fusion and added in the slits. I also cleaned up the geometry while in Fusion so I wouldn't have to do it in Illustrator, then I exported the file as [flower-cut-2.dxf](/assets/sept23-29/flower-cut-2.dxf).
+
+<img width="300" alt="" src="/assets/sept23-29/flower-cut-fusion-2.png">
+
+*Second pass at flower design in Fusion*
+
+I imported this into Illustrator and ran a cut. Unfortunately, the slits were way too small, so I had to go back to Illustrator and size them up, which is contained in [flower-cut-2.ai](/assets/sept23-29/flower-cut-2.ai).
+
+<img width="300" alt="" src="/assets/sept23-29/flower-laser-cut-2.JPEG">
+
+*Second flower laser cut*
+
+With my final flower cut design, I used a sewing needle to thread the string into the four petals.
+
+<img width="300" alt="" src="/assets/sept23-29/sewing-flower.JPEG">
+
+*Never though I'd be sewing paper*
+
+<img width="300" alt="" src="/assets/sept23-29/flower-strung-out.JPEG">
+
+*My flower is strung out*
+
+Now that I had all the individual parts ready, I needed to put it all together. I cut a hole into the top of the box for the straw, cut another two holes into the side of the box (one for each cylinder on the ultrasonic sensor), taped all my components underneath, and placed the boba straw, string, and flower in position. I taped the string to the dowel on the servo, and I tested it out (holding my breath).
+
+<img width="300" alt="" src="/assets/sept23-29/components-taped-inside-box.JPEG">
+
+*Tape is temporary I promise*
+
+<img width="300" alt="" src="/assets/sept23-29/flower-cut-medfi-prototype.gif">
+
+*Medium fidelity prototype in action*
+
+[Full video of medium fidelity flower prototype](/assets/sept23-29/flower-cut-medfi-prototype.MP4)
+
+<img width="300" alt="" src="/assets/sept23-29/medfi-mechanism.gif">
+
+*Underside of the medium fidelity prototype*
+
+[Full video of medium fidelity mechanism](/assets/sept23-29/flower-cut-medfi-prototype.MP4)
+
+Whoo, that was a late night of work! I'll leave the final touches to tomorrow.
+
+----------
+
+### 9/24 - Bringing Shy Guy Across the Finish Line
+
+It was my last day to work on Shy Guy, but I was feeling pretty good about where I left off from the day before. All that I had left was to clean up the appearance of the straw and fix the components into place (without tape).
+
+The straw took a disproportionate amount of my headspace because my original idea--to wrap it in paper the same color as the flower--looked horrible. The edge of the paper was clearly visible, creating a seam along the length of the straw that was distracting. For some reason, my sleep-deprived brain jumped to coming up with a 3D-printed solution, so I took to Fusion once again.
+
+I designed the straw to fit into the hole I had already cut in the box, and I added a little lip that would sit on top of the box to prevent it from wiggling.
+
+<img width="300" alt="" src="/assets/sept23-29/3d-print-boba-straw.png">
+
+*Over-engineered a bit*
+
+After 30 minutes of CAD work, I learned from a design specialist that this print would actually fail because the filament would not be able to support itself when it is being shaped into something as tall and skinny as a straw. Sad face.
+
+What else could I possibly do, other than wrap paper around the straw and 3D print? Oh right, good old-fashioned paint still exists. I brought the straw to our spray-paint fume hood corner and sprayed that straw up.
+
+<img width="300" alt="" src="/assets/sept23-29/black-straw.JPEG">
+
+<img width="300" alt="" src="/assets/sept23-29/white-straw.JPEG">
+
+*Sometimes the best solutions are the most simple*
+
+I still needed some kind of fixture to prevent the straw from wiggling so much with the servo movement, so I decided to make (yet another) laser cut ring, designed in Illustrator as [flower-ring-hold.ai](/assets/sept23-29/flower-ring-hold.ai) that I could glue to the underside of the box.
+
+<img width="300" alt="" src="/assets/sept23-29/flower-ring-hold.png">
+
+<img width="300" alt="" src="/assets/sept23-29/flower-ring-hold-cut.png">
+
+*Huh, wonder where I got all that practice making rings...*
+
+To cleanly mount all the components, I used command strips for the power bank and the Arduino, which would hold them in place upside-down firmly but also make it easy to remove them without leaving any residue on the components themselves. I tried using a cut command strip for the servo, but the little thing was just too powerful, it kept tearing itself off the strip anytime it pulled on the flower. I had to pull out the hot glue gun for this small but mighty component. I also hot-glued the straw ring over the straw hole on the underside of the box. While I waited for the glue to dry, I changed the wires out on the breadboard so everything would look tidier.
+
+<img width="300" alt="" src="/assets/sept23-29/command-strip.JPEG">
+
+*Command strips > duct tape*
+
+<img width="300" alt="" src="/assets/sept23-29/hot-glue-servo.JPEG">
+
+*I put just a little dab of hot glue*
+
+Here's the high fidelity wiring and mechanism:
+
+<img width="300" alt="" src="/assets/sept23-29/high-fidelity-wiring.JPEG">
+
+<img width="300" alt="" src="/assets/sept2-8/red-blue-schematic.png">
+
+*Schematic of Shy Guy, generated with [circuit-diagram.org](https://www.circuit-diagram.org/editor/)*
+
+<img width="300" alt="" src="/assets/sept23-29/final-mechanism.gif">
+
+*I know I promised no tape, but the little servo pulled itself off even with the hot glue! Please forgive me...*
+
+[Full video of high fidelity mechanism](/assets/sept23-29/final-mechanism.MP4)
+
+And with that, Shy Guy was ready to ~see~ hide from the world!
+
+<img width="300" alt="" src="/assets/sept23-29/shy_guy_hifi_prototype.JPEG">
+
+*He's my baby*
+
+See gifs below for a quick demonstration of Shy Guy in action.
+
+<img width="300" alt="" src="/assets/sept23-29/shy-guy-demo-1.gif">
+
+<img width="300" alt="" src="/assets/sept23-29/shy-guy-demo-2.gif">
+
+<img width="300" alt="" src="/assets/sept23-29/shy-guy-demo-3.gif">
+
+[Full video of shy guy demo 1](/assets/sept23-29/shy-guy-demo-1.MP4)
+[Full video of shy guy demo 2](/assets/sept23-29/shy-guy-demo-2.MP4)
+[Full video of shy guy demo 2](/assets/sept23-29/shy-guy-demo-3.MP4)
+
+What a fun week! I'm glad I got to experiment with the Arduino, laser cutting, and 3D printing (even if I didn't end up printing anything) all in one project. I'm excited to do more hybrid technology development like this over the semester, and I'm especially excited to work with my brilliant cohort on more projects together.

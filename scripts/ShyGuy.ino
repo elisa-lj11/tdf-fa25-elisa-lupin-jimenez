@@ -1,5 +1,6 @@
 /*
  * ShyGuy
+ * Author: Elisa Lupin-Jimenez
  * Based off of UltrasonicServoTest.ino
  */
 
