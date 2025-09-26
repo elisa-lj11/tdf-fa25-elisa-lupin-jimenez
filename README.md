@@ -586,7 +586,7 @@ I designed the straw to fit into the hole I had already cut in the box, and I ad
 
 *Over-engineered a bit*
 
-After 30 minutes of CAD work, I learned from a design specialist that this print would actually fail because the filament would not be able to support itself when it is being shaped into something as tall and skinny as a straw. Sad face.
+After 30 minutes of CAD work, I learned from a design specialist that this print would actually fail because the filament would not be able to support itself when it is being shaped into something as tall and skinny as a straw. Sad face. Here's [boba-straw.stl](/assets/sept23-29/boba-straw.stl) anyway.
 
 What else could I possibly do, other than wrap paper around the straw and 3D print? Oh right, good old-fashioned paint still exists. I brought the straw to our spray-paint fume hood corner and sprayed that straw up.
 
