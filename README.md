@@ -24,7 +24,7 @@ We then received our first electronics challenge:
 
 I started by taking the code from the `loop()` function in `HelloWorld.ino` and copying it into [Blink.ino](/scripts/Blink.ino), which was also pre-written for us. When I ran the sketch, the light blinked but "Hello, World!" did not print. I realized that I also needed to copy `Serial.begin(9600);` into `setup()` in order to monitor the serial data transmission feed. My first woopsie!
 
-<img width="600" alt="" src="/assets/sept2-8/blink-hello.gif">
+<img width="300" alt="" src="/assets/sept2-8/blink-hello.gif">
 
 *GIF of light blinking and "Hello, World" printing*
 
@@ -59,13 +59,13 @@ At first, I drew two female symbols side-by-side, but it felt a bit on the nose 
 ### 9/8 - LED and LDR Experimentation
 After a busy weekend, I was ready to experiment with Arduino components. I followed the [Arduino Tutorial](https://github.com/loopstick/ArduinoTutorial) guide to wire up an external LED to the breadboard. When I tried to run the same `BlinkHello.ino` sketch, the LED didn't turn on. Another oopsie! Can't forget to ground. I plugged in the grounding wire to complete the circuit, and ouila! Let there be light!
 
-<img width="600" alt="" src="/assets/sept2-8/first-light.JPEG">
+<img width="300" alt="" src="/assets/sept2-8/first-light.JPEG">
 
 *First external light on Arduino*
 
 Next, I tried setting up the light dependent resistor (LDR).
 
-<img width="600" alt="" src="/assets/sept2-8/ldr-light.JPEG">
+<img width="300" alt="" src="/assets/sept2-8/ldr-light.JPEG">
 
 *LDR light wiring*
 
@@ -74,7 +74,7 @@ I followed the Arduino guide and used code from [03a_LDR_LightSensor.ino](https:
 
 Then I ran the sketch and tested hovering my hand over the LDR to see how the values would change.
 
-<img width="600" alt="" src="/assets/sept2-8/ldr-light-readout-1.gif">
+<img width="300" alt="" src="/assets/sept2-8/ldr-light-readout-1.gif">
 
 *LDR hand hover*
 
@@ -82,7 +82,7 @@ Then I ran the sketch and tested hovering my hand over the LDR to see how the va
 
 The LDR readout dipped below 200 whenever my hand hovered close, so I set `ldrToggleValue` to `200`. I also wanted it to have a faster response time (in case I moved my hand over it quickly), so I reduced the delay time to `20` milliseconds.
 
-<img width="600" alt="" src="/assets/sept2-8/ldr-light-readout-2.gif">
+<img width="300" alt="" src="/assets/sept2-8/ldr-light-readout-2.gif">
 
 *LDR hand hover take 2*
 
@@ -90,11 +90,11 @@ The LDR readout dipped below 200 whenever my hand hovered close, so I set `ldrTo
 
 Now, I wanted to try incorporating a second LED into my existing setup. I set up the red LED in the same way that I set up the original blue LED, and I modified my sketch to toggle on and off the LEDs with a toggle in the LDR (see [Matrix.ino](/scripts/Matrix.ino)). I could still get the blue LED to toggle on and off, but the red LED did not turn on. I troubleshooted by swapping the int values assigned at the beginning of the sketch, no luck. I tried swapping the actual LED positions on the breadboard, now the red LED did turn on, and when I hovered, the blue LED turned on. Huh, maybe I hadn't pushed the red LED in enough the first time. Swapped them back, and sure enough, it was working as expected!
 
-<img width="600" alt="" src="/assets/sept2-8/red-blue-light.JPEG">
+<img width="300" alt="" src="/assets/sept2-8/red-blue-light.JPEG">
 
 *Red and blue LEDs with LDR*
 
-<img width="600" alt="" src="/assets/sept2-8/take-the-red-pill.gif">
+<img width="300" alt="" src="/assets/sept2-8/take-the-red-pill.gif">
 
 *Take the red pill!*
 
@@ -118,11 +118,11 @@ I started designing my ring idea in Illustrator. Before I made any of the ring s
 Pinkie finger: 5.3 mm => 0.209 cm
 Ring finger: 5.9 mm => 0.233 inches
 
-<img width="600" alt="" src="/assets/sept9-15/measuring-pinkie.JPEG">
+<img width="300" alt="" src="/assets/sept9-15/measuring-pinkie.JPEG">
 
 *the wire is all I could find  ¯\\_(ツ)_/¯*
 
-<img width="600" alt="" src="/assets/sept9-15/measuring-string.JPEG">
+<img width="300" alt="" src="/assets/sept9-15/measuring-string.JPEG">
 
 Turns out, this is not a great way to measure diameter. Since I was in the Jacobs Maker Space, I was fortunate to be able to ask Cody for his expertise. He advised me to use a caliper. I took an external measurement of my ring finger, an external measurement of my pinkie finger, and an internal measurement between the two fingers to determine the distance of separation for the rings.
 
@@ -164,7 +164,7 @@ I was ready to do my first laser-cut test with my Illustrator file to see if the
 
 Oh no, it doesn't fit! Guess I messed up the caliper measurement (or squeezed it too tight around my finger). Alas, I ran out of time for the day to try again, so I'd have to try again later.
 
-<img width="600" alt="" src="/assets/sept9-15/doesnt-fit.JPEG">
+<img width="300" alt="" src="/assets/sept9-15/doesnt-fit.JPEG">
 
 *Woops!*
 
@@ -180,7 +180,7 @@ I enlarged the inner circle in the sun part of the ring in Illustrator so it wou
 
 I ran the design through the laser cutter again, and this time the ring fits!
 
-<img width="600" alt="" src="/assets/sept9-15/it-fits.JPEG">
+<img width="300" alt="" src="/assets/sept9-15/it-fits.JPEG">
 
 *Fits like a glove*
 
@@ -198,7 +198,7 @@ After placement, I traced the Scorpius image using red circles to cut out stars 
 
 I ran the design through the laser cutter, hoping that this would be my final iteration... Oh no, I overestimated the precision of the laser cutter with my tiny holes--it clipped right through the edges of the ring!
 
-<img width="600" alt="" src="/assets/sept9-15/holes-clipping-outline.JPEG">
+<img width="300" alt="" src="/assets/sept9-15/holes-clipping-outline.JPEG">
 
 *This will give me splinters!*
 
@@ -210,15 +210,15 @@ I went back to my Illustrator outline and decided to take a little creative free
 
 I cut out the new ring design, and voila! Finally, a ring that fits AND looks good!
 
-<img width="600" alt="" src="/assets/sept9-15/scorpio-final-cut.JPEG">
+<img width="300" alt="" src="/assets/sept9-15/scorpio-final-cut.JPEG">
 
 *I can't wait to wear this out*
 
 I printed a second copy of the ring *just in case* and, to put a final touch on the ring, I sanded it out to remove burn marks.
 
-<img width="600" alt="" src="/assets/sept9-15/ring-sandpaper.JPEG">
+<img width="300" alt="" src="/assets/sept9-15/ring-sandpaper.JPEG">
 
-*Scorpios and sand do go together*
+*Scorpions and sand do go together*
 
 Aaaaand here's how they look worn!
 
@@ -240,7 +240,7 @@ This was such a fun project! I didn't know I had it in me to make jewelry. I'm p
 
 It was a long weekend of traveling, so now I'm back trying to figure out how to combine a button, potentiometer, and servo altogether. I had the idea to set up the button as an on/off switch, the potentiometer as an adjustable speed knob, and the servo as the output of the previous two sensors' interplay. I referenced the [Arduino Guide](https://github.com/loopstick/ArduinoTutorial?tab=readme-ov-file) to set up the button first, and then I wrote a sketch called [ButtonTest.ino](/scripts/ButtonTest.ino) based off of the Arduino guide's [07a_Button.ino](https://github.com/loopstick/ArduinoTutorial/blob/master/examples/07_Button/07a_Button/07a_Button.ino) sketch.
 
-<img width="600" alt="" src="/assets/sept9-15/button-test.gif">
+<img width="300" alt="" src="/assets/sept9-15/button-test.gif">
 
 *Testing the print out for the button press*
 
@@ -248,7 +248,7 @@ It was a long weekend of traveling, so now I'm back trying to figure out how to 
 
 I then tested the potentiometer by wiring it according to the Arduino Guide, then I wrote a sketch based off of [08c_Pot_AnalogInOutSerial.ino](https://github.com/loopstick/ArduinoTutorial/blob/master/examples/08_Potentiometer/08c_Pot_AnalogInOutSerial/08c_Pot_AnalogInOutSerial.ino) called [PotentiometerTest.ino](/scripts/PotentiometerTest.ino).
 
-<img width="600" alt="" src="/assets/sept9-15/potentiometer-test.gif">
+<img width="300" alt="" src="/assets/sept9-15/potentiometer-test.gif">
 
 *Testing the potentiometer reading*
 
@@ -256,7 +256,7 @@ I then tested the potentiometer by wiring it according to the Arduino Guide, the
 
 Finally, the trickiest looking sensor in this experimental session: the servo. I wired it up according to the Arduino Guide, then I used the [09a_Servo_Knob.ino](https://github.com/loopstick/ArduinoTutorial/blob/master/examples/09_Servo/09a_Servo_Knob/09a_Servo_Knob.ino) sketch from the guide to test the servo hooked up to the potentiometer (renamed to [ServoPotTest](/scripts/ServoPotTest.ino) in my repo).
 
-<img width="600" alt="" src="/assets/sept9-15/servo-test.gif">
+<img width="300" alt="" src="/assets/sept9-15/servo-test.gif">
 
 *Testing the potentiometer-servo link*
 
@@ -264,7 +264,7 @@ Finally, the trickiest looking sensor in this experimental session: the servo. I
 
 I added back in a LED because I realized too late that the potentiometer is position based, so my original idea of using the potentiometer as a speed knob would need to be tabled. Now, the button controls the LED. I'll need to think on how to incorporate the button feedback directly into the potentiometer and servo, but for now I'll slap a llama on it as a distraction. Here's the [sketch](/scripts/LlamaDrama.ino).
 
-<img width="600" alt="" src="/assets/sept9-15/llama-drama.gif">
+<img width="300" alt="" src="/assets/sept9-15/llama-drama.gif">
 
 *Llama drama!*
 
@@ -311,7 +311,7 @@ I exported the Fusion file to a .stl, which I then loaded into the Prusa GUI to 
 
 I ran the print, which lasted 40 minutes.
 
-<img width="600" alt="" src="/assets/sept16-22/scorpio-3d-print-in-progress.gif">
+<img width="300" alt="" src="/assets/sept16-22/scorpio-3d-print-in-progress.gif">
 
 *Printing the scorpio ring*
 
@@ -405,7 +405,7 @@ Here are all my attempts side-by-side.
 
 I hooked up the ultrasonic sensor to the breadboard using the Arduino tutorial. I left my servo plugged in but took out the potentiometer so the breadboard would be less cluttered. I installed the Ultrasonic library to my Arduino IDE by searching for the [Eric Simoes Ultrasonic library](https://github.com/ErickSimoes/Ultrasonic) within Arduino's library manager.
 
-<img width="600" alt="" src="/assets/sept16-22/ultrasonic-library.png">
+<img width="300" alt="" src="/assets/sept16-22/ultrasonic-library.png">
 
 I tested that the ultrasonic sensor was taking measurements correctly by using the [UltrasonicSimple](/scripts/UltrasonicSimple.ino) sketch included with the library.
 
@@ -455,7 +455,7 @@ I needed to cut my losses (quite literally) and decided to go about my moving fi
 
 I simplified the petals into slips of paper. As a test to see if my string method would work with the new petal, I used a boba straw, taped the string to the end of the petal, and fed the string through the straw. To my surprise, I got a curling movement instead of a "flipping" movement, which I found much more interesting than my original idea.
 
-<img width="600" alt="" src="/assets/sept16-22/curling-leaves-with-string.gif">
+<img width="300" alt="" src="/assets/sept16-22/curling-leaves-with-string.gif">
 
 *GIF of curling leaf with string*
 
@@ -472,7 +472,7 @@ I wanted to build off of my previous `UltrasonicServoTest.ino` sketch and remove
 
 ```distance = alpha * rawDistance + (1 - alpha) * distance;```
 
-<img width="600" alt="" src="/assets/sept23-29/smooth-servo.gif">
+<img width="300" alt="" src="/assets/sept23-29/smooth-servo.gif">
 
 *GIF of the servo with the new smoothing code*
 
@@ -518,7 +518,7 @@ I then exported the file from Fusion as [flower-cut.dxf](/assets/sept23-29/flowe
 
 I taped a piece of string to each petal, pushed the string through the boba straw, then taped them all to a point on the dowel taped to the servo.
 
-<img width="600" alt="" src="/assets/sept23-29/flower-cut-attached-to-servo.gif">
+<img width="300" alt="" src="/assets/sept23-29/flower-cut-attached-to-servo.gif">
 
 *The prototype is working!*
 
@@ -526,7 +526,7 @@ I taped a piece of string to each petal, pushed the string through the boba stra
 
 I realized I did not want tape to be externally visible in my final prototype, so I used an exact knife to cut a couple slits into the edge of the petal so that I could tie the string around it.
 
-<img width="600" alt="" src="/assets/sept23-29/slits-in-flower.JPEG">
+<img width="300" alt="" src="/assets/sept23-29/slits-in-flower.JPEG">
 
 *Starting to look more refined*
 
@@ -582,7 +582,7 @@ The straw took a disproportionate amount of my headspace because my original ide
 
 I designed the straw to fit into the hole I had already cut in the box, and I added a little lip that would sit on top of the box to prevent it from wiggling.
 
-<img width="600" alt="" src="/assets/sept23-29/3d-print-boba-straw.png">
+<img width="200" alt="" src="/assets/sept23-29/3d-print-boba-straw.png">
 
 *Over-engineered a bit*
 
@@ -590,9 +590,9 @@ After 30 minutes of CAD work, I learned from a design specialist that this print
 
 What else could I possibly do, other than wrap paper around the straw and 3D print? Oh right, good old-fashioned paint still exists. I brought the straw to our spray-paint fume hood corner and sprayed that straw up.
 
-<img width="600" alt="" src="/assets/sept23-29/black-straw.JPEG">
+<img width="300" alt="" src="/assets/sept23-29/black-straw.JPEG">
 
-<img width="600" alt="" src="/assets/sept23-29/white-straw.JPEG">
+<img width="300" alt="" src="/assets/sept23-29/white-straw.JPEG">
 
 *Sometimes the best solutions are the most simple*
 
@@ -600,7 +600,7 @@ I still needed some kind of fixture to prevent the straw from wiggling so much w
 
 <img width="600" alt="" src="/assets/sept23-29/flower-ring-hold.png">
 
-<img width="600" alt="" src="/assets/sept23-29/flower-ring-hold-cut.JPEG>
+<img width="300" alt="" src="/assets/sept23-29/flower-ring-hold-cut.JPEG">
 
 *Huh, wonder where I got all that practice making rings...*
 
