@@ -6,6 +6,8 @@ Hello! I'm an MDes student at UC Berkeley, and this is my design journal for "DE
 [Week 3](#week-3)  
 [Week 4](#week-4)  
 [Week 5](#week-5)  
+[Week 6](#week-6) 
+[Week 7](#week-7) 
 
 ## Week 2
 *(9/2 - 9/8)*
@@ -466,6 +468,7 @@ Satisfied with my new mechanism, I was ready to flesh out the programming part o
 ----------
 
 ## Week 5
+*(9/23 - 9/29)*
 ### 9/23 - Emotive Origami Crunch Time
 
 I wanted to build off of my previous `UltrasonicServoTest.ino` sketch and remove the jittering and `delay()` call, so I consulted ChatGPT to help me generate a smoothing function based off the original code. ChatGPT suggested that I use an `alpha` constant to control the strength of the smoothing, and an exponential moving average function that takes a fraction of the new reading (`rawDistance`) and adds it to the remaining fraction of the old distance (`distance`) to set the new smoothed distance. Since the smoothing function is called continuously, there is no need to run the `delay()` line to make updates.
@@ -642,7 +645,7 @@ And with that, Shy Guy was ready to ~see~ hide from the world!
 
 See gifs below for a quick demonstration of Shy Guy in action.
 
-<img width="600" alt="" src="/assets/sept23-29/shy-guy-demo-1.gif">
+<img width="600" alt="" src="/assets/sept23-29/shy-guy-#demo-1.gif">
 
 <img width="600" alt="" src="/assets/sept23-29/shy-guy-demo-2.gif">
 
@@ -653,3 +656,59 @@ See gifs below for a quick demonstration of Shy Guy in action.
 [Full video of shy guy demo 2](/assets/sept23-29/shy-guy-demo-3.MP4)  
 
 What a fun week! I'm glad I got to experiment with the Arduino, laser cutting, and 3D printing (even if I didn't end up printing anything) all in one project. I'm proud of what I came up with; I didn't think I could make a flower like this in just a week's time! I'm excited to do more hybrid technology development like this over the semester, and I'm especially excited to work with my brilliant cohort on more projects together.
+
+----------
+
+## Week 6
+*(9/30 - 10/4)*
+
+### 10/3 - Testing the DC Motor
+
+I needed to solder two wires to the DC motor in order to connect it to my Arduino. I used the soldering station  
+
+<img width="600" alt="" src="/assets/sept30-oct4/solder-dc-motor.JPEG">
+
+*Yummy solder juice*
+
+- Testing with Dr. Sudhu's [Makeability motor sketch](/scripts/Makeability_serialIO_v4c_motor.ino)
+- Wiring with [Arduino guide for H bridge motor driver](https://github.com/loopstick/ArduinoTutorial?tab=readme-ov-file#h-bridge-motor-driver)
+
+----------
+
+### 10/4 - Designing the Laser-Cut Base
+
+https://www.makercase.com/basicBox
+
+----------
+
+## Week 7
+*(10/5 - 10/12)*
+
+### 10/6 - Playing around with p5.js
+
+After playing around with Dr. Sudhu's [happy little skies sketch](https://openprocessing.org/sketch/2584640) on the OpenProcessing website and his [DC motor p5.js sketch](https://editor.p5js.org/loopstick/sketches/MWZxoSNoP) on the p5js online editor, I wanted to try setting up some simple computer vision sketch for eye tracking. Sadly, I quickly discovered via ChatGPT that the computer vision model that we use is not sensitive enough to detect eye position. I still wanted to do something that played around with a different motion than ear positions, so I decided to explore hand movement.
+
+https://chatgpt.com/share/68e3e2e9-822c-8010-9e35-796fe1ef163b
+
+- Tried doing something that could detect up to 2 hands, where each hand determines the summed speed
+- Was getting wonky behavior when I had 2 hands up, so limited it to detecting right hand
+- Right hand and left hand are not differentiated in the code, will need to work that out, also doesn't track speed until it hits above 25
+
+----------
+### 10/6 - Laser-Cutting the component base
+
+- drew components on paper
+- measured dimensions of components and box size
+- placed hole for motor with vision to have equal gears centered and side-by-side
+- did the laser cut
+- oopsie put the plug slot in the wrong spot
+- re-cut the back panel
+- drilled holes for standup screws
+
+----------
+### 10/7 - Making the turntable gears
+
+- designed with spur gear add-in in fusion
+- measured 3d-printed square peg on motor for actuator hole, using dowel for other gear holes
+- first laser cut unexpectedly disconnected, but was able to prove concept with rough gears
+- 
