@@ -6,13 +6,13 @@ Hello! I'm an MDes student at UC Berkeley, and this is my design journal for "DE
 [Week 3](#week-3)  
 [Week 4](#week-4)  
 [Week 5](#week-5)  
-[Week 6](#week-6) 
+[Week 6](#week-6)  
 [Week 7](#week-7) 
 
 ## Week 2
 *(9/2 - 9/8)*
 
-### 9/2 - LED Warm-Up
+### 9/2 - LED warm-Up
 Tuesday, September 2nd was the day that we received our electronic kits. I was so excited to get my hardware because I love tinkering around with mini electronics, kind of makes me feel like a baby mechanic.
 
 <img width="600" alt="" src="/assets/sept2-8/TDF-electronic-kit.JPEG">
@@ -40,7 +40,7 @@ I'd need to sleep on it.
 
 ----------
 
-### 9/4 - Sketching My Personality Ring
+### 9/4 - Sketching my personality ring
 In our fab-shop class of the week, we received our first fabrication assignment:
 > Create a ring that describes a part of your personality or a cause you believe in.
 
@@ -58,7 +58,7 @@ At first, I drew two female symbols side-by-side, but it felt a bit on the nose 
 
 ----------
 
-### 9/8 - LED and LDR Experimentation
+### 9/8 - LED and LDR experimentation
 After a busy weekend, I was ready to experiment with Arduino components. I followed the [Arduino Tutorial](https://github.com/loopstick/ArduinoTutorial) guide to wire up an external LED to the breadboard. When I tried to run the same `BlinkHello.ino` sketch, the LED didn't turn on. Another oopsie! Can't forget to ground. I plugged in the grounding wire to complete the circuit, and ouila! Let there be light!
 
 <img width="300" alt="" src="/assets/sept2-8/first-light.JPEG">
@@ -113,7 +113,7 @@ This round of Arduino experimentation was fun! Felt the (metaphorical) sparks of
 ## Week 3
 *(9/9 - 9/15)*
 
-### 9/9 - Laser-Cutting the Scorpio Ring
+### 9/9 - Laser-cutting the scorpio ring
 
 I started designing my ring idea in Illustrator. Before I made any of the ring shapes, I thought about how I wanted the rings to sit on my fingers. Because I want to add prongs to represent the sun rays coming out of the sun, I decided to make the sun half of the ring fit on my pinky finger; that way, the prongs don't jut into my other fingers in the resting position. That means that the moon part of the ring needs to fit on my ring finger. I took loose measurements for both around the thickest part of the fingers, rounding up to the nearest tenth millimeter:
 
@@ -172,7 +172,7 @@ Oh no, it doesn't fit! Guess I messed up the caliper measurement (or squeezed it
 
 ----------
 
-### 9/10 - Refining the Scorpio Ring
+### 9/10 - Refining the scorpio ring
 
 I enlarged the inner circle in the sun part of the ring in Illustrator so it would fit around my pinkie. I also wanted to make the sun rays more symmetrical, so I copied the top sun ray and duplicated it to replace the other rays along the ring. I also reduced the outline thickness to 0.0001 to work with the laser cutter, which is why the lines are much thinner now.
 
@@ -238,7 +238,7 @@ This was such a fun project! I didn't know I had it in me to make jewelry. I'm p
 
 [Link to Adobe Illustrator scorpio rings file](/assets/sept9-16/scorpio-rings.ai)
 
-### 9/15 - Serving Servos
+### 9/15 - Serving servos
 
 It was a long weekend of traveling, so now I'm back trying to figure out how to combine a button, potentiometer, and servo altogether. I had the idea to set up the button as an on/off switch, the potentiometer as an adjustable speed knob, and the servo as the output of the previous two sensors' interplay. I referenced the [Arduino Guide](https://github.com/loopstick/ArduinoTutorial?tab=readme-ov-file) to set up the button first, and then I wrote a sketch called [ButtonTest.ino](/scripts/ButtonTest.ino) based off of the Arduino guide's [07a_Button.ino](https://github.com/loopstick/ArduinoTutorial/blob/master/examples/07_Button/07a_Button/07a_Button.ino) sketch.
 
@@ -281,7 +281,7 @@ I added back in a LED because I realized too late that the potentiometer is posi
 ## Week 4
 *(9/16-9/22)*
 
-### 9/17 - Converting Laser-Cut Ring to 3D Print
+### 9/17 - Converting laser-cut ring to 3D print
 
 I took my scorpio rings Illustrator file and exported it as a .svg file to import into Fusion.
 
@@ -329,7 +329,7 @@ It came out pretty well! That said, I want to explore a new ring that is custom-
 
 ----------
 
-### 9/18 - Second Pass on 3D-Printed Ring
+### 9/18 - Second pass on 3D-printed ring
 
 I started with what I thought would be a simple flower/gear idea: using the [Spur Gear Add-In](https://productdesignonline.com/fusion-360-tutorials/create-custom-3d-printable-gears-in-fusion-360/#:~:text=Accessing%20the%20Spur%20Gear%20Add,matter%20which%20one%20you%20choose.), I could make a standalone gear that would sit on top of a peg protruding from the original ring. I opened up Fusion and created a basic ring shape that would fit around my pinkie and stand 3 mm tall.
 
@@ -403,7 +403,7 @@ Here are all my attempts side-by-side.
 
 ----------
 
-### 9/20 - Combining the Servo with the Ultrasonic Sensor
+### 9/20 - Combining the servo with the ultrasonic sensor
 
 I hooked up the ultrasonic sensor to the breadboard using the Arduino tutorial. I left my servo plugged in but took out the potentiometer so the breadboard would be less cluttered. I installed the Ultrasonic library to my Arduino IDE by searching for the [Eric Simoes Ultrasonic library](https://github.com/ErickSimoes/Ultrasonic) within Arduino's library manager.
 
@@ -469,7 +469,7 @@ Satisfied with my new mechanism, I was ready to flesh out the programming part o
 
 ## Week 5
 *(9/23 - 9/29)*
-### 9/23 - Emotive Origami Crunch Time
+### 9/23 - Emotive origami crunch time
 
 I wanted to build off of my previous `UltrasonicServoTest.ino` sketch and remove the jittering and `delay()` call, so I consulted ChatGPT to help me generate a smoothing function based off the original code. ChatGPT suggested that I use an `alpha` constant to control the strength of the smoothing, and an exponential moving average function that takes a fraction of the new reading (`rawDistance`) and adds it to the remaining fraction of the old distance (`distance`) to set the new smoothed distance. Since the smoothing function is called continuously, there is no need to run the `delay()` line to make updates.
 
@@ -577,7 +577,7 @@ Whoo, that was a late night of work! I'll leave the final touches to tomorrow.
 
 ----------
 
-### 9/24 - Bringing Shy Guy Across the Finish Line
+### 9/24 - Bringing Shy Guy across the finish line
 
 It was my last day to work on Shy Guy, but I was feeling pretty good about where I left off from the day before. All that I had left was to clean up the appearance of the straw and fix the components into place (without tape).
 
@@ -662,7 +662,7 @@ What a fun week! I'm glad I got to experiment with the Arduino, laser cutting, a
 ## Week 6
 *(9/30 - 10/4)*
 
-### 10/3 - Testing the DC Motor
+### 10/3 - Testing the DC motor
 
 I needed to solder two wires to the DC motor in order to connect it to my Arduino. I used the soldering station  
 
@@ -675,7 +675,7 @@ I needed to solder two wires to the DC motor in order to connect it to my Arduin
 
 ----------
 
-### 10/4 - Designing the Laser-Cut Base
+### 10/4 - Designing the laser-cut base
 
 https://www.makercase.com/basicBox
 
@@ -695,7 +695,7 @@ https://chatgpt.com/share/68e3e2e9-822c-8010-9e35-796fe1ef163b
 - Right hand and left hand are not differentiated in the code, will need to work that out, also doesn't track speed until it hits above 25
 
 ----------
-### 10/6 - Laser-Cutting the component base
+### 10/6 - Laser-cutting the component base
 
 - drew components on paper
 - measured dimensions of components and box size
@@ -711,4 +711,36 @@ https://chatgpt.com/share/68e3e2e9-822c-8010-9e35-796fe1ef163b
 - designed with spur gear add-in in fusion
 - measured 3d-printed square peg on motor for actuator hole, using dowel for other gear holes
 - first laser cut unexpectedly disconnected, but was able to prove concept with rough gears
-- 
+- Did a second laser cut, came out much cleaner
+- Sanded everything to remove burn marks
+- Pretty unhappy with plywood base splitting when I drilled holes for standup screws, decided to re-cut
+- Mounted everything in place
+- Put gears on top
+- Cut 1/4" dowels to mount gears, needed little standoffs that I also laser cut
+- Hole in gears were slightly too small for dowels, used hand drill to open up the holes more, also stuck dowel in hand drill and held sandpaper around spinning dowel to carve them down a little
+- Gears spinning!
+- Hot-glued dowel and fastener in place
+- Wood-glued block to position DC motor inside box to line up with hole
+- Wood-glued frame together, requires patience
+- It's working!!
+
+----------
+### 10/8 - Acrylic records
+
+- Felt like my prototype was missing something aesthetically, wanted it to match the conceptual model of a turntable
+- Designed records in illustrator with "budgie beats" inscribed in each one (my DJ name!)
+- Found scrap 1/4" acrylic, melted horrible in the laser cutter
+- Classmate was gracious enough to share their 1/8" acrylic sheet with me (good because it matches my 1/8" plywood!)
+- Much better cut!
+- More testing!
+- Gears somewhat uneven, will need to sand them down
+
+----------
+### 10/9 - Clean-up (fabrication and code)
+
+- Updated the code using Gemini and ChatGPT to mirror the camera so it would be easier to map your hand movement to the directional movement of the turntable
+- Also added sound that can be sped up and reversed based on hand position!
+- Sanding down the 3-D part (cursed wood glue elevating the motor extender slightly too high! On second thought, I should have put it completely inside of the box and just mounted a dowel into the hole, aw well too late)
+- Used the pen sander for more fine control of the sanding process since I didn't want to gum up the PLA filament
+- Much more even now! The vinyl record isn't boppin around
+- It's done!
