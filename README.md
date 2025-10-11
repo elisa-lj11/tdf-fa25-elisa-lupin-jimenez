@@ -664,20 +664,121 @@ What a fun week! I'm glad I got to experiment with the Arduino, laser cutting, a
 
 ### 10/3 - Testing the DC motor
 
-I needed to solder two wires to the DC motor in order to connect it to my Arduino. I used the soldering station  
+We moved into our next project, "Expressive Mechanics," where we were tasked with using a DC motor and computer vision to create an interaction between movement and an actuator. My first step in this project was to get the DC motor to run through a combination of Arduino code and [p5.js](https://p5js.org/), an online IDE that fuses coding with art. I didn't quite have an idea of what kind of project I wanted to make yet, but I wanted to get the DC motor set up at a minimum.
+
+Following Dr. Sudhu's [H-Bridge Motor Driver guide](https://github.com/loopstick/ArduinoTutorial?tab=readme-ov-file#h-bridge-motor-driver), I needed to solder two wires to the DC motor in order to connect it to my Arduino. I started by stripping the plastic case off of one side of my jumper cables.
+
+<img width="600" alt="" src="/assets/sept30-oct4/stripping-wire.JPEG">
+
+*Somewhat satisfying*
+
+I used the soldering station to attach the wires to the DC motor.
 
 <img width="600" alt="" src="/assets/sept30-oct4/solder-dc-motor.JPEG">
 
 *Yummy solder juice*
 
-- Testing with Dr. Sudhu's [Makeability motor sketch](/scripts/Makeability_serialIO_v4c_motor.ino)
-- Wiring with [Arduino guide for H bridge motor driver](https://github.com/loopstick/ArduinoTutorial?tab=readme-ov-file#h-bridge-motor-driver)
+I used a ziptie to secure the wires to the motor (in case they snag on anything during assembly and rip out of their solder joints).
+
+<img width="600" alt="" src="/assets/sept30-oct4/zip-tied-wires-to-motor.JPEG">
+
+*Is this secure enough?*
+
+I used a screwdriver to tighten the screws around the wires connected into the H-bridge.
+
+<img width="600" alt="" src="/assets/sept30-oct4/h-bridge-screw-connection.JPEG">
+
+*I didn't realize wires could actually be fastened to electronics with screws*
+
+I wired everything together (Arduino, DC motor, and H-bridge) according to the schematic in the guide.
+
+I used a screwdriver to tighten the screws around the wires connected into the H-bridge.
+
+<img width="600" alt="" src="/assets/sept30-oct4/dc-motor-h-bridge-arduino-wiring.JPEG">
+
+*May need to do some wire management later*
+
+To make sure the connections were properly secured, I loaded up Dr. Sudhu's [Makeability motor sketch](/scripts/Makeability_serialIO_v4c_motor.ino)
+
+<img width="300" alt="" src="/assets/sept30-oct4/dc-motor-test.gif">
+
+*GIF of DC motor test*
+
+[Full video of DC motor test](/assets/sept30-oct4/dc-motor-test.MP4)
+
+With that, I felt good about moving to the fabrication side of my project.
 
 ----------
 
 ### 10/4 - Designing the laser-cut base
 
-https://www.makercase.com/basicBox
+I wanted to play around with gears for my mechanic, so I had this idea to make a turntable with gears. I drew out a sketch with the basic idea.
+
+<img width="600" alt="" src="/assets/sept30-oct4/turntable-sketch.JPEG">
+
+*Little turntable diagram with component placement*
+
+I also drew out the gear rotations to verify the number of gears I would need to make the turntable work.
+
+<img width="600" alt="" src="/assets/sept30-oct4/gear-sketch.JPEG">
+
+*More on this later*
+
+To meet the project requirements, I needed to laser-cut the base to hold the components, so I started by sketching out the placement of the Arduino, H-bridge, DC motor, and wire holes to make measurements.
+
+<img width="600" alt="" src="/assets/sept30-oct4/components-in-base-sketch.JPEG">
+
+*Components laid out on paper*
+
+I then measured the dimensions of the sketched components so I could design it in Illustrator.
+
+<img width="600" alt="" src="/assets/sept30-oct4/components-in-base-sketch-dimensions.JPEG">
+
+*Metric is the way*
+
+I found a neat component box generator online called [MakerCase](https://www.makercase.com/basicBox) and used flat joints to minimize distracting edges on the box.
+
+<img width="600" alt="" src="/assets/sept30-oct4/makercase-box-generator.png">
+
+*Nice that people offer this for free online*
+
+I downloaded the model as [makercase_generated_box.dxf](/assets/sept30-oct4/makercase_generated_box.dxf) and imported it into Illustrator.
+
+<img width="600" alt="" src="/assets/sept30-oct4/makercase-imported-illustrator.png">
+
+*Fairly simple look*
+
+I added the dimensions of the components to the MakerCase layout using a blue color to engrave the correct placement. I designed a hole with a 2-centimeter diameter slightly offset from the vertical center of the box by creating a duplicate circle and using the anchor tools to center the two circle side-by-side since I wanted the two inside gears of my turntable to be centered on the platform.
+
+<img width="600" alt="" src="/assets/sept30-oct4/makercase-with-layout-1.png">
+
+*This took me 3 hours total sadly*
+
+I brought the [makercase-with-layout.ai](/assets/sept30-oct4/makercase-with-layout.ai) file to the laser cutter to finally make my cut after spending way too much time trying to perfect the layout.
+
+When I finished the cut, I laid all my components into the case and taped it together to see how they would sit. Oops! I accidentally put the wire hole at the bottom of the case, and the plastic cover around the Arduino wire did not have enough give to make the bend toward the hole.
+
+<img width="600" alt="" src="/assets/sept30-oct4/makercase-layout-mistake.JPEG">
+
+*Why did I spend 3 hours doing this*
+
+I needed to redesign just the back board of my case to put the wire cutout in the right spot without revealing the placement text I engraved into the walls. I re-cut with [a fixed version of the back panel](/assets/sept30-oct4/makercase-with-layout-back-fixed.ai) which would put less stress on the wires.
+
+After resolving that mistake, I could drill the holes to mount the components into the base board. I used a hand drill after tracing out the holes in the component frames with a pencil.
+
+<img width="600" alt="" src="/assets/sept30-oct4/drill-component-holes.JPEG">
+
+*I feel powerful*
+
+Sadly, I hadn't sandwiched my base board properly, so when I drilled through, the wood splintered on the outward-facing part of the board. Sad times, but I must forge ahead. I found standups to place in the holes, then mounted the components into place.
+
+<img width="600" alt="" src="/assets/sept30-oct4/base-standup-placement.JPEG">
+
+<img width="600" alt="" src="/assets/sept30-oct4/base-standup-component-placement.JPEG">
+
+*At least the holes lined up with the components*
+
+That's enough sloppy designing for one day. Time to take a proper weekend break.
 
 ----------
 
@@ -686,30 +787,42 @@ https://www.makercase.com/basicBox
 
 ### 10/6 - Playing around with p5.js
 
-After playing around with Dr. Sudhu's [happy little skies sketch](https://openprocessing.org/sketch/2584640) on the OpenProcessing website and his [DC motor p5.js sketch](https://editor.p5js.org/loopstick/sketches/MWZxoSNoP) on the p5js online editor, I wanted to try setting up some simple computer vision sketch for eye tracking. Sadly, I quickly discovered via ChatGPT that the computer vision model that we use is not sensitive enough to detect eye position. I still wanted to do something that played around with a different motion than ear positions, so I decided to explore hand movement.
+After playing around with Dr. Sudhu's ["happy little skies" sketch](https://openprocessing.org/sketch/2584640) on the OpenProcessing website and his [DC motor p5.js sketch](https://editor.p5js.org/loopstick/sketches/MWZxoSNoP) on the p5.js online editor, I wanted to try setting up a simple computer vision sketch for eye tracking. Sadly, I quickly discovered via ChatGPT that the computer vision model that we would use is not sensitive enough to detect eye position. I still wanted to do something that played around with a different motion than ear positions, so I decided to explore hand movement.
 
-https://chatgpt.com/share/68e3e2e9-822c-8010-9e35-796fe1ef163b
+I started by trying to detect two hands, where each hand can determine the summed speed, but I got wonky behavior when I had two hands up, so I limited the detection to just one hand.
 
-- Tried doing something that could detect up to 2 hands, where each hand determines the summed speed
-- Was getting wonky behavior when I had 2 hands up, so limited it to detecting right hand
-- Right hand and left hand are not differentiated in the code, will need to work that out, also doesn't track speed until it hits above 25
+<img width="300" alt="" src="/assets/oct5-12/cv-hands-first-test.gif">
 
-----------
-### 10/6 - Laser-cutting the component base
+*GIF of hand tracking motor test*
 
-- drew components on paper
-- measured dimensions of components and box size
-- placed hole for motor with vision to have equal gears centered and side-by-side
-- did the laser cut
-- oopsie put the plug slot in the wrong spot
-- re-cut the back panel
-- drilled holes for standup screws
+[Full video of hand tracking motor test](/assets/oct5-12/cv-hands-first-test.MP4)
+
+One thing I noticed with the code is that the motor doesn't start spinning until it detects a value over 25, so I would need to figure out what was going on here, but that would be a later problem.
 
 ----------
 ### 10/7 - Making the turntable gears
 
-- designed with spur gear add-in in fusion
-- measured 3d-printed square peg on motor for actuator hole, using dowel for other gear holes
+Back to the fabrication portion of my project, I designed the gears in Fusion using the [Spur Gear Add-In](https://productdesignonline.com/fusion-360-tutorials/create-custom-3d-printable-gears-in-fusion-360/#:~:text=Accessing%20the%20Spur%20Gear%20Add,matter%20which%20one%20you%20choose.) that I had wanted to use for my [laser-cut ring project from earlier](### 9/18 - Second pass on 3D-printed ring). I measured the dimensions of the square portion on the 3D-printed peg that came with my DC motor to make a cut-out in the gear that would actuate the system, and I made the gear have the diameter of the hole that I cut out so it would be flush with the peg. I also measured the diameter of the dowel.
+
+<img width="600" alt="" src="/assets/oct5-12/measuring-square-peg.JPEG">
+
+<img width="600" alt="" src="/assets/oct5-12/measuring-square-peg.JPEG">
+
+<img width="600" alt="" src="/assets/oct5-12/small-spur-gears-fusion.png">
+
+*Looking good so far*
+
+I added two larger gears to serve as the base for the records on the turntable, being careful to make the teeth on all the gears the same size and distance apart so they would fit together neatly. I also added in holes into the gears not connected directly to the motor that would fit a dowel. I then exported the Fusion sketch into Illustrator and laid out the gears to be cut neatly into a plywood piece.
+
+<img width="600" alt="" src="/assets/oct5-12/all-spur-gears-fusion.png">
+
+<img width="600" alt="" src="/assets/oct5-12/all-spur-gears-illustrator.png">
+
+*Hopefully the geometry is correct...*
+
+
+
+
 - first laser cut unexpectedly disconnected, but was able to prove concept with rough gears
 - Did a second laser cut, came out much cleaner
 - Sanded everything to remove burn marks
@@ -744,3 +857,6 @@ https://chatgpt.com/share/68e3e2e9-822c-8010-9e35-796fe1ef163b
 - Used the pen sander for more fine control of the sanding process since I didn't want to gum up the PLA filament
 - Much more even now! The vinyl record isn't boppin around
 - It's done!
+- ADD DIAGRAMMATIC ANALYSIS
+
+Here's my [ChatGPT](https://chatgpt.com/share/68e3e2e9-822c-8010-9e35-796fe1ef163b) query for writing the hands-off turntable code.
