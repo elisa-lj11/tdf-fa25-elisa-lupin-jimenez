@@ -812,7 +812,7 @@ Back to the fabrication portion of my project, I designed the gears in Fusion us
 
 *Looking good so far*
 
-I added two larger gears to serve as the base for the records on the turntable, being careful to make the teeth on all the gears the same size and distance apart so they would fit together neatly. I also added in holes into the gears not connected directly to the motor that would fit a dowel. I then exported the Fusion sketch into Illustrator and laid out the gears to be cut neatly into a plywood piece.
+I added two larger gears to serve as the base for the records on the turntable, being careful to make the teeth on all the gears the same size and distance apart so they would fit together neatly. I also added in holes into the gears not connected directly to the motor that would fit a dowel. I then exported the Fusion sketch as [a .dxf file](/assets/oct5-12/expressive-mechanics-gears.dxf) into Illustrator and laid out the gears to be cut neatly into a plywood piece.
 
 <img width="600" alt="" src="/assets/oct5-12/all-spur-gears-fusion.png">
 
@@ -820,20 +820,76 @@ I added two larger gears to serve as the base for the records on the turntable, 
 
 *Hopefully the geometry is correct...*
 
+Unfortunately, the laser cutter unexpectedly disconnected four minutes into the job, so I was left with jagged-edged gears.
 
+<img width="600" alt="" src="/assets/oct5-12/broken-gears.JPEG">
 
+*We were so close!*
 
-- first laser cut unexpectedly disconnected, but was able to prove concept with rough gears
-- Did a second laser cut, came out much cleaner
-- Sanded everything to remove burn marks
-- Pretty unhappy with plywood base splitting when I drilled holes for standup screws, decided to re-cut
-- Mounted everything in place
-- Put gears on top
-- Cut 1/4" dowels to mount gears, needed little standoffs that I also laser cut
-- Hole in gears were slightly too small for dowels, used hand drill to open up the holes more, also stuck dowel in hand drill and held sandpaper around spinning dowel to carve them down a little
-- Gears spinning!
+I still wanted to make use of the messed-up gears, though, so I tested the spinning mechanic with the motor by holding it in place.
+
+<img width="300" alt="" src="/assets/oct5-12/testing-gear-mechanic.gif">
+
+*GIF of gear mechanic test*
+
+[Full video of gear mechanic test](/assets/oct5-12/testing-gear-mechanic.MP4)
+
+Feeling more confident that my design would work, I ran the laser cut again and got a perfect gear cut this time.
+
+<img width="600" alt="" src="/assets/oct5-12/gears-laser-cut.JPEG">
+
+*Woohoo*
+
+I sanded the gears to remove the burn marks, then I got to work on the base board. I realized I was pretty unhappy with the splintered wood in my original base plate, so I redesigned the [base board file](/assets/sept30-oct4/makercase-with-layout-back-fixed.ai) to incorporate the holes for the dowels.
+
+<img width="600" alt="" src="/assets/oct5-12/new-base-board-illustrator.png">
+
+*More respectable*
+
+After recutting the board, I was much more happy with the results; it was well-worth the effort to re-do.
+
+<img width="600" alt="" src="/assets/oct5-12/before-after-base.JPEG">
+
+*What a difference*
+
+Then, I mounted all the components into place.
+
+<img width="600" alt="" src="/assets/oct5-12/components-fixed-to-base.JPEG">
+
+*A little cleanup required*
+
+I squeezed the dowels into the holes of the base board, only to realize if my gears rested directly on the base board, there would be too much friction for them to spin smoothly. As a solution, I designed some [wooden "standoffs"](/assets/oct5-12/gear-standoffs.ai) for my gears to give them some lift off of the platform.
+
+<img width="600" alt="" src="/assets/oct5-12/gear-standoffs-dowels.ai">
+
+*It's a tight fit*
+
+Unfortunately, I didn't account for slightly discrepancies in measurements, so the holes in my baseboard were slightly too small for the dowels. I first used a hand drill to open up the holes in the gears, then I attached the dowel as an attachment to the hand drill to sand down the dowels by holding the sandpaper around the spinning dowel.
+
+<img width="600" alt="" src="/assets/oct5-12/opening-up-dowel-holes.JPEG">
+
+*Maybe laser-cutting again would have been faster...*
+
+Once the dowels could squeeze into the platform holes, I cut the dowels to be just tall enough to give the gears clearance from the platform and the 3D-printed motor peg.
+
+<img width="600" alt="" src="/assets/oct5-12/placing-dowels-in-base.JPEG">
+
+*It's really coming together now*
+
+I placed the gears onto the dowels and tested out the motor, holding the base board and motor in place.
+
+<img width="300" alt="" src="/assets/oct5-12/gears-spinning-first-time.gif">
+
+*IT'S WORKING*
+
+[Full video of gears mechanically spinning for the first time](/assets/oct5-12/gears-spinning-first-time.MP4)
+
+Confident with my rig, I hot-glued the dowels in place
+
 - Hot-glued dowel and fastener in place
+  
 - Wood-glued block to position DC motor inside box to line up with hole
+<img width="600" alt="" src="/assets/oct5-12/mounting-motor-to-base.JPEG">
 - Wood-glued frame together, requires patience
 - It's working!!
 
@@ -845,6 +901,7 @@ I added two larger gears to serve as the base for the records on the turntable, 
 - Found scrap 1/4" acrylic, melted horrible in the laser cutter
 - Classmate was gracious enough to share their 1/8" acrylic sheet with me (good because it matches my 1/8" plywood!)
 - Much better cut!
+<img width="600" alt="" src="/assets/oct5-12/acrylic-vinyls.JPEG">
 - More testing!
 - Gears somewhat uneven, will need to sand them down
 
@@ -854,9 +911,21 @@ I added two larger gears to serve as the base for the records on the turntable, 
 - Updated the code using Gemini and ChatGPT to mirror the camera so it would be easier to map your hand movement to the directional movement of the turntable
 - Also added sound that can be sped up and reversed based on hand position!
 - Sanding down the 3-D part (cursed wood glue elevating the motor extender slightly too high! On second thought, I should have put it completely inside of the box and just mounted a dowel into the hole, aw well too late)
+<img width="600" alt="" src="/assets/oct5-12/sanding-motor-mount.JPEG">
 - Used the pen sander for more fine control of the sanding process since I didn't want to gum up the PLA filament
 - Much more even now! The vinyl record isn't boppin around
 - It's done!
 - ADD DIAGRAMMATIC ANALYSIS
+<img width="600" alt="" src="/assets/oct5-12/process-architecture-diagram.png">
+<img width="600" alt="" src="/assets/oct5-12/system-architecture-diagram.png">
+- 
+<img width="600" alt="" src="/assets/oct5-12/budgie-beats-cover-photo.JPEG">
+<img width="600" alt="" src="/assets/oct5-12/budgie-beats-final-1.JPEG">
+<img width="600" alt="" src="/assets/oct5-12/budgie-beats-final-2.JPEG">
+<img width="600" alt="" src="/assets/oct5-12/budgie-beats-final-3.JPEG">
+<img width="600" alt="" src="/assets/oct5-12/budgie-beats-final-4.JPEG">
+<img width="600" alt="" src="/assets/oct5-12/gears-lined-up.JPEG">
 
 Here's my [ChatGPT](https://chatgpt.com/share/68e3e2e9-822c-8010-9e35-796fe1ef163b) query for writing the hands-off turntable code.
+
+https://editor.p5js.org/elisalj/sketches/I_wKH-S4d 
