@@ -860,7 +860,7 @@ Then, I mounted all the components into place.
 
 I squeezed the dowels into the holes of the base board, only to realize if my gears rested directly on the base board, there would be too much friction for them to spin smoothly. As a solution, I designed some [wooden "standoffs"](/assets/oct5-12/gear-standoffs.ai) for my gears to give them some lift off of the platform.
 
-<img width="600" alt="" src="/assets/oct5-12/gear-standoffs-dowels.ai">
+<img width="600" alt="" src="/assets/oct5-12/gear-standoffs.JPEG">
 
 *It's a tight fit*
 
