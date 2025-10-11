@@ -791,7 +791,7 @@ After playing around with Dr. Sudhu's ["happy little skies" sketch](https://open
 
 I started by trying to detect two hands, where each hand can determine the summed speed, but I got wonky behavior when I had two hands up, so I limited the detection to just one hand.
 
-<img width="300" alt="" src="/assets/oct5-12/cv-hands-first-test.gif">
+<img width="600" alt="" src="/assets/oct5-12/cv-hands-first-test.gif">
 
 *GIF of hand tracking motor test*
 
@@ -878,54 +878,117 @@ Once the dowels could squeeze into the platform holes, I cut the dowels to be ju
 
 I placed the gears onto the dowels and tested out the motor, holding the base board and motor in place.
 
-<img width="300" alt="" src="/assets/oct5-12/gears-spinning-first-time.gif">
+<img width="600" alt="" src="/assets/oct5-12/gears-spinning-first-time.gif">
 
 *IT'S WORKING*
 
 [Full video of gears mechanically spinning for the first time](/assets/oct5-12/gears-spinning-first-time.MP4)
 
-Confident with my rig, I hot-glued the dowels in place
+An important side-note: I realized I had messed up my gear math. I thought my bigger gears would rotate in the same direction, but it turns out I messed up in my original sketch, so now they rotate toward and away from each other. Aw well, iT'S a FeAtUrE, nOt A bUg.
 
-- Hot-glued dowel and fastener in place
+Confident with my rig, I hot-glued the dowels in place. I used wood blocks to lift the motor up along the side wall so that just the square peg on the 3D-printed motor mount would stick out of the hole. I drilled the 3D-printed motor case to the wood block, then I wood glued the block to the side wall of the component case. It was difficult to get the motor mount to be perfectly level with the box, so I had to hope it would stick in the right place.
   
-- Wood-glued block to position DC motor inside box to line up with hole
 <img width="600" alt="" src="/assets/oct5-12/mounting-motor-to-base.JPEG">
-- Wood-glued frame together, requires patience
-- It's working!!
+
+*To be revisited*
+
+I was happy I got my prototype to be functional, but I thought it needed a little bit more *oomph*. I was tired though, I'd have to upgrade it tomorrow.
 
 ----------
 ### 10/8 - Acrylic records
 
-- Felt like my prototype was missing something aesthetically, wanted it to match the conceptual model of a turntable
-- Designed records in illustrator with "budgie beats" inscribed in each one (my DJ name!)
-- Found scrap 1/4" acrylic, melted horrible in the laser cutter
-- Classmate was gracious enough to share their 1/8" acrylic sheet with me (good because it matches my 1/8" plywood!)
-- Much better cut!
+I felt like my prototype was missing something aesthetically. I realized I wanted it to match the conceptual model of a turntable so people would have more intuition on how to interact with it. I decided to design "records" that I would laser cut out of acrylic sheets to give it more of that DJ vibe.
+
 <img width="600" alt="" src="/assets/oct5-12/acrylic-vinyls.JPEG">
-- More testing!
-- Gears somewhat uneven, will need to sand them down
+
+*[budgie beats](https://soundcloud.com/djbudgiebeats) is my DJ name*
+
+I looked up the cost of acrylic at Jacobs and nearly cried, so I went to the scraps bin to see if anyone threw away their clear gold. I found a scrap 1/4" acrylic sheet; it was far too thick for what I was looking for (my plywood was 1/8" thick), but free is better, so I gave it a shot.
+
+Oh, what a disaster that was. The acrylic melted horribly in the laser cutter after I had tried cutting through it twice with no luck.
+
+<img width="600" alt="" src="/assets/oct5-12/acrylic-disaster.JPEG">
+
+*I hope I didn't breathe that in...*
+
+Luckily, someone in my cohort was gracious enough to share their 1/8" acrylic sheet with me that they had already purchased (I owe you one!!), and the cut went much better this time.
+
+<img width="600" alt="" src="/assets/oct5-12/record-laser-cut-coating.JPEG">
+
+<img width="600" alt="" src="/assets/oct5-12/acrylic-vinyls.JPEG">
+
+*This was so satisfying to watch COUGH out of the corner of my eye*
+
+I tested the acrylic records on the gears to see if they would spin, and it worked perfectly.
+
+<img width="600" alt="" src="/assets/oct5-12/acrylic-gear-test.gif">
+
+*Little celebration dance*
+
+[Full video of gears spinning with acrylic records on top](/assets/oct5-12/acrylic-gear-test.MP4)
+
+I did notice that the gears were somewhat uneven, so I would need to sand them down, but it was time for me to go home for the night.
 
 ----------
 ### 10/9 - Clean-up (fabrication and code)
 
-- Updated the code using Gemini and ChatGPT to mirror the camera so it would be easier to map your hand movement to the directional movement of the turntable
-- Also added sound that can be sped up and reversed based on hand position!
-- Sanding down the 3-D part (cursed wood glue elevating the motor extender slightly too high! On second thought, I should have put it completely inside of the box and just mounted a dowel into the hole, aw well too late)
+I cleaned up my Arduino code using Gemini to fix the motor speed drop-off issue I was seeing before. Quoting Gemini directly:
+
+> The DC motor doesn't spin at low speeds because your Arduino code is mapping the input speed range to an output range that starts at 60, effectively setting 60 as the minimum non-zero speed. You also have a dead-band (101 to 153) where the motor is explicitly stopped.
+
+I used Gemini's suggestions, and sure enough, my motor could now spin at a crawling pace!
+
+I continued my conversation with ChatGPT to clean up the p5.js code. Now the camera would be mirrored so it would match your expectations of where your hand would be in the camera view when you move it horizontally.
+
+A major design decision that I made somewhat last minute was to add sound modulation to the code that would be controlled by the hand. I added this upon a suggestion from my classmate who saw my turntable and expected it to make a sound. I realized, it's code, I should be able to add sound, and sure enough, I could. Now, hand movement can also speed up and reverse the audio track that is loaded into the program at start time. So much more fun!
+
+As for physical clean-up, I needed to sand down the 3D-printed motor mount. The cursed wood glue elevated the motor extender slightly too high! On second thought, I should have put it completely inside of the box and just mounted a dowel into the hole, aw well, too late.
+
+I sanded down the mount using a pen sander since I didn't want to "gum up" the PLA filament (design specialist's words).
+
 <img width="600" alt="" src="/assets/oct5-12/sanding-motor-mount.JPEG">
-- Used the pen sander for more fine control of the sanding process since I didn't want to gum up the PLA filament
-- Much more even now! The vinyl record isn't boppin around
-- It's done!
-- ADD DIAGRAMMATIC ANALYSIS
-<img width="600" alt="" src="/assets/oct5-12/process-architecture-diagram.png">
-<img width="600" alt="" src="/assets/oct5-12/system-architecture-diagram.png">
-- 
+
+*Sanding parts smaller is frustratingly slow and a reminder to plan dimensions better*
+
+It was worth the effort, because the vinyl record is not popping up and down anymore.
+
+<img width="600" alt="" src="/assets/oct5-12/gears-more-even.JPEG">
+
+*Still would have preferred to get the measurements right*
+
+And with that, my prototype, which I lovingly named "Budgie Beats," was ready to hit the dance floor!
+
+<img width="1000" alt="" src="/assets/oct5-12/budgie-beats-demo.gif">
+
+*Wicky wicky wicky*
+
+[Full video of budgie beats demo](/assets/oct5-12/elisa_lupin-jimenez_budgie_beats_demo.mp4)
+
 <img width="600" alt="" src="/assets/oct5-12/budgie-beats-cover-photo.JPEG">
 <img width="600" alt="" src="/assets/oct5-12/budgie-beats-final-1.JPEG">
 <img width="600" alt="" src="/assets/oct5-12/budgie-beats-final-2.JPEG">
 <img width="600" alt="" src="/assets/oct5-12/budgie-beats-final-3.JPEG">
 <img width="600" alt="" src="/assets/oct5-12/budgie-beats-final-4.JPEG">
 <img width="600" alt="" src="/assets/oct5-12/gears-lined-up.JPEG">
+<img width="600" alt="" src="/assets/oct5-12/budgie-beats-underneath.JPEG">
 
-Here's my [ChatGPT](https://chatgpt.com/share/68e3e2e9-822c-8010-9e35-796fe1ef163b) query for writing the hands-off turntable code.
+Below are my diagrammatic analyses.
 
-https://editor.p5js.org/elisalj/sketches/I_wKH-S4d 
+<img width="600" alt="" src="/assets/oct5-12/process-architecture-diagram.png">
+
+*Process architecture diagram*
+
+<img width="600" alt="" src="/assets/oct5-12/system-architecture-diagram.png">
+
+*System architecture diagram*
+
+- Here's my [ChatGPT query](https://chatgpt.com/share/68e3e2e9-822c-8010-9e35-796fe1ef163b) for writing the hands-off turntable code.
+- Here's my [Gemini query](https://g.co/gemini/share/4bd36e495ac7) for resolving the DC motor dead-band issue.
+- Here's my web-hosted p5.js [hands-off turntable sketch](https://editor.p5js.org/elisalj/sketches/I_wKH-S4d).
+
+My learnings from this project:
+- Don't be afraid to re-do cuts: it's not worth the time and effort to manually refine cuts when I could take a quarter of the time just changing the design digitally and recutting.
+- Leave more space for error: my component base was way too tight, and everything was harder to work with because I had so little space to maneuver, especially when everything was mounted in place.
+- Be patient with the wood glue: It takes time to set. Because I was messing around with the gears while the glue was still setting, I'm pretty sure I knocked the motor slightly out of place which ended up making my work so much harder to correct.
+
+Excited for the next project!
