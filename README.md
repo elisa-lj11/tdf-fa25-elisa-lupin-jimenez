@@ -8,6 +8,7 @@ Hello! I'm an MDes student at UC Berkeley, and this is my design journal for "DE
 [Week 5](#week-5)  
 [Week 6](#week-6)  
 [Week 7](#week-7) 
+[Week 8](#week-8)  
 
 ## Week 2
 *(9/2 - 9/8)*
@@ -783,7 +784,7 @@ That's enough sloppy designing for one day. Time to take a proper weekend break.
 ----------
 
 ## Week 7
-*(10/5 - 10/12)*
+*(10/5 - 10/11)*
 
 ### 10/6 - Playing around with p5.js
 
@@ -791,11 +792,11 @@ After playing around with Dr. Sudhu's ["happy little skies" sketch](https://open
 
 I started by trying to detect two hands, where each hand can determine the summed speed, but I got wonky behavior when I had two hands up, so I limited the detection to just one hand.
 
-<img width="600" alt="" src="/assets/oct5-12/cv-hands-first-test.gif">
+<img width="600" alt="" src="/assets/oct5-11/cv-hands-first-test.gif">
 
 *GIF of hand tracking motor test*
 
-[Full video of hand tracking motor test](/assets/oct5-12/cv-hands-first-test.MP4)
+[Full video of hand tracking motor test](/assets/oct5-11/cv-hands-first-test.MP4)
 
 One thing I noticed with the code is that the motor doesn't start spinning until it detects a value over 25, so I would need to figure out what was going on here, but that would be a later problem.
 
@@ -804,91 +805,91 @@ One thing I noticed with the code is that the motor doesn't start spinning until
 
 Back to the fabrication portion of my project, I designed the gears in Fusion using the [Spur Gear Add-In](https://productdesignonline.com/fusion-360-tutorials/create-custom-3d-printable-gears-in-fusion-360/#:~:text=Accessing%20the%20Spur%20Gear%20Add,matter%20which%20one%20you%20choose.) that I had wanted to use for my [laser-cut ring project from earlier](### 9/18 - Second pass on 3D-printed ring). I measured the dimensions of the square portion on the 3D-printed peg that came with my DC motor to make a cut-out in the gear that would actuate the system, and I made the gear have the diameter of the hole that I cut out so it would be flush with the peg. I also measured the diameter of the dowel.
 
-<img width="600" alt="" src="/assets/oct5-12/measuring-square-peg.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/measuring-square-peg.JPEG">
 
-<img width="600" alt="" src="/assets/oct5-12/measuring-square-peg.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/measuring-square-peg.JPEG">
 
-<img width="600" alt="" src="/assets/oct5-12/small-spur-gears-fusion.png">
+<img width="600" alt="" src="/assets/oct5-11/small-spur-gears-fusion.png">
 
 *Looking good so far*
 
-I added two larger gears to serve as the base for the records on the turntable, being careful to make the teeth on all the gears the same size and distance apart so they would fit together neatly. I also added in holes into the gears not connected directly to the motor that would fit a dowel. I then exported the Fusion sketch as [a .dxf file](/assets/oct5-12/expressive-mechanics-gears.dxf) into Illustrator and laid out the gears to be cut neatly into a plywood piece.
+I added two larger gears to serve as the base for the records on the turntable, being careful to make the teeth on all the gears the same size and distance apart so they would fit together neatly. I also added in holes into the gears not connected directly to the motor that would fit a dowel. I then exported the Fusion sketch as [a .dxf file](/assets/oct5-11/expressive-mechanics-gears.dxf) into Illustrator and laid out the gears to be cut neatly into a plywood piece.
 
-<img width="600" alt="" src="/assets/oct5-12/all-spur-gears-fusion.png">
+<img width="600" alt="" src="/assets/oct5-11/all-spur-gears-fusion.png">
 
-<img width="600" alt="" src="/assets/oct5-12/all-spur-gears-illustrator.png">
+<img width="600" alt="" src="/assets/oct5-11/all-spur-gears-illustrator.png">
 
 *Hopefully the geometry is correct...*
 
 Unfortunately, the laser cutter unexpectedly disconnected four minutes into the job, so I was left with jagged-edged gears.
 
-<img width="600" alt="" src="/assets/oct5-12/broken-gears.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/broken-gears.JPEG">
 
 *We were so close!*
 
 I still wanted to make use of the messed-up gears, though, so I tested the spinning mechanic with the motor by holding it in place.
 
-<img width="300" alt="" src="/assets/oct5-12/testing-gear-mechanic.gif">
+<img width="300" alt="" src="/assets/oct5-11/testing-gear-mechanic.gif">
 
 *GIF of gear mechanic test*
 
-[Full video of gear mechanic test](/assets/oct5-12/testing-gear-mechanic.MP4)
+[Full video of gear mechanic test](/assets/oct5-11/testing-gear-mechanic.MP4)
 
 Feeling more confident that my design would work, I ran the laser cut again and got a perfect gear cut this time.
 
-<img width="600" alt="" src="/assets/oct5-12/gears-laser-cut.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/gears-laser-cut.JPEG">
 
 *Woohoo*
 
 I sanded the gears to remove the burn marks, then I got to work on the base board. I realized I was pretty unhappy with the splintered wood in my original base plate, so I redesigned the [base board file](/assets/sept30-oct4/makercase-with-layout-back-fixed.ai) to incorporate the holes for the dowels.
 
-<img width="600" alt="" src="/assets/oct5-12/new-base-board-illustrator.png">
+<img width="600" alt="" src="/assets/oct5-11/new-base-board-illustrator.png">
 
 *More respectable*
 
 After recutting the board, I was much more happy with the results; it was well-worth the effort to re-do.
 
-<img width="600" alt="" src="/assets/oct5-12/before-after-base.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/before-after-base.JPEG">
 
 *What a difference*
 
 Then, I mounted all the components into place.
 
-<img width="600" alt="" src="/assets/oct5-12/components-fixed-to-base.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/components-fixed-to-base.JPEG">
 
 *A little cleanup required*
 
-I squeezed the dowels into the holes of the base board, only to realize if my gears rested directly on the base board, there would be too much friction for them to spin smoothly. As a solution, I designed some [wooden "standoffs"](/assets/oct5-12/gear-standoffs.ai) for my gears to give them some lift off of the platform.
+I squeezed the dowels into the holes of the base board, only to realize if my gears rested directly on the base board, there would be too much friction for them to spin smoothly. As a solution, I designed some [wooden "standoffs"](/assets/oct5-11/gear-standoffs.ai) for my gears to give them some lift off of the platform.
 
-<img width="600" alt="" src="/assets/oct5-12/gear-standoffs.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/gear-standoffs.JPEG">
 
 *It's a tight fit*
 
 Unfortunately, I didn't account for slightly discrepancies in measurements, so the holes in my baseboard were slightly too small for the dowels. I first used a hand drill to open up the holes in the gears, then I attached the dowel as an attachment to the hand drill to sand down the dowels by holding the sandpaper around the spinning dowel.
 
-<img width="600" alt="" src="/assets/oct5-12/opening-up-dowel-holes.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/opening-up-dowel-holes.JPEG">
 
 *Maybe laser-cutting again would have been faster...*
 
 Once the dowels could squeeze into the platform holes, I cut the dowels to be just tall enough to give the gears clearance from the platform and the 3D-printed motor peg.
 
-<img width="600" alt="" src="/assets/oct5-12/placing-dowels-in-base.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/placing-dowels-in-base.JPEG">
 
 *It's really coming together now*
 
 I placed the gears onto the dowels and tested out the motor, holding the base board and motor in place.
 
-<img width="600" alt="" src="/assets/oct5-12/gears-spinning-first-time.gif">
+<img width="600" alt="" src="/assets/oct5-11/gears-spinning-first-time.gif">
 
 *IT'S WORKING*
 
-[Full video of gears mechanically spinning for the first time](/assets/oct5-12/gears-spinning-first-time.MP4)
+[Full video of gears mechanically spinning for the first time](/assets/oct5-11/gears-spinning-first-time.MP4)
 
 An important side-note: I realized I had messed up my gear math. I thought my bigger gears would rotate in the same direction, but it turns out I messed up in my original sketch, so now they rotate toward and away from each other. Aw well, iT'S a FeAtUrE, nOt A bUg.
 
 Confident with my rig, I hot-glued the dowels in place. I used wood blocks to lift the motor up along the side wall so that just the square peg on the 3D-printed motor mount would stick out of the hole. I drilled the 3D-printed motor case to the wood block, then I wood glued the block to the side wall of the component case. It was difficult to get the motor mount to be perfectly level with the box, so I had to hope it would stick in the right place.
   
-<img width="600" alt="" src="/assets/oct5-12/mounting-motor-to-base.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/mounting-motor-to-base.JPEG">
 
 *To be revisited*
 
@@ -899,7 +900,7 @@ I was happy I got my prototype to be functional, but I thought it needed a littl
 
 I felt like my prototype was missing something aesthetically. I realized I wanted it to match the conceptual model of a turntable so people would have more intuition on how to interact with it. I decided to design "records" that I would laser cut out of acrylic sheets to give it more of that DJ vibe.
 
-<img width="600" alt="" src="/assets/oct5-12/acrylic-vinyls.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/acrylic-vinyls.JPEG">
 
 *[budgie beats](https://soundcloud.com/djbudgiebeats) is my DJ name*
 
@@ -907,25 +908,25 @@ I looked up the cost of acrylic at Jacobs and nearly cried, so I went to the scr
 
 Oh, what a disaster that was. The acrylic melted horribly in the laser cutter after I had tried cutting through it twice with no luck.
 
-<img width="600" alt="" src="/assets/oct5-12/acrylic-disaster.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/acrylic-disaster.JPEG">
 
 *I hope I didn't breathe that in...*
 
 Luckily, someone in my cohort was gracious enough to share their 1/8" acrylic sheet with me that they had already purchased (I owe you one!!), and the cut went much better this time.
 
-<img width="600" alt="" src="/assets/oct5-12/record-laser-cut-coating.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/record-laser-cut-coating.JPEG">
 
-<img width="600" alt="" src="/assets/oct5-12/acrylic-vinyls.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/acrylic-vinyls.JPEG">
 
 *This was so satisfying to watch COUGH out of the corner of my eye*
 
 I tested the acrylic records on the gears to see if they would spin, and it worked perfectly.
 
-<img width="600" alt="" src="/assets/oct5-12/acrylic-gear-test.gif">
+<img width="600" alt="" src="/assets/oct5-11/acrylic-gear-test.gif">
 
 *Little celebration dance*
 
-[Full video of gears spinning with acrylic records on top](/assets/oct5-12/acrylic-gear-test.MP4)
+[Full video of gears spinning with acrylic records on top](/assets/oct5-11/acrylic-gear-test.MP4)
 
 I did notice that the gears were somewhat uneven, so I would need to sand them down, but it was time for me to go home for the night.
 
@@ -946,39 +947,39 @@ As for physical clean-up, I needed to sand down the 3D-printed motor mount. The 
 
 I sanded down the mount using a pen sander since I didn't want to "gum up" the PLA filament (design specialist's words).
 
-<img width="600" alt="" src="/assets/oct5-12/sanding-motor-mount.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/sanding-motor-mount.JPEG">
 
 *Sanding parts smaller is frustratingly slow and a reminder to plan dimensions better*
 
 It was worth the effort, because the vinyl record is not popping up and down anymore.
 
-<img width="600" alt="" src="/assets/oct5-12/gears-more-even.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/gears-more-even.JPEG">
 
 *Still would have preferred to get the measurements right*
 
 And with that, my prototype, which I lovingly named "Budgie Beats," was ready to hit the dance floor!
 
-<img width="1000" alt="" src="/assets/oct5-12/budgie-beats-demo.gif">
+<img width="1000" alt="" src="/assets/oct5-11/budgie-beats-demo.gif">
 
 *Wicky wicky wicky*
 
-[Full video of budgie beats demo](/assets/oct5-12/elisa_lupin-jimenez_budgie_beats_demo.mp4)
+[Full video of budgie beats demo](/assets/oct5-11/elisa_lupin-jimenez_budgie_beats_demo.mp4)
 
-<img width="600" alt="" src="/assets/oct5-12/budgie-beats-cover-photo.JPEG">
-<img width="600" alt="" src="/assets/oct5-12/budgie-beats-final-1.JPEG">
-<img width="600" alt="" src="/assets/oct5-12/budgie-beats-final-2.JPEG">
-<img width="600" alt="" src="/assets/oct5-12/budgie-beats-final-3.JPEG">
-<img width="600" alt="" src="/assets/oct5-12/budgie-beats-final-4.JPEG">
-<img width="600" alt="" src="/assets/oct5-12/gears-lined-up.JPEG">
-<img width="600" alt="" src="/assets/oct5-12/budgie-beats-underneath.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/budgie-beats-cover-photo.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/budgie-beats-final-1.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/budgie-beats-final-2.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/budgie-beats-final-3.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/budgie-beats-final-4.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/gears-lined-up.JPEG">
+<img width="600" alt="" src="/assets/oct5-11/budgie-beats-underneath.JPEG">
 
 Below are my diagrammatic analyses.
 
-<img width="600" alt="" src="/assets/oct5-12/process-architecture-diagram.png">
+<img width="600" alt="" src="/assets/oct5-11/process-architecture-diagram.png">
 
 *Process architecture diagram*
 
-<img width="600" alt="" src="/assets/oct5-12/system-architecture-diagram.png">
+<img width="600" alt="" src="/assets/oct5-11/system-architecture-diagram.png">
 
 *System architecture diagram*
 
@@ -992,3 +993,12 @@ My learnings from this project:
 - Be patient with the wood glue: It takes time to set. Because I was messing around with the gears while the glue was still setting, I'm pretty sure I knocked the motor slightly out of place which ended up making my work so much harder to correct.
 
 Excited for the next project!
+
+----------
+
+## Week 8
+*(10/13 - 10/19)*
+
+### 10/15 - Soldering the ESP32
+
+I 
