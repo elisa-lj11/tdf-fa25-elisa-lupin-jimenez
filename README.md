@@ -7,8 +7,9 @@ Hello! I'm an MDes student at UC Berkeley, and this is my design journal for "DE
 [Week 4](#week-4)  
 [Week 5](#week-5)  
 [Week 6](#week-6)  
-[Week 7](#week-7) 
+[Week 7](#week-7)  
 [Week 8](#week-8)  
+[Week 9](#week-9)  
 
 ## Week 2
 *(9/2 - 9/8)*
@@ -997,8 +998,48 @@ Excited for the next project!
 ----------
 
 ## Week 8
-*(10/13 - 10/19)*
+*(10/12 - 10/18)*
 
-### 10/15 - Soldering the ESP32
+### 10/16 - Soldering the ESP32
 
-I 
+To prepare for my next project, I needed to set up the ESP32, a more powerful microcontroller than the Arduino because it can access WiFi, among other processing improvements. In order to get the ESP32 board soldered in one shot, I went to Chris' solder jam session in Jacobs Makerspace. I started by sticking the two rows of pins directly into the breadboard, broke off the 3 pins I wouldn't need on the top left side of the board, then placed the board on top to make sure it was level.
+
+<img width="600" alt="" src="/assets/oct12-18/line-up-pins.JPEG">
+
+<img width="600" alt="" src="/assets/oct12-18/line-up-pins-2.JPEG">
+
+*Lining up the pins on the breadboard with the ESP32*
+
+Once everything looked lined up, I soldered the pins to the board one-by-one. I had to revisit several pins to get the teardrop shape that Chris recommended, but eventually I got there.
+
+<img width="600" alt="" src="/assets/oct12-18/solder-pins-esp32.JPEG">
+
+*Mid-solder*
+
+<img width="600" alt="" src="/assets/oct12-18/completed-soldering-esp32.JPEG">
+
+*Soldering is so satisfying*
+
+Nice! Next step would be to set up the Arduino code.
+
+----------
+
+### 10/17 - Setting up the ESP32 code
+
+I used the [ESP32 tutorial](https://github.com/loopstick/ESP32_V2_Tutorial?tab=readme-ov-file) to set up my Arduino IDE to compile and upload code to my new board. I installed the necessary drivers, updated the board manager URL in Arduino, and used [Blink_ESP32.ino](/scripts/Blink_ESP32.ino) to test if the connection was set up properly.
+
+<img width="600" alt="" src="/assets/oct12-18/esp32-blink.gif">
+
+*Flashback to the start of the semester*
+
+[Full video of ESP32 blink](/assets/oct12-18/esp32-blink.MP4)
+
+This was a simple setup process. The next part would be setting up a webAPI call. I can do that next week.
+
+----------
+
+## Week 9
+*(10/19 - 10/25)*
+
+### 10/19 - Making the weather API call on ESP32
+
