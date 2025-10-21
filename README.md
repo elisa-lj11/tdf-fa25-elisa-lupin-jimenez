@@ -1041,5 +1041,32 @@ This was a simple setup process. The next part would be setting up a webAPI call
 ## Week 9
 *(10/19 - 10/25)*
 
-### 10/19 - Making the weather API call on ESP32
+### 10/20 - Making the weather API call on ESP32
 
+I followed Roopa's [webAPI tutorial](https://github.com/roopa-ramanujam/ESP32-web-api-example) to set up the weather API usage on my ESP32. I configured my Berkeley net access portal to have the MAC address (which I saw whenever I flashed a sketch to the ESP32).
+
+<img width="600" alt="" src="/assets/oct19-25/esp32-mac.png">
+
+*It's not in the serial print though...*
+
+<img width="600" alt="" src="/assets/oct19-25/berkeley-net-access-portal.png">
+
+*Hope this works with the WiFI*
+
+I realized that it would be an issue down the road if serial print was not working for me, so I took to [Gemini](https://gemini.google.com/share/ad0dc4029b7b) to figure out what was going wrong. Turns out that the MAC address calls were happening before serial and WiFi had time to initialize. I added some delay calls in the setup function, and it worked! Here's the updated [GetESP32MACAddress_v2.ino](/scripts/GetESP32MACAddress_v2.ino) sketch.
+
+<img width="600" alt="" src="/assets/oct19-25/esp32-mac-fixed.png">
+
+*Having print outs are the first step to debugging*
+
+After this, I compiled [WiFiTest.ino](/scripts/WiFiTest.ino) with my home network and it worked beautifully.
+
+The final test was to make a weather API call. I copied Roopa's [WeatherAPIExample.ino sketch](/scripts/WeatherAPIExample.ino), and it worked on the first try! Thanks Roopa for the great tutorial!
+
+<img width="600" alt="" src="/assets/oct19-25/weather-api.gif">
+
+*Perfect weather tonight*
+
+[Full video of weather API call on ESP32](/assets/oct19-25/weather-api.MOV)
+
+I'm pleased with this work for today. Now, I need to start thinking about how to use APIs for my next project.
