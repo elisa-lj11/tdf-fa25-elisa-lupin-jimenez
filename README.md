@@ -1000,6 +1000,32 @@ Excited for the next project!
 ## Week 8
 *(10/12 - 10/18)*
 
+### 10/15 - Ideating on Ambient Display form
+
+I teamed up with [Tala Salman](https://docs.google.com/document/d/1xAzELF5MhFs0jRcNGU2L16vmr_OXQ1GlwQGwzJs-xYw/edit?usp=sharing) to work on the Ambient Display project. We wanted to make a diffuse lamp that could give an artistic representation of live data. We looked into different API options for our project on this [public API listing on GitHub](https://github.com/public-apis/public-apis). We had considered using one of the art API resources such as the [Metropolitan Museum of Art Collection API](https://metmuseum.github.io/). We looked into display options that could be connected to our ESP32, then I remembered an old project that I worked on that also used a NeoPixel display and realized the [8x8 display](https://www.superlightingled.com/flex-8x8-led-matrix-display-panel-ws2815-rgb-light-for-signs-p-4908.html) we planned to use wouldn't have nearly high enough resolution to show any art meaningfully.
+
+<img width="600" alt="" src="/assets/oct12-18/old-neopixel-project.JPEG">
+
+*This is 16x16 and still looks like a potato instead of a dog*
+
+We went back to the drawing board and looked into other APIs that could give us a live feed of data to modulate our visual board. After exploring the OpenMeteo API more, we discovered that they offered a [live data feed of localized marine weather](https://open-meteo.com/en/docs/marine-weather-api) in addition to general weather. We were inspired to use this wave feed to create a ripple effect on our screen that demonstrates wave period, direction, height, sea level height (for tides), and surface water temperature. We also explored a side-view versus a top-down view.
+
+<img width="600" alt="" src="/assets/oct12-18/open-meteo-wave-api-online.png">
+
+*This API gives hourly updates within a 5 km resolution*
+
+<img width="600" alt="" src="/assets/oct12-18/wave-imagery-sketches.jpg">
+
+*Side view versus top view of the ambient display*
+
+<img width="600" alt="" src="/assets/oct12-18/wave-imagery-sketches-2.jpg">
+
+*A hypothetical timelapse of the display from a top-down view*
+
+We will have to see how to implement this programmatically, but we are happy to have a direction to move towards.
+
+----------
+
 ### 10/16 - Soldering the ESP32
 
 To prepare for my next project, I needed to set up the ESP32, a more powerful microcontroller than the Arduino because it can access WiFi, among other processing improvements. In order to get the ESP32 board soldered in one shot, I went to Chris' solder jam session in Jacobs Makerspace. I started by sticking the two rows of pins directly into the breadboard, broke off the 3 pins I wouldn't need on the top left side of the board, then placed the board on top to make sure it was level.
