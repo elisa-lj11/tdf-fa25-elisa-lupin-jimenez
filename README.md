@@ -1095,4 +1095,27 @@ The final test was to make a weather API call. I copied Roopa's [WeatherAPIExamp
 
 [Full video of weather API call on ESP32](/assets/oct19-25/weather-api.MOV)
 
-I'm pleased with this work for today. Now, I need to start thinking about how to use APIs for my next project.
+I'm pleased with this work for today.
+
+----------
+### 10/23 - Setting up the NeoPixel display
+
+- talk about stripping wires to connect to esp32
+- following this guide to connect to esp32 https://learn.adafruit.com/easy-neopixel-graphics-with-the-circuitpython-pixel-framebuf-library/wiring 
+- using rgbwstriptest example code
+- upgrade to matrixtest to let Arduino NeoPixel Matrix library do the mapping for me
+
+----------
+### 10/23 - Building the prototype for the ambient display holder
+
+- show Rhino design
+- show laser cut on cardboard
+- show exploration of diffusion through acrylic and styrofoam
+
+----------
+### 10/27 - Refining the NeoPixel matrix code
+
+- Using Gemini to pair-program
+- Different iterations of ripple
+- Realizing gap between long periods leaves screen back, experimenting with lowlit backdrop at all times
+- Playing with different colors
