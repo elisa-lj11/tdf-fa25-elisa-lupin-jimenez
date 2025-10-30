@@ -1,6 +1,31 @@
 /*
-Ripple-effect-v6
-Fixed movement of ripple
+Ripple-effect-final
+
+Authors: Elisa Lupin-Jimenez, Tala Salman
+
+Calls OpenMeteo's Marine Weather API (https://open-meteo.com/en/docs/marine-weather-api) to
+fetch a coordinate's wave height, period, and direction, then visualizes this data in the form
+of a ripple moving across a NeoPixel LED matrix.
+
+  - Wave height = Backdrop color (red is short wave, purple is tall wave)
+  - Wave period = New ripple generated at 5x speed (e.g., wave period of 5 seconds means one
+  ripple per second)
+  - Wave direction = Tracks 8 directional movements (direction from which wave comes)
+    - North
+    - West
+    - East
+    - South
+    - Northwest
+    - Northeast
+    - Southwest
+    - Southeast
+
+Code-assist with Gemini:
+  - https://gemini.google.com/share/952c75304788
+  - https://gemini.google.com/share/a1fae9ae0fa8
+  - https://gemini.google.com/share/bca992c6a043
+  - https://gemini.google.com/share/3eb1af5be35b
+  - https://gemini.google.com/share/6cacdb4dc85b
 */
 
 #include <secrets.h>
@@ -11,7 +36,7 @@ Fixed movement of ripple
 #include <Adafruit_NeoMatrix.h>
 #include <Adafruit_NeoPixel.h>
 #ifndef PSTR
-  #define PSTR // Make Arduino Due happy
+  #define PSTR // Store strings in flash memory instead of data memory
 #endif
 
 #define PIN 13 // Which pin NeoPixel matrix is plugged into
@@ -24,7 +49,7 @@ const char* password = SECRET_PASSWORD;
 // ---------- Variables ----------
 const int ROWS = 8; // Number of pixels in row
 const int COLS = 8; // Number of pixels in column
-const int BRIGHTNESS = 40; // Brightness of NeoPixel
+const int BRIGHTNESS = 5; // Brightness of NeoPixel
 
 // These globals store the data from the API
 int currentDir = -1;     // ⭐ start as invalid
@@ -32,7 +57,7 @@ double currentPeriod = 0;
 double currentHeight = 0;
 
 unsigned long lastUpdate = 0;
-const unsigned long updateInterval = 60 * 1000; // refresh every 1 min
+const unsigned long updateInterval = 60 * 1000 * 10; // refresh every 10 min to avoid http.GET() freeze
 
 // MATRIX DECLARATION:
 Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(ROWS, COLS, PIN,
@@ -41,30 +66,38 @@ Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(ROWS, COLS, PIN,
   NEO_GRB          + NEO_KHZ800);
 
 // ---------- Location (Near Golden Gate Bridge) ----------
-/*const double latitude  = 37.8199;
-const double longitude = -122.4783;*/
+const double latitude = 37.8199;
+const double longitude = -122.4783;
 
 // ---------- Location (Steamer Lane in Santa Cruz) ----------
-/*const double latitude  = 36.951981;
-const double longitude = -122.026527;*/
+// const double latitude = 36.951981;
+// const double longitude = -122.026527;
 
 // ---------- Location (Nazare in Portugal) ----------
-/*const double latitude = 39.600274;
-const double longitude = -9.074325;
+// const double latitude = 39.600274;
+// const double longitude = -9.074325;
 
 // ---------- Location (Banzai Pipeline in Hawaii) ----------
-/*const double latitude  = 21.664227;
-const double longitude = -158.051616;*/
+// const double latitude = 21.664227;
+// const double longitude = -158.051616;
 
 // ---------- Location (Amchit in Lebanon) ----------
-const double latitude  = 34.141191;
-const double longitude = 35.630157;
+// const double latitude = 34.141191;
+// const double longitude = 35.630157;
 
 // ---------- Location (Bocas del Toro in Panama) ----------
-/*const double latitude  = 9.395276;
-const double longitude = -82.241983;*/
+// const double latitude = 9.395276;
+// const double longitude = -82.241983;
 
-// ---------- Open-Meteo API ----------
+// ---------- Location (Pacific Beach in San Diego) ----------
+// const double latitude = 32.795781;
+// const double longitude = -117.256979;
+
+// ---------- Location (Uluwatu in Indonesia) ----------
+// const double latitude = -8.828042;
+// const double longitude = 115.085059;
+
+// ---------- Open-Meteo Marine Weather API ----------
 String wave_api = "https://marine-api.open-meteo.com/v1/marine?latitude="
                   + String(latitude, 6)
                   + "&longitude="
@@ -81,7 +114,7 @@ struct Ripple {
   int pos;       // x, y, (x+y), or (x-y) coordinate, depending on direction
   uint16_t color;  // Color of this ripple
   bool active = false; // Is this ripple currently on-screen?
-  int direction; // Stores the snapped visual direction (0, 90, 180, 270)
+  int direction; // Stores the snapped visual direction (0, 45, 90, 135, 180, 225, 270, 315)
 };
 
 #define MAX_RIPPLES 5 // Max simultaneous ripples we can track
@@ -106,7 +139,7 @@ void connectToWiFi() {
 }
 
 /**
- * @brief Fetches the wave data from the OpenMeteo API
+ * @brief Fetches the wave data from the OpenMeteo Marine Weather API
  */
 void getWaveData() {
   Serial.print("Requesting: ");
@@ -136,13 +169,13 @@ void getWaveData() {
       currentPeriod = double(jsonObject["current"]["wave_period"]);
       currentHeight = double(jsonObject["current"]["wave_height"]); 
 
-      Serial.print("API Direction: ");
+      Serial.print("Wave direction: ");
       Serial.print(currentDir);
       Serial.println("°");
-      Serial.print("Period: ");
+      Serial.print("Wave period: ");
       Serial.print(currentPeriod);
       Serial.println(" seconds");
-      Serial.print("Height: ");
+      Serial.print("Wave height: ");
       Serial.println(currentHeight);
     } else {
       Serial.print("HTTP error: ");
@@ -158,25 +191,13 @@ void getWaveData() {
 }
 
 /**
- * @brief ⭐ MODIFIED FUNCTION ⭐
+ * @brief
  * Snaps a raw angle (0-360) from the API to one of 8
  * visual directions for our drawing logic.
  *
- * API Directions (standard compass):
- * 0=N, 45=NE, 90=E, 135=SE, 180=S, 225=SW, 270=W, 315=NW
- *
- * Visual Directions (for our code):
- * 90=N, 45=NE, 0=E, 315=SE, 270=S, 225=SW, 180=W, 135=NW
- *
- * --- NEW Corrected Mapping ---
- * API N (0°)   -> travels N -> Visual W (180°) [User's fix]
- * API NE (45°) -> travels NE -> Visual NW (135°)
- * API E (90°)  -> travels E  -> Visual N (90°)
- * API SE (135°)-> travels SE -> Visual NE (45°)
- * API S (180°) -> travels S  -> Visual E (0°)
- * API SW (225°)-> travels SW -> Visual SE (315°)
- * API W (270°)  -> travels W  -> Visual S (270°) [User's fix]
- * API NW (315°)-> travels NW -> Visual SW (225°)
+ * API Directions (direction wave comes from):
+ * 0=E, 45=NE, 90=N, 135=NW, 180=W, 225=SW, 270=S, 315=SE
+ * @param dir The direction received from the API call
  */
 int snapDirection(int dir) {
   // This logic maps API direction to the correct visual case.
@@ -200,16 +221,19 @@ if (dir > 337.5 || dir <= 22.5) { // API is NORTH (0)
   }
 }
 
-
 /**
- * @brief This is the function you requested.
+ * @brief
+ * Visualizes the ripple moving across the matrix.
  * It's called continuously from the main loop.
  * It manages spawning, updating, and drawing all ripples.
+ * @param dir Wave direction
+ * @param period Wave period
+ * @param height Wave height
  */
 void visualizeRipple(int dir, double period, double height) {
   int snappedDir = snapDirection(dir);
 
-  period /= 5; // make period 5 times as fast
+  period /= 5; // Make period 5 times as fast for better visual effect
 
   // Update global settings for ripple logic
   currentPeriodInMillis = (unsigned long)(period * 1000.0);
@@ -228,28 +252,26 @@ void visualizeRipple(int dir, double period, double height) {
   }
 
   // 2. Update positions of all active ripples
-  updateRipples(); // No longer needs direction
+  updateRipples();
 
   // 3. Draw all ripples to the buffer
-  // --- MODIFICATION START ---
   // Calculate background color based on height.
-  // We'll map height from 0.0 (Red) through the spectrum to 5.0 (Purple)
-  double constrainedHeight = constrain(height, 0.0, 5.0);
-  double fraction = constrainedHeight / 5.0; // 0.0 (low) to 1.0 (high)
+  // Map height from 0.0 (Red) through the spectrum to 3.0 (Purple)
+  double constrainedHeight = constrain(height, 0.0, 3.0);
+  double fraction = constrainedHeight / 3.0; // 0.0 (low) to 1.0 (high)
 
-  // We map the 0.0-1.0 fraction to a hue range (0-65535).
+  // Map the 0.0-1.0 fraction to a hue range (0-65535).
   // Hue 0 is Red.
   // Hue ~48000 is a nice Purple/Violet.
   // This will naturally pass through Orange, Yellow, Green, Cyan, and Blue.
   uint16_t hue = (uint16_t)(fraction * 48000.0);
   uint8_t saturation = 255; // Full saturation for rich color
-  uint8_t value = 7;       // Dim brightness (0-255), similar to your previous (40-60) RGB values
+  uint8_t value = 100;       // Dim brightness (0-255)
 
   // Convert HSV color to the 16-bit packed color
   uint16_t backdropColor = matrix.ColorHSV(hue, saturation, value);
   
   matrix.fillScreen(backdropColor); // Use the new dynamic color
-  // --- MODIFICATION END ---
   
   drawRipples(); // Draw ripples on top
 
@@ -258,7 +280,7 @@ void visualizeRipple(int dir, double period, double height) {
 }
 
 /**
- * @brief ⭐ MODIFIED FUNCTION ⭐
+ * @brief
  * Finds an inactive ripple in the array and spawns it at the correct edge.
  * @param snappedDir The visual direction (0, 45, 90, 135, 180, 225, 270, 315)
  * @param height The wave height (used for color)
@@ -275,40 +297,38 @@ void addNewRipple(int snappedDir, double height) {
       int h_idx = matrix.height() - 1; // 7 (max y index)
       
       switch (snappedDir) { 
-        case 0:   // Visual East (moves Right, x: 7->0)
+        case 0:   // Visual East (moves Left, x: 7->0)
           ripples[i].pos = w_idx; // x = 7 (Left)
           break;
-        case 180: // Visual West (moves Left, x: 0->7)
-          ripples[i].pos = 0; // x = 0 (Right)
+        case 180: // Visual West (moves Right, x: 0->7)
+          ripples[i].pos = -1; // x = 0 (Right)
           break;
-        case 90:  // Visual North (moves Up, y: 7->0)
+        case 90:  // Visual North (moves Down, y: 7->0)
           ripples[i].pos = h_idx; // y = 7 (Bottom)
           break;
-        case 270: // Visual South (moves Down, y: 0->7)
-          ripples[i].pos = 0; // y = 0 (Top)
+        case 270: // Visual South (moves Up, y: 0->7)
+          ripples[i].pos = -1; // y = 0 (Top)
           break;
-        
-        // --- NEW DIAGONAL CASES ---
-        case 45:  // Visual NE (moves Top-Right, k=x+y: 14->0)
+        case 45:  // Visual NE (moves Bottom-Left, k=x+y: 14->0)
           // Starts at SW corner (x=7, y=7)
           ripples[i].pos = w_idx + h_idx; // pos = 14
           break;
-        case 225: // Visual SW (moves Bottom-Left, k=x+y: 0->14)
+        case 225: // Visual SW (moves Top-Right, k=x+y: 0->14)
           // Starts at NE corner (x=0, y=0)
-          ripples[i].pos = 0; // pos = 0
+          ripples[i].pos = -1; // pos = 0
           break;
-        case 135: // Visual NW (moves Top-Left, k=x-y: -7->7)
+        case 135: // Visual NW (moves Bottom-Right, k=x-y: -7->7)
           // Starts at SE corner (x=0, y=7)
           ripples[i].pos = 0 - h_idx; // pos = -7
           break;
-        case 315: // Visual SE (moves Bottom-Right, k=x-y: 7->-7)
+        case 315: // Visual SE (moves Top-Left, k=x-y: 7->-7)
           // Starts at NW corner (x=7, y=0)
           ripples[i].pos = w_idx; // pos = 7
           break;
       }
       
-      // Set ripple color to a constant white (adjust brightness as needed)
-      ripples[i].color = matrix.Color(150, 150, 150); 
+      // Set ripple color to a constant white
+      ripples[i].color = matrix.Color(255, 255, 255); 
       
       return; // Exit after spawning one ripple
     }
@@ -316,7 +336,7 @@ void addNewRipple(int snappedDir, double height) {
 }
 
 /**
- * @brief ⭐ MODIFIED FUNCTION ⭐
+ * @brief
  * Updates the position of all active ripples.
  */
 void updateRipples() {
@@ -330,24 +350,22 @@ void updateRipples() {
       // 1. Move the ripple
       // (0,0) is top-right. X+ is LEFT. Y+ is DOWN.
       switch (moveDir) { 
-        case 0:   // Visual East (moving right, x: 7->0)
+        case 0:   // Visual East (moving left, x: 7->0)
           ripples[i].pos--; 
           if (ripples[i].pos < 0) deactivating = true;
           break;
-        case 180: // Visual West (moving left, x: 0->7)
+        case 180: // Visual West (moving right, x: 0->7)
           ripples[i].pos++; 
           if (ripples[i].pos > w_idx) deactivating = true;
           break;
         case 90:  // Visual North (moving up, y: 7->0)
           ripples[i].pos--; 
-          if (ripples[i].pos < 0) deactivating = true;
+          if (ripples[i].pos < -1) deactivating = true;
           break;
         case 270: // Visual South (moving down, y: 0->7)
           ripples[i].pos++; 
           if (ripples[i].pos > h_idx) deactivating = true;
           break;
-        
-        // --- NEW DIAGONAL CASES ---
         case 45:  // Visual NE (moves Top-Right, k=x+y: 14->0)
           ripples[i].pos--;
           if (ripples[i].pos < 0) deactivating = true;
@@ -375,7 +393,7 @@ void updateRipples() {
 }
 
 /**
- * @brief ⭐ MODIFIED FUNCTION ⭐
+ * @brief
  * Draws all active ripples to the matrix buffer with slight variations.
  */
 void drawRipples() {
@@ -407,7 +425,6 @@ void drawRipples() {
           }
           break;
 
-        // --- NEW DIAGONAL CASES ---
         // These draw diagonal lines of the type k = x + y
         case 45:  // NE
         case 225: // SW
@@ -494,7 +511,7 @@ void loop() {
   }
 
   // Add delay for animation frame rate
-  delay(100); // ~10 frames per second (was 1.1fps, fixed comment)
+  delay(100); // ~10 frames per second
 }
 
 

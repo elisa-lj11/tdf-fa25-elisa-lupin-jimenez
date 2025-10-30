@@ -1,7 +1,7 @@
 /*
 Ripple-effect-v4
 Updating backdrop color brightness
-Vibe-coded with Gemini: 
+Vibe-coded with Gemini: https://gemini.google.com/share/3eb1af5be35b
 */
 
 #include <secrets.h>

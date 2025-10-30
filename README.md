@@ -10,6 +10,7 @@ Hello! I'm an MDes student at UC Berkeley, and this is my design journal for "DE
 [Week 7](#week-7)  
 [Week 8](#week-8)  
 [Week 9](#week-9)  
+[Week 10](#week-10)  
 
 ## Week 2
 *(9/2 - 9/8)*
@@ -1113,9 +1114,19 @@ I'm pleased with this work for today.
 - show exploration of diffusion through acrylic and styrofoam
 
 ----------
+## Week 10
+*(10/26 - 11/1)*
+
 ### 10/27 - Refining the NeoPixel matrix code
 
 - Using Gemini to pair-program
 - Different iterations of ripple
 - Realizing gap between long periods leaves screen back, experimenting with lowlit backdrop at all times
 - Playing with different colors
+
+----------
+### 10/28 - More refinement of the NeoPixel, adding struts to component frame
+
+- Got up to v6 of code
+- Added metal servo hooks to lift acrylic off NeoPixel
+- Made system diagram through Liminal
