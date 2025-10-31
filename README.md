@@ -1101,17 +1101,97 @@ I'm pleased with this work for today.
 ----------
 ### 10/23 - Setting up the NeoPixel display
 
-- talk about stripping wires to connect to esp32
-- following this guide to connect to esp32 https://learn.adafruit.com/easy-neopixel-graphics-with-the-circuitpython-pixel-framebuf-library/wiring 
-- using rgbwstriptest example code
-- upgrade to matrixtest to let Arduino NeoPixel Matrix library do the mapping for me
+We wanted to upgrade to a NeoPixel 8x8 LED matrix. We followed the [Adafruit NeoPixel wiring guide](https://learn.adafruit.com/easy-neopixel-graphics-with-the-circuitpython-pixel-framebuf-library/wiring) to set up the matrix with a microcontroller. We stripped the main power and ground wires attached to the matrix and screwed them into a power adaptor, which we would need to supply 5V to the matrix.
+
+<img width="600" alt="" src="/assets/oct19-25/neopixel-power-adaptor.jpg">
+
+*It's my handy little screw-pen that I carry around*
+
+We used the [Adafruit NeoPixel matrix test](/scripts/matrixtest.ino) that came with the [NeoPixel Matrix library](https://learn.adafruit.com/adafruit-neopixel-uberguide/neomatrix-library) to test that the matrix wiring to the ESP32 was correct.
+
+<img width="600" alt="" src="/assets/oct19-25/matrix-test.jpg">
+
+*Worked the first time!*
+
+Then, I vibe-coded a [basic ripple simulation](scripts/matrix-ripple-test.ino) to see what a circle expanding outward on the board would look like.
+
+FIXME: insert video of blue outward ripple on dark background
+<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
+
+*It's basic but it should be good enough for testing*
+
+[Full video of matrix ripple test](/assets/oct19-25/matrix-test.mp4)
+
+Time for diffusion exploration!
 
 ----------
 ### 10/23 - Building the prototype for the ambient display holder
 
-- show Rhino design
-- show laser cut on cardboard
-- show exploration of diffusion through acrylic and styrofoam
+We knew we wanted to diffuse the harshness of the pixel display with something, but we weren't sure yet what material would achieve the desired ambient effect, so we looked around the Maker Space for spare parts.
+
+<img width="600" alt="" src="/assets/oct19-25/testing-acrylic-frosting-against-monitor.jpg">
+
+*Acrylic goes blurrrrrr*
+
+We got a scrap piece of acrylic and used a buffer to add a frost diffusion effect, which we wanted to play around with to achieve the right visual effect for our otherwise harsh pixel board.
+
+FIXME: photo of Tala sanding
+<img width="600" alt="" src="/assets/oct19-25/graded-frosting.jpg">
+
+*She's having so much fun sanding away*
+
+<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
+
+*Just an inch of space makes a big difference*
+
+[Full video of matrix test with acrylic](/assets/oct19-25/matrix-test.mp4)
+
+We continued to experiment with different grades of frosting and thickness of material.
+
+<img width="600" alt="" src="/assets/oct19-25/graded-frosting.jpg">
+
+FIXME: photo of weird acrylic
+<img width="600" alt="" src="/assets/oct19-25/graded-frosting.jpg">
+
+FIXME: photo of paper
+<img width="600" alt="" src="/assets/oct19-25/graded-frosting.jpg">
+
+*Already getting excited about this*
+
+From there, we designed a laser cut for a rough prototype using cardboard so we could tolerance test the distance between our pixel board and the acrylic. FIXME: add link to Rhino CAD file, screenshot
+
+FIXME: photo of Tala on Rhino
+<img width="600" alt="" src="/assets/oct19-25/graded-frosting.jpg">
+
+*Look at her go*
+
+FIXME: photo of laser cut cardboard
+<img width="600" alt="" src="/assets/oct19-25/graded-frosting.jpg">
+
+*Laser cutting cardboard is so satisfying*
+
+We glued the box together and started testing by sliding our piece of acrylic into the various slots at different heights above the LED matrix.
+
+FIXME: photo of green cardboard prototype hold
+<img width="600" alt="" src="/assets/oct19-25/graded-frosting.jpg">
+
+*Seeing a lot of variance just from the centimeter difference in spacing*
+
+FIXME: video of blue cardboard ripple
+<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
+
+*Another angle in the cardboard prototype*
+
+[Full video of cardboard prototype test](/assets/oct19-25/matrix-test.mp4)
+
+FIXME: video of programming next to light
+<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
+
+*Tapping away to a brighter future*
+
+[Full video of coding ripple test](/assets/oct19-25/matrix-test.mp4)
+
+After playing around with the cardboard prototype, we liked the way the light diffused when it was lifted 5 centimeters above the board. Now that we had a better idea of the acrylic-board gap, it was time to make our code do what we actually wanted it to do.
 
 ----------
 ## Week 10
@@ -1119,14 +1199,72 @@ I'm pleased with this work for today.
 
 ### 10/27 - Refining the NeoPixel matrix code
 
-- Using Gemini to pair-program
-- Different iterations of ripple
-- Realizing gap between long periods leaves screen back, experimenting with lowlit backdrop at all times
-- Playing with different colors
+The first step in getting our ripple effect to work would be to set up the API calls using [OpenMeteo's Marine Weather API](https://open-meteo.com/en/docs/marine-weather-api). We decided to focus on just the wave height, wave period, and wave direction since we believed these parameters would interplay to give us the most interesting visual effect.
+
+Building off of Roopa's [WeatherAPIExample.ino sketch](/scripts/WeatherAPIExample.ino), we worked with [Gemini](https://gemini.google.com/share/952c75304788) to create a first version of our API data visualization script. The main things I specified in the prompt, along with the (FIXME: which blocks of code did I give it?) were to move the ripple in the wave direction received from the API, to adjust the brightness of the backdrop (which would remain a constant blue color) according to the height of the wave, and to make a new ripple according to the wave period (for instance, if the wave period is 5 seconds, we see a new ripple every 5 seconds). FIXME: did I make a decision about what to do with height yet?
+
+FIXME: video of first wave ripple
+<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
+
+*The wave has an interesting curve to it*
+
+[Full video of first API call wave ripple](/assets/oct19-25/matrix-test.mp4)
+
+We realized that with the wave period being so long, the screen would be black, so we decided to add a solid blue backdrop and use the API-fetched height value to adjust the brightness of the backdrop.
+
+FIXME: video of wave ripple with blue
+<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
+
+*The wave has an interesting curve to it*
+
+[Full video of wave ripple with blue backdrop](/assets/oct19-25/matrix-test.mp4)
+
+The culmination of this testing is contained in [ripple-effect-v1.ino](/scripts/ripple-effect-v1.ino).
+
+After some deliberation, we decided to simplify our wave pattern since our 8x8 screen was too small to give good resolution to the wave curve. Instead of using a curve that is a symbolic wave, we decided to go more abstract and use a line that has pixels randomly shifted up and down to give the appearance of assymetry in waves crashing on a shore. This change can be seen in [ripple-effect-v2.ino](/scripts/ripple-effect-v2.ino), also coded with the assistance of [Gemini](https://gemini.google.com/share/a1fae9ae0fa8).
+
+FIXME: video of wave ripple with straight line
+<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
+
+*This is much more visually appealing for a low-resolution display*
+
+[Full video of wave ripple as line](/assets/oct19-25/matrix-test.mp4)
+
+We weren't quite convinced with the blue backdrop being a strong enough signal of variance in wave height. We pivoted to representing wave height along the full-color spectrum, using a formula to convert wave height into a RGB values that can be displayed on the matrix. This change can be seen in [ripple-effect-v3.ino](/scripts/ripple-effect-v3.ino), also coded with the assistance of [Gemini](https://gemini.google.com/share/bca992c6a043).
+
+FIXME: video of wave ripple with colored backdrop
+<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
+
+*This feels like a step in the right direction*
+
+[Full video of wave ripple with full-color backdrop](/assets/oct19-25/matrix-test.mp4)
+
+Things were going well! Still, we had a lot of work ahead of us before we would be at museum quality, but time to go home.
 
 ----------
 ### 10/28 - More refinement of the NeoPixel, adding struts to component frame
 
-- Got up to v6 of code
+
+
+- v4 to v6 of code
 - Added metal servo hooks to lift acrylic off NeoPixel
-- Made system diagram through Liminal
+
+----------
+### 10/29 - Refining the frame for the NeoPixel
+
+
+
+- added a frame to obscure the gaps between the neopixel matrix and the box
+- 
+
+----------
+### 10/30 - Final code adjustments and demo
+
+I played around with [Liminal](FIXME: link here), a concept map generation app made by my TA from another class [Lingxiu](FIXME: link here) to see if it could make a good representation of how our ripple effect system works.
+
+<img width="600" alt="" src="/assets/oct26-nov1/liminal-systems-diagram-ripple.png">
+
+*Liminal-generated diagrammatic analysis*
+
+- include demo video
+- include two diagrammatic analyses

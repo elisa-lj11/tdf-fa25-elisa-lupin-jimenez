@@ -1,7 +1,9 @@
 /*
-Ripple-effect-final
+Ripple-effect-demo-mode-dual-core
 
 Authors: Elisa Lupin-Jimenez, Tala Salman
+
+DEMO MODE: Cycles through all listed locations in 15-second intervals
 
 Calls OpenMeteo's Marine Weather API (https://open-meteo.com/en/docs/marine-weather-api) to
 fetch a coordinate's wave height, period, and direction, then visualizes this data in the form
@@ -26,11 +28,14 @@ Code-assist with Gemini:
   - https://gemini.google.com/share/bca992c6a043
   - https://gemini.google.com/share/3eb1af5be35b
   - https://gemini.google.com/share/6cacdb4dc85b
+  - https://gemini.google.com/share/7ebcecf5b33d
+  - https://gemini.google.com/share/581a8546825c
 */
 
 #include <secrets.h>
 #include <WiFi.h>
 #include <HTTPClient.h>
+#include <vector>
 #include <map>
 #include <Arduino_JSON.h>
 #include <Adafruit_GFX.h>
@@ -40,43 +45,32 @@ Code-assist with Gemini:
   #define PSTR // Store strings in flash memory instead of data memory
 #endif
 
+// ---------- Multitasking Globals ----------
+TaskHandle_t NetworkTaskHandle; // Handle for the task on Core 0
+portMUX_TYPE mux = portMUX_INITIALIZER_UNLOCKED; // Mutex to protect shared data
+
 #define PIN 13 // Which pin NeoPixel matrix is plugged into
-
-
-// ---------- Active location ----------
-String activeLocation = "Golden Gate Bridge";
-
-/**
- * @brief Load all available locations for wave data, called in setup()
- */
-void loadLocations() {
-  wavePins["Golden Gate Bridge"] = {37.8199, -122.4783};
-  wavePins["Santa Cruz"] = {36.951981, -122.026527};
-  wavePins["Portugal"] = {39.600274, -9.074325};
-  wavePins["Hawaii"] = {21.664227, -158.051616};
-  wavePins["Lebanon"] = {34.141191, 35.630157};
-  wavePins["Panama"] = {9.395276, -82.241983};
-  wavePins["San Diego"] = {32.795781, -117.256979};
-  wavePins["Indonesia"] = {-8.828042, 115.085059};
-}
 
 // ---------- WiFi credentials ----------
 const char* ssid = SECRET_SSID;
 const char* password = SECRET_PASSWORD;
-
 
 // ---------- Variables ----------
 const int ROWS = 8; // Number of pixels in row
 const int COLS = 8; // Number of pixels in column
 const int BRIGHTNESS = 5; // Brightness of NeoPixel
 
+// ---------- Demo Mode Globals ----------
+// Note: activeLocation & currentLocationIndex are now managed by Core 0's task
+const unsigned long demoInterval = 7 * 1000; // 7 seconds
+std::vector<String> locationNames; // To easily access locations by index
+
+// ---------- SHARED GLOBALS (Protected by Mutex) ----------
 // These globals store the data from the API
-int currentDir = -1;     // ⭐ start as invalid
+int currentDir = -1;      // ⭐ start as invalid
 double currentPeriod = 0;
 double currentHeight = 0;
-
-unsigned long lastUpdate = 0;
-const unsigned long updateInterval = 60 * 1000 * 10; // refresh every 10 min to avoid http.GET() freeze
+// ---------------------------------------------------------
 
 // MATRIX DECLARATION:
 Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(ROWS, COLS, PIN,
@@ -103,6 +97,19 @@ struct Location {
 // To store all locations, maps a string (the name) to your Location struct.
 std::map<String, Location> wavePins;
 
+/**
+ * @brief Load all available locations for wave data, called in setup()
+ */
+void loadLocations() {
+  wavePins["Reunion"] = {-21.168129, 55.837241};
+  wavePins["Portugal"] = {39.600274, -9.074325};
+  wavePins["Indonesia"] = {-8.828042, 115.085059};
+  wavePins["Norway"] = {68.2316, 13.6200};
+  wavePins["Lebanon"] = {34.141191, 35.630157};
+  wavePins["Panama"] = {9.395276, -82.241983};
+  wavePins["Golden Gate Bridge"] = {37.8199, -122.4783};
+}
+
 #define MAX_RIPPLES 5 // Max simultaneous ripples we can track
 Ripple ripples[MAX_RIPPLES]; // The array to hold all our ripples
 
@@ -126,6 +133,7 @@ void connectToWiFi() {
 
 /**
  * @brief Fetches the wave data from the OpenMeteo Marine Weather API
+ * (This function is now called by Core 0's task)
  */
 void getWaveData(String name, Location loc) {
   // ---------- Open-Meteo Marine Weather API ----------
@@ -156,15 +164,23 @@ void getWaveData(String name, Location loc) {
 
       if (JSON.typeof(jsonObject) == "undefined") {
         Serial.println("Parsing input failed!");
-        currentDir = -1;    // ⭐ invalidate reading
+        // --- CRITICAL SECTION: START ---
+        portENTER_CRITICAL(&mux);
+        currentDir = -1;  // ⭐ invalidate reading
+        portEXIT_CRITICAL(&mux);
+        // --- CRITICAL SECTION: END ---
         http.end();
         return;
       }
 
       // Read all values from the JSON
+      // --- CRITICAL SECTION: START ---
+      portENTER_CRITICAL(&mux);
       currentDir = double(jsonObject["current"]["wave_direction"]);
       currentPeriod = double(jsonObject["current"]["wave_period"]);
-      currentHeight = double(jsonObject["current"]["wave_height"]); 
+      currentHeight = double(jsonObject["current"]["wave_height"]);
+      portEXIT_CRITICAL(&mux); // Unlock
+      // --- CRITICAL SECTION: END ---
 
       Serial.print("Wave direction: ");
       Serial.print(currentDir);
@@ -177,29 +193,37 @@ void getWaveData(String name, Location loc) {
     } else {
       Serial.print("HTTP error: ");
       Serial.println(httpResponseCode);
-      currentDir = -1;    // ⭐ invalidate reading
+      // --- CRITICAL SECTION: START ---
+      portENTER_CRITICAL(&mux);
+      currentDir = -1;  // ⭐ invalidate reading
+      portEXIT_CRITICAL(&mux);
+      // --- CRITICAL SECTION: END ---
     }
     http.end();
   } else {
     Serial.println("WiFi disconnected. Reconnecting...");
     WiFi.reconnect();
-    currentDir = -1;    // ⭐ invalidate reading
+    // --- CRITICAL SECTION: START ---
+    portENTER_CRITICAL(&mux);
+    currentDir = -1;  // ⭐ invalidate reading
+    portEXIT_CRITICAL(&mux);
+    // --- CRITICAL SECTION: END ---
   }
 }
 
 /**
- * @brief
- * Snaps a raw angle (0-360) from the API to one of 8
- * visual directions for our drawing logic.
- *
- * API Directions (direction wave comes from):
- * 0=E, 45=NE, 90=N, 135=NW, 180=W, 225=SW, 270=S, 315=SE
+ * @brief
+ * Snaps a raw angle (0-360) from the API to one of 8
+ * visual directions for our drawing logic.
+ *
+ * API Directions (direction wave comes from):
+ * 0=E, 45=NE, 90=N, 135=NW, 180=W, 225=SW, 270=S, 315=SE
  * @param dir The direction received from the API call
- */
+ */
 int snapDirection(int dir) {
   // This logic maps API direction to the correct visual case.
   // Each slice is 45 degrees wide.
-if (dir > 337.5 || dir <= 22.5) { // API is NORTH (0)
+  if (dir > 337.5 || dir <= 22.5) { // API is NORTH (0)
     return 0; // Return visual WEST (case 180)
   } else if (dir > 22.5 && dir <= 67.5) {   // API is NORTHEAST (45)
     return 45; // Return visual NORTHWEST (case 135)
@@ -263,7 +287,7 @@ void visualizeRipple(int dir, double period, double height) {
   // This will naturally pass through Orange, Yellow, Green, Cyan, and Blue.
   uint16_t hue = (uint16_t)(fraction * 48000.0);
   uint8_t saturation = 255; // Full saturation for rich color
-  uint8_t value = 200;       // Dim brightness (0-255)
+  uint8_t value = 200;      // Dim brightness (0-255)
 
   // Convert HSV color to the 16-bit packed color
   uint16_t backdropColor = matrix.ColorHSV(hue, saturation, value);
@@ -456,12 +480,66 @@ void drawRipples() {
   }
 }
 
-// ---------- Setup ----------
+/**
+ * @brief
+ * This is the task for Core 0. It handles all blocking network calls.
+ * Its only job is to update the global wave data variables.
+ */
+void networkTaskLoop(void *parameter) {
+  Serial.println("Network Task: running on Core 0.");
+  
+  // This task now "owns" the demo mode state
+  int demoIndex = 0;
+  unsigned long lastDemoSwitch_Core0 = 0;
+  
+  // Wait for WiFi to be connected by setup() on Core 1
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(100);
+  }
+  Serial.println("Network Task: WiFi connected. Initial data fetch...");
+
+  // Do the very first data fetch immediately
+  String currentLocName = locationNames[demoIndex];
+  Location currentLocData = wavePins[currentLocName];
+  getWaveData(currentLocName, currentLocData);
+  
+  lastDemoSwitch_Core0 = millis();
+  
+  // This is the "loop" for Core 0
+  for (;;) {
+    unsigned long now = millis();
+    
+    // Check if it's time to switch to the next location
+    if (now - lastDemoSwitch_Core0 > demoInterval) {
+      
+      demoIndex++;
+      if (demoIndex >= locationNames.size()) {
+        demoIndex = 0;
+      }
+      
+      // Get the new active location and its data
+      currentLocName = locationNames[demoIndex];
+      currentLocData = wavePins[currentLocName];
+      
+      // Fetch data for the new location (THE BLOCKING CALL)
+      getWaveData(currentLocName, currentLocData);
+      
+      // Reset the demo switch timer
+      lastDemoSwitch_Core0 = now;
+    }
+    
+    // Give other Core 0 tasks (like WiFi) time to run
+    delay(500); 
+  }
+}
+
+
+// ---------- Setup (Core 1) ----------
 void setup() {
   Serial.begin(9600);
   while (!Serial); 
   delay(100); 
-  Serial.println("Serial connection established.");
+  Serial.println("Serial connection established. Running on Core 1.");
 
   matrix.begin();
   matrix.setBrightness(BRIGHTNESS);
@@ -482,9 +560,22 @@ void setup() {
 
   loadLocations();
 
+  // --- Demo Mode Setup ---
+  // Populate the locationNames vector for demo mode
+  for (std::map<String, Location>::iterator it = wavePins.begin(); it != wavePins.end(); ++it) {
+    locationNames.push_back(it->first);
+  }
+  Serial.println("Location names loaded.");
+  
+  // Add a check to make sure locations actually loaded
+  if (locationNames.size() == 0) {
+    Serial.println("ERROR: No locations loaded! Check loadLocations(). Halting.");
+    while(1); // Stop here if no locations
+  }
+  // --- End Demo Mode Setup ---
+
   connectToWiFi();
   delay(100); 
-  getWaveData(activeLocation, wavePins[activeLocation]);    // initial fetch
 
   // Initialize all ripples to inactive
   for (int i = 0; i < MAX_RIPPLES; i++) {
@@ -492,21 +583,46 @@ void setup() {
   }
   
   lastRippleTime = millis(); // Set initial- spawn time
+
+  // ⭐ --- START THE NETWORK TASK ---
+  // Create the network task, pin it to Core 0, and start it.
+  Serial.println("Starting Network Task on Core 0...");
+  xTaskCreatePinnedToCore(
+    networkTaskLoop,     // The function to run
+    "NetworkTask",       // Name of the task
+    10000,               // Stack size (bytes)
+    NULL,                // Parameter to pass to the function
+    1,                   // Priority
+    &NetworkTaskHandle,  // Task handle
+    0                    // Core to pin it to (Core 0)
+  );
+  // ⭐ --- END TASK START ---
 }
 
-// ---------- Main Loop ----------
+// ---------- Main Loop (Core 1 - Animation) ----------
 void loop() {
-  if (millis() - lastUpdate > updateInterval) {
-    getWaveData(activeLocation, wavePins[activeLocation]);
-    lastUpdate = millis();
-  }
+  // --- Local copies for a "snapshot" of the data ---
+  int animDir;
+  double animPeriod;
+  double animHeight;
+
+  // ⭐ --- START CRITICAL SECTION ---
+  // Lock, quickly copy the shared data, and unlock
+  portENTER_CRITICAL(&mux);
+  animDir = currentDir;
+  animPeriod = currentPeriod;
+  animHeight = currentHeight;
+  portEXIT_CRITICAL(&mux);
+  // ⭐ --- END CRITICAL SECTION ---
 
   // ⭐ Only show light if wave direction is valid
-  if (currentDir != -1) {
-    visualizeRipple(currentDir, currentPeriod, currentHeight);
+  if (animDir != -1) {
+    // Use the local "snapshot" copies for this frame
+    visualizeRipple(animDir, animPeriod, animHeight);
   } else {
-    matrix.fillScreen(0); // Clear the screen
-    matrix.show();      
+    // Data is invalid (probably during a fetch), clear the screen
+    matrix.fillScreen(0); 
+    matrix.show();        
   }
 
   // Add delay for animation frame rate

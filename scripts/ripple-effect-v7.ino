@@ -1,5 +1,5 @@
 /*
-Ripple-effect-final
+Ripple-effect-v7
 
 Authors: Elisa Lupin-Jimenez, Tala Salman
 
@@ -31,7 +31,6 @@ Code-assist with Gemini:
 #include <secrets.h>
 #include <WiFi.h>
 #include <HTTPClient.h>
-#include <map>
 #include <Arduino_JSON.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_NeoMatrix.h>
@@ -41,24 +40,6 @@ Code-assist with Gemini:
 #endif
 
 #define PIN 13 // Which pin NeoPixel matrix is plugged into
-
-
-// ---------- Active location ----------
-String activeLocation = "Golden Gate Bridge";
-
-/**
- * @brief Load all available locations for wave data, called in setup()
- */
-void loadLocations() {
-  wavePins["Golden Gate Bridge"] = {37.8199, -122.4783};
-  wavePins["Santa Cruz"] = {36.951981, -122.026527};
-  wavePins["Portugal"] = {39.600274, -9.074325};
-  wavePins["Hawaii"] = {21.664227, -158.051616};
-  wavePins["Lebanon"] = {34.141191, 35.630157};
-  wavePins["Panama"] = {9.395276, -82.241983};
-  wavePins["San Diego"] = {32.795781, -117.256979};
-  wavePins["Indonesia"] = {-8.828042, 115.085059};
-}
 
 // ---------- WiFi credentials ----------
 const char* ssid = SECRET_SSID;
@@ -84,6 +65,48 @@ Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(ROWS, COLS, PIN,
   NEO_MATRIX_COLUMNS + NEO_MATRIX_ZIGZAG, // (0,0) is TOP-RIGHT
   NEO_GRB          + NEO_KHZ800);
 
+// ---------- Location (Near Golden Gate Bridge) ----------
+const double latitude = 37.8199;
+const double longitude = -122.4783;
+
+// ---------- Location (Steamer Lane in Santa Cruz) ----------
+// const double latitude = 36.951981;
+// const double longitude = -122.026527;
+
+// ---------- Location (Nazare in Portugal) ----------
+// const double latitude = 39.600274;
+// const double longitude = -9.074325;
+
+// ---------- Location (Banzai Pipeline in Hawaii) ----------
+// const double latitude = 21.664227;
+// const double longitude = -158.051616;
+
+// ---------- Location (Amchit in Lebanon) ----------
+// const double latitude = 34.141191;
+// const double longitude = 35.630157;
+
+// ---------- Location (Bocas del Toro in Panama) ----------
+// const double latitude = 9.395276;
+// const double longitude = -82.241983;
+
+// ---------- Location (Pacific Beach in San Diego) ----------
+// const double latitude = 32.795781;
+// const double longitude = -117.256979;
+
+// ---------- Location (Uluwatu in Indonesia) ----------
+// const double latitude = -8.828042;
+// const double longitude = 115.085059;
+
+// ---------- Open-Meteo Marine Weather API ----------
+String wave_api = "https://marine-api.open-meteo.com/v1/marine?latitude="
+                  + String(latitude, 6)
+                  + "&longitude="
+                  + String(longitude, 6)
+                  + "&current="
+                  + "wave_direction,"
+                  + "wave_period,"
+                  + "wave_height";
+
 // --- New Globals for Ripple Management ---
 
 // This struct will hold the state of a single ripple (wave)
@@ -93,15 +116,6 @@ struct Ripple {
   bool active = false; // Is this ripple currently on-screen?
   int direction; // Stores the snapped visual direction (0, 45, 90, 135, 180, 225, 270, 315)
 };
-
-// Holds the latitude and longitude of a specified location
-struct Location {
-    double latitude;
-    double longitude;
-};
-
-// To store all locations, maps a string (the name) to your Location struct.
-std::map<String, Location> wavePins;
 
 #define MAX_RIPPLES 5 // Max simultaneous ripples we can track
 Ripple ripples[MAX_RIPPLES]; // The array to hold all our ripples
@@ -127,19 +141,8 @@ void connectToWiFi() {
 /**
  * @brief Fetches the wave data from the OpenMeteo Marine Weather API
  */
-void getWaveData(String name, Location loc) {
-  // ---------- Open-Meteo Marine Weather API ----------
-  String wave_api = "https://marine-api.open-meteo.com/v1/marine?latitude="
-                    + String(loc.latitude, 6)
-                    + "&longitude="
-                    + String(loc.longitude, 6)
-                    + "&current="
-                    + "wave_direction,"
-                    + "wave_period,"
-                    + "wave_height";
-  Serial.print("Requesting for ");
-  Serial.print(name);
-  Serial.print(": ");
+void getWaveData() {
+  Serial.print("Requesting: ");
   Serial.println(wave_api);
 
   if (WiFi.status() == WL_CONNECTED) {
@@ -263,7 +266,7 @@ void visualizeRipple(int dir, double period, double height) {
   // This will naturally pass through Orange, Yellow, Green, Cyan, and Blue.
   uint16_t hue = (uint16_t)(fraction * 48000.0);
   uint8_t saturation = 255; // Full saturation for rich color
-  uint8_t value = 200;       // Dim brightness (0-255)
+  uint8_t value = 100;       // Dim brightness (0-255)
 
   // Convert HSV color to the 16-bit packed color
   uint16_t backdropColor = matrix.ColorHSV(hue, saturation, value);
@@ -480,11 +483,9 @@ void setup() {
   Serial.println("Hardware test complete.");
   // ===================
 
-  loadLocations();
-
   connectToWiFi();
   delay(100); 
-  getWaveData(activeLocation, wavePins[activeLocation]);    // initial fetch
+  getWaveData();    // initial fetch
 
   // Initialize all ripples to inactive
   for (int i = 0; i < MAX_RIPPLES; i++) {
@@ -497,7 +498,7 @@ void setup() {
 // ---------- Main Loop ----------
 void loop() {
   if (millis() - lastUpdate > updateInterval) {
-    getWaveData(activeLocation, wavePins[activeLocation]);
+    getWaveData();
     lastUpdate = millis();
   }
 
