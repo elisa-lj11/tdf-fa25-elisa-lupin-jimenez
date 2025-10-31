@@ -1201,7 +1201,7 @@ After playing around with the cardboard prototype, we liked the way the light di
 
 The first step in getting our ripple effect to work would be to set up the API calls using [OpenMeteo's Marine Weather API](https://open-meteo.com/en/docs/marine-weather-api). We decided to focus on just the wave height, wave period, and wave direction since we believed these parameters would interplay to give us the most interesting visual effect.
 
-Building off of Roopa's [WeatherAPIExample.ino sketch](/scripts/WeatherAPIExample.ino), we worked with [Gemini](https://gemini.google.com/share/952c75304788) to create a first version of our API data visualization script. The main things I specified in the prompt, along with the (FIXME: which blocks of code did I give it?) were to move the ripple in the wave direction received from the API, to adjust the brightness of the backdrop (which would remain a constant blue color) according to the height of the wave, and to make a new ripple according to the wave period (for instance, if the wave period is 5 seconds, we see a new ripple every 5 seconds). FIXME: did I make a decision about what to do with height yet?
+Building off of Roopa's [WeatherAPIExample.ino sketch](/scripts/WeatherAPIExample.ino), we worked with [Gemini](https://gemini.google.com/share/952c75304788) to create a first version of our API data visualization script. The main things I specified in the prompt, along with the (FIXME: which blocks of code did I give it?) were to move the ripple in the wave direction received from the API (starting with North, West, East, and South), to adjust the brightness of the backdrop (which would remain a constant blue color) according to the height of the wave, and to make a new ripple according to the wave period (for instance, if the wave period is 5 seconds, we see a new ripple every 5 seconds). FIXME: did I make a decision about what to do with height yet?
 
 FIXME: video of first wave ripple
 <img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
@@ -1230,7 +1230,7 @@ FIXME: video of wave ripple with straight line
 
 [Full video of wave ripple as line](/assets/oct19-25/matrix-test.mp4)
 
-We weren't quite convinced with the blue backdrop being a strong enough signal of variance in wave height. We pivoted to representing wave height along the full-color spectrum, using a formula to convert wave height into a RGB values that can be displayed on the matrix. This change can be seen in [ripple-effect-v3.ino](/scripts/ripple-effect-v3.ino), also coded with the assistance of [Gemini](https://gemini.google.com/share/bca992c6a043).
+We weren't quite convinced with the blue backdrop being a strong enough signal of variance in wave height. We pivoted to representing wave height along the full-color spectrum, using a formula to convert wave height into a RGB values that can be displayed on the matrix. This change can be seen in `visualizeRipple()` inside [ripple-effect-v3.ino](/scripts/ripple-effect-v3.ino), also coded with the assistance of [Gemini](https://gemini.google.com/share/bca992c6a043). We adjusted the brightness by tweaking the values in the RGB algorithm in [ripple-effect-v4.ino](/scripts/ripple-effect-v4.ino).
 
 FIXME: video of wave ripple with colored backdrop
 <img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
@@ -1242,23 +1242,46 @@ FIXME: video of wave ripple with colored backdrop
 Things were going well! Still, we had a lot of work ahead of us before we would be at museum quality, but time to go home.
 
 ----------
-### 10/28 - More refinement of the NeoPixel, adding struts to component frame
+### 10/28 - More refinement of the NeoPixel
 
+We revisited the "wave height to color algorithm" since we were seeing differences in brightness as separate red, green, and blue values imbalanced each other. We wanted a constant brightness for the lights even if the colors changed. We switched our algorithm to use hue, value, and saturation, since this would give us more control over the brightness while retaining the original intent of shifting through the color spectrum gradually according to the wave height. Now, the algorithm works by converting the wave height value into a fraction (we noticed that most waves we tracked around the world came in at under 5 meters, so we capped our wave height max at 5), then multiplying this with 48,000, which is the number of possible hues that our NeoPixel display could show. We also increased the directions that the wave could move in from 4 to 8, so now we captured North, Northeast, East, Southeast, South, Southwest, West, and Northwest. This change can be seen in [ripple-effect-v5.ino](/scripts/ripple-effect-v5.ino), also coded with the assistance of [Gemini](https://gemini.google.com/share/6cacdb4dc85b).
 
+FIXME: video of wave ripple with colored backdrop with hue 10/28
+<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
 
-- v4 to v6 of code
-- Added metal servo hooks to lift acrylic off NeoPixel
+*Looking a lot more fleshed out now*
+
+[Full video of wave ripple with HSV color backdrop](/assets/oct19-25/matrix-test.mp4)
+
+We realized that Gemini had misordered the API direction to the visual movement so an API call of east was actually moving from the south, so we updated that manually in [ripple-effect-v6.ino](/scripts/ripple-effect-v6.ino)
+
+We noticed that from some directions (such as when the wave came from the east), the ripple would stop short before disappearing. We fixed this by going through the different direction cases one-by-one and adjusting the limits specified.
+
+Great progress here, time to get back to modifying the physical form of the piece.
 
 ----------
-### 10/29 - Refining the frame for the NeoPixel
+### 10/29 - Making the frame for the NeoPixel, adding struts to component frame
 
-
-
+-  Added metal servo hooks to lift acrylic off NeoPixel
 - added a frame to obscure the gaps between the neopixel matrix and the box
 - 
 
 ----------
 ### 10/30 - Final code adjustments and demo
+
+In [ripple-effect-v7.ino](/scripts/ripple-effect-v7.ino), we cleaned up the comments, added a header explaining what "The Ripple Effect" does, and added more coordinates for locations around the world that had interesting wave patterns.
+
+We updated this to [ripple-effect-final.ino](/scripts/ripple-effect-final.ino) to be the in-home experience we hoped for our piece. We imagined a person could load in the coordinates of any location they have a special connection with and The Ripple Effect would show them what the shores of that location looks like in any given moment.
+
+Of course... we realized this may not be too interesting for our demo, since wave patterns don't change drastically over the course of an hour, so we adapted our code into a "demo mode" that would cycle between locations every 7 seconds. This was to demonstrate the versatility and responsiveness of our piece. This change can be seen in [ripple-effect-demo-mode-dual-core.ino](/scripts/ripple-effect-demo-mode-dual-core.ino), also coded with the assistance of [Gemini](https://gemini.google.com/share/581a8546825c).
+
+FIXME: video of final wave ripple that's not pro
+<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
+
+*Now this is the mother of all demos! jk*
+
+[Full video of final Ripple Effect](/assets/oct19-25/matrix-test.mp4)
+
 
 I played around with [Liminal](FIXME: link here), a concept map generation app made by my TA from another class [Lingxiu](FIXME: link here) to see if it could make a good representation of how our ripple effect system works.
 
