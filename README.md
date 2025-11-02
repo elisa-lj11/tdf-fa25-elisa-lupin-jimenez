@@ -1115,12 +1115,11 @@ We used the [Adafruit NeoPixel matrix test](/scripts/matrixtest.ino) that came w
 
 Then, I vibe-coded a [basic ripple simulation](scripts/matrix-ripple-test.ino) to see what a circle expanding outward on the board would look like.
 
-FIXME: insert video of blue outward ripple on dark background
-<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
+<img width="600" alt="" src="/assets/oct19-25/matrix-ripple-test.gif">
 
 *It's basic but it should be good enough for testing*
 
-[Full video of matrix ripple test](/assets/oct19-25/matrix-test.mp4)
+[Full video of matrix ripple test](/assets/oct19-25/matrix-ripple-test.mp4)
 
 Time for diffusion exploration!
 
@@ -1135,8 +1134,7 @@ We knew we wanted to diffuse the harshness of the pixel display with something, 
 
 We got a scrap piece of acrylic and used a buffer to add a frost diffusion effect, which we wanted to play around with to achieve the right visual effect for our otherwise harsh pixel board.
 
-FIXME: photo of Tala sanding
-<img width="600" alt="" src="/assets/oct19-25/graded-frosting.jpg">
+<img width="600" alt="" src="/assets/oct19-25/tala-sanding.jpg">
 
 *She's having so much fun sanding away*
 
@@ -1150,46 +1148,41 @@ We continued to experiment with different grades of frosting and thickness of ma
 
 <img width="600" alt="" src="/assets/oct19-25/graded-frosting.jpg">
 
-FIXME: photo of weird acrylic
-<img width="600" alt="" src="/assets/oct19-25/graded-frosting.jpg">
+<img width="600" alt="" src="/assets/oct19-25/weird-acrylic.jpg">
 
-FIXME: photo of paper
-<img width="600" alt="" src="/assets/oct19-25/graded-frosting.jpg">
+<img width="600" alt="" src="/assets/oct19-25/paper-diffusion.png">
 
 *Already getting excited about this*
 
-From there, we designed a laser cut for a rough prototype using cardboard so we could tolerance test the distance between our pixel board and the acrylic. FIXME: add link to Rhino CAD file, screenshot
+From there, we designed a laser cut for a rough prototype using cardboard so we could tolerance test the distance between our pixel board and the acrylic. We made the [prototype design file](/assets/oct19-25/cardboard-prototype-illustrator.png) in Illustrator.
 
-FIXME: photo of Tala on Rhino
-<img width="600" alt="" src="/assets/oct19-25/graded-frosting.jpg">
+<img width="600" alt="" src="/assets/oct19-25/cardboard-prototype-illustrator.png">
 
-*Look at her go*
+*The cardboard prototype on Illustrator*
 
-FIXME: photo of laser cut cardboard
-<img width="600" alt="" src="/assets/oct19-25/graded-frosting.jpg">
+<img width="600" alt="" src="/assets/oct19-25/laser-cut-cardboard.jpg">
 
 *Laser cutting cardboard is so satisfying*
 
 We glued the box together and started testing by sliding our piece of acrylic into the various slots at different heights above the LED matrix.
 
-FIXME: photo of green cardboard prototype hold
-<img width="600" alt="" src="/assets/oct19-25/graded-frosting.jpg">
+<img width="600" alt="" src="/assets/oct19-25/cardboard-prototype.jpg">
 
 *Seeing a lot of variance just from the centimeter difference in spacing*
 
-FIXME: video of blue cardboard ripple
+FIXME: make video into gif
 <img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
 
 *Another angle in the cardboard prototype*
 
-[Full video of cardboard prototype test](/assets/oct19-25/matrix-test.mp4)
+[Full video of cardboard prototype test](/assets/oct19-25/cardboard-prototype-another-angle.mp4)
 
-FIXME: video of programming next to light
+FIXME: make video into gif
 <img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
 
 *Tapping away to a brighter future*
 
-[Full video of coding ripple test](/assets/oct19-25/matrix-test.mp4)
+[Full video of coding ripple test](/assets/oct19-25/l33t-h4ck3r.mp4)
 
 After playing around with the cardboard prototype, we liked the way the light diffused when it was lifted 5 centimeters above the board. Now that we had a better idea of the acrylic-board gap, it was time to make our code do what we actually wanted it to do.
 
@@ -1201,7 +1194,7 @@ After playing around with the cardboard prototype, we liked the way the light di
 
 The first step in getting our ripple effect to work would be to set up the API calls using [OpenMeteo's Marine Weather API](https://open-meteo.com/en/docs/marine-weather-api). We decided to focus on just the wave height, wave period, and wave direction since we believed these parameters would interplay to give us the most interesting visual effect.
 
-Building off of Roopa's [WeatherAPIExample.ino sketch](/scripts/WeatherAPIExample.ino), we worked with [Gemini](https://gemini.google.com/share/952c75304788) to create a first version of our API data visualization script. The main things I specified in the prompt, along with the (FIXME: which blocks of code did I give it?) were to move the ripple in the wave direction received from the API (starting with North, West, East, and South), to adjust the brightness of the backdrop (which would remain a constant blue color) according to the height of the wave, and to make a new ripple according to the wave period (for instance, if the wave period is 5 seconds, we see a new ripple every 5 seconds). FIXME: did I make a decision about what to do with height yet?
+Building off of Roopa's [WeatherAPIExample.ino sketch](/scripts/WeatherAPIExample.ino), we worked with [Gemini](https://gemini.google.com/share/952c75304788) to create a first version of our API data visualization script. The main things I specified in the prompt, along with the (FIXME: which blocks of code did I give it?) were to move the ripple in the wave direction received from the API (starting with North, West, East, and South), to adjust the brightness of the backdrop (which would remain a constant blue color) according to the height of the wave, and to make a new ripple according to the wave period (for instance, if the wave period is 5 seconds, we see a new ripple every 5 seconds). We weren't quite sure what we wanted to do with the height value yet, but figured the period and direction would be plenty to start with.
 
 FIXME: video of first wave ripple
 <img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
@@ -1262,9 +1255,59 @@ Great progress here, time to get back to modifying the physical form of the piec
 ----------
 ### 10/29 - Making the frame for the NeoPixel, adding struts to component frame
 
--  Added metal servo hooks to lift acrylic off NeoPixel
-- added a frame to obscure the gaps between the neopixel matrix and the box
-- 
+We built the case for the electronic components (the ESP32 and the NeoPixel) out of salvaged laser-cut black acrylic. We made the [case design](/assets/oct26-nov1/TDF%20Fabrication.dwg) using Rhino. We wanted to keep the case as small as possible so that it wouldn't stick out from the wall too far. We glued the case together using hot glue and tested our component fit. We also needed to cut away the extra breadboard, so we took a hacksaw to it.
+
+<img width="600" alt="" src="/assets/oct26-nov1/cutting-breadboard.jpg">
+
+*Sliced bread(board)*
+
+<img width="600" alt="" src="/assets/oct26-nov1/tala-rhino.jpg">
+
+*Look at her go on Rhino*
+
+FIXME: take screenshot of DWG file
+<img width="600" alt="" src="/assets/oct26-nov1/cutting-breadboard.jpg">
+
+*Sleek case*
+
+<img width="600" alt="" src="/assets/oct26-nov1/black-case.jpg">
+
+*Fits like a glove*
+
+We wanted to suspend the piece of acrylic in the air, so our structural support needed to be minimal. We found metal servo hooks lying around the Makerspace and, due to the little hook at the end, used them as a tension hold for the acrylic piece. We used a power drill to make four holes in the top of the case, then cut the servo hooks to the right length so we could suspend our acrylic piece 5 cm above the LED matrix.
+
+<img width="600" alt="" src="/assets/oct26-nov1/drill-strut-hole.jpg">
+
+*Drill, baby drill!*
+
+<img width="600" alt="" src="/assets/oct26-nov1/struts-in-place.jpg">
+
+<img width="600" alt="" src="/assets/oct26-nov1/struts-in-place-2.jpg">
+
+*Starting to look like our final vision*
+
+We noticed there were slight gaps along the sides of the NeoPixel still, so we decided to laser cut an additional frame to place on top of the original case. This would help cover the gaps and also hold the NeoPixel in place, which would be essential when we mount the device to the wall so the NeoPixel doesn't slip downward.
+
+<img width="600" alt="" src="/assets/oct26-nov1/frame-add">
+
+*This looks even better than before*
+
+At this moment, we realized we were missing a capacitor for the circuit, which was recommended in the library, so we added one it before we glued all the frame parts together.
+
+<img width="600" alt="" src="/assets/oct26-nov1/capacitor.jpg">
+
+*That could have been a woopsie if we had a power surge run through our device*
+
+We popped the acrylic diffuser into place, and voila! The Ripple Effect is alive!
+
+FIXME: gif of video
+<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
+
+*Looking a lot more fleshed out now*
+
+[Full video of first assembly](/assets/oct26-nov1/fully-assembled-first-time.mp4)
+
+So close to demo day! But we were feeling confident about wrapping up the final touches tomorrow.
 
 ----------
 ### 10/30 - Final code adjustments and demo
