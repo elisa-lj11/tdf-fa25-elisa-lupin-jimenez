@@ -1009,7 +1009,7 @@ I teamed up with [Tala Salman](https://docs.google.com/document/d/1xAzELF5MhFs0j
 
 *This is 16x16 and still looks like a potato instead of a dog*
 
-We went back to the drawing board and looked into other APIs that could give us a live feed of data to modulate our visual board. After exploring the OpenMeteo API more, we discovered that they offered a [live data feed of localized marine weather](https://open-meteo.com/en/docs/marine-weather-api) in addition to general weather. We were inspired to use this wave feed to create a ripple effect on our screen that demonstrates wave period, direction, height, sea level height (for tides), and surface water temperature. We also explored a side-view versus a top-down view.
+We went back to the drawing board and looked into other APIs that could give us a live feed of data to modulate our visual board. After exploring the Open-Meteo API more, we discovered that they offered a [live data feed of localized marine weather](https://open-meteo.com/en/docs/marine-weather-api) in addition to general weather. We were inspired to use this wave feed to create a ripple effect on our screen that demonstrates wave period, direction, height, sea level height (for tides), and surface water temperature. We also explored a side-view versus a top-down view.
 
 <img width="600" alt="" src="/assets/oct12-18/open-meteo-wave-api-online.png">
 
@@ -1170,15 +1170,13 @@ We glued the box together and started testing by sliding our piece of acrylic in
 
 *Seeing a lot of variance just from the centimeter difference in spacing*
 
-FIXME: make video into gif
-<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
+<img width="600" alt="" src="/assets/oct19-25/cardboard-prototype-another-angle.gif">
 
 *Another angle in the cardboard prototype*
 
 [Full video of cardboard prototype test](/assets/oct19-25/cardboard-prototype-another-angle.mp4)
 
-FIXME: make video into gif
-<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
+<img width="600" alt="" src="/assets/oct19-25/l33t-h4ck3r.gif">
 
 *Tapping away to a brighter future*
 
@@ -1192,45 +1190,43 @@ After playing around with the cardboard prototype, we liked the way the light di
 
 ### 10/27 - Refining the NeoPixel matrix code
 
-The first step in getting our ripple effect to work would be to set up the API calls using [OpenMeteo's Marine Weather API](https://open-meteo.com/en/docs/marine-weather-api). We decided to focus on just the wave height, wave period, and wave direction since we believed these parameters would interplay to give us the most interesting visual effect.
+The first step in getting our ripple effect to work would be to set up the API calls using [Open-Meteo's Marine Weather API](https://open-meteo.com/en/docs/marine-weather-api). We decided to focus on just the wave height, wave period, and wave direction since we believed these parameters would interplay to give us the most interesting visual effect.
 
-Building off of Roopa's [WeatherAPIExample.ino sketch](/scripts/WeatherAPIExample.ino), we worked with [Gemini](https://gemini.google.com/share/952c75304788) to create a first version of our API data visualization script. The main things I specified in the prompt, along with the (FIXME: which blocks of code did I give it?) were to move the ripple in the wave direction received from the API (starting with North, West, East, and South), to adjust the brightness of the backdrop (which would remain a constant blue color) according to the height of the wave, and to make a new ripple according to the wave period (for instance, if the wave period is 5 seconds, we see a new ripple every 5 seconds). We weren't quite sure what we wanted to do with the height value yet, but figured the period and direction would be plenty to start with.
+Building off of Roopa's [WeatherAPIExample.ino sketch](/scripts/WeatherAPIExample.ino), we worked with [Gemini](https://gemini.google.com/share/952c75304788) to create a first version of our API data visualization script. The main things I specified in the prompt, along with the [NeoPixel matrix example sketch](/scripts/matrixtest.ino) were to move the ripple in the wave direction received from the API (starting with North, West, East, and South), to adjust the brightness of the backdrop (which would remain a constant blue color) according to the height of the wave, and to make a new ripple according to the wave period (for instance, if the wave period is 5 seconds, we see a new ripple every 5 seconds). We weren't quite sure what we wanted to do with the height value yet, but figured the period and direction would be plenty to start with.
 
-FIXME: video of first wave ripple
-<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
+<img width="600" alt="" src="/assets/oct26-nov1/first-api-ripple.gif">
 
-*The wave has an interesting curve to it*
+*Huh, the math for the board is wrong*
 
-[Full video of first API call wave ripple](/assets/oct19-25/matrix-test.mp4)
+[Full video of first API call wave ripple](/assets/oct26-nov1/first-api-ripple.mp4)
+
+We'd need to fix the mapping for the board, which we realized was wired in a zig-zag pattern.
+
+<img width="600" alt="" src="/assets/oct26-nov1/fixed-ripple-line.gif">
+
+*Better*
+
+[Full video of first API call wave ripple](/assets/oct26-nov1/fixed-ripple-line.mp4)
 
 We realized that with the wave period being so long, the screen would be black, so we decided to add a solid blue backdrop and use the API-fetched height value to adjust the brightness of the backdrop.
 
-FIXME: video of wave ripple with blue
-<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
+<img width="600" alt="" src="/assets/oct26-nov1/ripple-backdrop-blue.gif">
 
-*The wave has an interesting curve to it*
+*More color, more bright*
 
-[Full video of wave ripple with blue backdrop](/assets/oct19-25/matrix-test.mp4)
+[Full video of wave ripple with blue backdrop](/assets/oct26-nov1/ripple-backdrop-blue.mp4)
 
 The culmination of this testing is contained in [ripple-effect-v1.ino](/scripts/ripple-effect-v1.ino).
 
 After some deliberation, we decided to simplify our wave pattern since our 8x8 screen was too small to give good resolution to the wave curve. Instead of using a curve that is a symbolic wave, we decided to go more abstract and use a line that has pixels randomly shifted up and down to give the appearance of assymetry in waves crashing on a shore. This change can be seen in [ripple-effect-v2.ino](/scripts/ripple-effect-v2.ino), also coded with the assistance of [Gemini](https://gemini.google.com/share/a1fae9ae0fa8).
 
-FIXME: video of wave ripple with straight line
-<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
+<img width="600" alt="" src="/assets/oct26-nov1/ripple-asymmetric-line.gif">
 
 *This is much more visually appealing for a low-resolution display*
 
-[Full video of wave ripple as line](/assets/oct19-25/matrix-test.mp4)
+[Full video of wave ripple as line](/assets/oct26-nov1/ripple-asymmetric-line.mp4)
 
 We weren't quite convinced with the blue backdrop being a strong enough signal of variance in wave height. We pivoted to representing wave height along the full-color spectrum, using a formula to convert wave height into a RGB values that can be displayed on the matrix. This change can be seen in `visualizeRipple()` inside [ripple-effect-v3.ino](/scripts/ripple-effect-v3.ino), also coded with the assistance of [Gemini](https://gemini.google.com/share/bca992c6a043). We adjusted the brightness by tweaking the values in the RGB algorithm in [ripple-effect-v4.ino](/scripts/ripple-effect-v4.ino).
-
-FIXME: video of wave ripple with colored backdrop
-<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
-
-*This feels like a step in the right direction*
-
-[Full video of wave ripple with full-color backdrop](/assets/oct19-25/matrix-test.mp4)
 
 Things were going well! Still, we had a lot of work ahead of us before we would be at museum quality, but time to go home.
 
@@ -1239,12 +1235,11 @@ Things were going well! Still, we had a lot of work ahead of us before we would 
 
 We revisited the "wave height to color algorithm" since we were seeing differences in brightness as separate red, green, and blue values imbalanced each other. We wanted a constant brightness for the lights even if the colors changed. We switched our algorithm to use hue, value, and saturation, since this would give us more control over the brightness while retaining the original intent of shifting through the color spectrum gradually according to the wave height. Now, the algorithm works by converting the wave height value into a fraction (we noticed that most waves we tracked around the world came in at under 5 meters, so we capped our wave height max at 5), then multiplying this with 48,000, which is the number of possible hues that our NeoPixel display could show. We also increased the directions that the wave could move in from 4 to 8, so now we captured North, Northeast, East, Southeast, South, Southwest, West, and Northwest. This change can be seen in [ripple-effect-v5.ino](/scripts/ripple-effect-v5.ino), also coded with the assistance of [Gemini](https://gemini.google.com/share/6cacdb4dc85b).
 
-FIXME: video of wave ripple with colored backdrop with hue 10/28
-<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
+<img width="600" alt="" src="/assets/oct26-nov1/ripple-backdrop-hsv.gif">
 
 *Looking a lot more fleshed out now*
 
-[Full video of wave ripple with HSV color backdrop](/assets/oct19-25/matrix-test.mp4)
+[Full video of wave ripple with HSV color backdrop](/assets/oct26-nov1/ripple-backdrop-hsv.MOV)
 
 We realized that Gemini had misordered the API direction to the visual movement so an API call of east was actually moving from the south, so we updated that manually in [ripple-effect-v6.ino](/scripts/ripple-effect-v6.ino)
 
@@ -1257,6 +1252,10 @@ Great progress here, time to get back to modifying the physical form of the piec
 
 We built the case for the electronic components (the ESP32 and the NeoPixel) out of salvaged laser-cut black acrylic. We made the [case design](/assets/oct26-nov1/TDF%20Fabrication.dwg) using Rhino. We wanted to keep the case as small as possible so that it wouldn't stick out from the wall too far. We glued the case together using hot glue and tested our component fit. We also needed to cut away the extra breadboard, so we took a hacksaw to it.
 
+<img width="600" alt="" src="/assets/oct26-nov1/case-dimensions-sketch.png">
+
+*Measuring dimensions for case to fit components*
+
 <img width="600" alt="" src="/assets/oct26-nov1/cutting-breadboard.jpg">
 
 *Sliced bread(board)*
@@ -1265,10 +1264,13 @@ We built the case for the electronic components (the ESP32 and the NeoPixel) out
 
 *Look at her go on Rhino*
 
-FIXME: take screenshot of DWG file
-<img width="600" alt="" src="/assets/oct26-nov1/cutting-breadboard.jpg">
+<img width="600" alt="" src="/assets/oct26-nov1/case-design.png">
 
 *Sleek case*
+
+<img width="600" alt="" src="/assets/oct26-nov1/case-pieces.png">
+
+*Gluing it together*
 
 <img width="600" alt="" src="/assets/oct26-nov1/black-case.jpg">
 
@@ -1300,8 +1302,7 @@ At this moment, we realized we were missing a capacitor for the circuit, which w
 
 We popped the acrylic diffuser into place, and voila! The Ripple Effect is alive!
 
-FIXME: gif of video
-<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
+<img width="600" alt="" src="/assets/oct26-nov1/fully-assembled-first-time.gif">
 
 *Looking a lot more fleshed out now*
 
@@ -1316,21 +1317,42 @@ In [ripple-effect-v7.ino](/scripts/ripple-effect-v7.ino), we cleaned up the comm
 
 We updated this to [ripple-effect-final.ino](/scripts/ripple-effect-final.ino) to be the in-home experience we hoped for our piece. We imagined a person could load in the coordinates of any location they have a special connection with and The Ripple Effect would show them what the shores of that location looks like in any given moment.
 
-Of course... we realized this may not be too interesting for our demo, since wave patterns don't change drastically over the course of an hour, so we adapted our code into a "demo mode" that would cycle between locations every 7 seconds. This was to demonstrate the versatility and responsiveness of our piece. This change can be seen in [ripple-effect-demo-mode-dual-core.ino](/scripts/ripple-effect-demo-mode-dual-core.ino), also coded with the assistance of [Gemini](https://gemini.google.com/share/581a8546825c).
+Of course... we realized this may not be too interesting for our demo, since wave patterns don't change drastically over the course of an hour, so we adapted our code into a "demo mode" that would cycle between locations every 7 seconds. This was to demonstrate the versatility and responsiveness of our piece. This change can be seen in [ripple-effect-demo-mode-dual-core.ino](/scripts/ripple-effect-demo-mode-dual-core.ino), also coded with the assistance of [Gemini](https://gemini.google.com/share/581a8546825c). The main update from our original [ripple-effect-demo-mode.ino](/scripts/ripple-effect-demo-mode.ino) that we developed first was that we now took advantage of the dual core present in the ESP32 to have multi-threaded functionality. Basically, by using a second core in our code to make the API call, we removed the blocker that the `http.GET()` call made in the `loop()` function.
 
-FIXME: video of final wave ripple that's not pro
-<img width="600" alt="" src="/assets/oct19-25/matrix-test.gif">
+All that was left was to mount it to the wall and give our demo! (Thanks command strips)
+
+<img width="600" alt="" src="/assets/oct26-nov1/mounted-on-wall.gif">
 
 *Now this is the mother of all demos! jk*
 
-[Full video of final Ripple Effect](/assets/oct19-25/matrix-test.mp4)
+More photos of "The Ripple Effect" below.
 
+<img width="600" alt="" src="/assets/oct26-nov1/ripple-effect-1.JPG">
 
-I played around with [Liminal](FIXME: link here), a concept map generation app made by my TA from another class [Lingxiu](FIXME: link here) to see if it could make a good representation of how our ripple effect system works.
+<img width="600" alt="" src="/assets/oct26-nov1/ripple-effect-2.JPG">
+
+<img width="600" alt="" src="/assets/oct26-nov1/ripple-effect-3.JPG">
+
+<img width="600" alt="" src="/assets/oct26-nov1/ripple-effect-4.JPG">
+
+<img width="600" alt="" src="/assets/oct26-nov1/ripple-effect-5.JPG">
+
+<img width="600" alt="" src="/assets/oct26-nov1/ripple-computer.gif">
+
+[Link to "The Ripple Effect" demo video](https://drive.google.com/file/d/1LGKpT4Vu-hRFUr1Gi2ScmGSBeP3CM565/view?usp=sharing)
+
+For the diagrammatic analyses, I made a process architecture diagram and a system architecture diagram. I also played around with [Liminal](https://theliminal.design/), a concept map generation app made by my TA from another class [Lingxiu](https://design.berkeley.edu/profiles/lingxiu) to see if it could make a good representation of how our ripple effect system works.
+
+<img width="600" alt="" src="/assets/oct26-nov1/ripple-process-diagram.png">
+
+*Process architecture diagram*
+
+<img width="600" alt="" src="/assets/oct26-nov1/ripple-system-diagram.png">
+
+*System architecture diagram*
 
 <img width="600" alt="" src="/assets/oct26-nov1/liminal-systems-diagram-ripple.png">
 
 *Liminal-generated diagrammatic analysis*
 
-- include demo video
-- include two diagrammatic analyses
+Wow! This must be my favorite project that I've worked on so far. My reflections are mainly that the work is so much smoother when I work with a complementary expert such as Tala. She taught me so much about efficient CAD, the importance of early prototypes and testing out many different materials to get the best results. In turn, I showed Tala a lot about how to read code, understand API usage, and set up more complex circuits. We made a great team, and our work proves that together we are stronger.
