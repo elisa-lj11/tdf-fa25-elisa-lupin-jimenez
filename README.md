@@ -1023,6 +1023,10 @@ We went back to the drawing board and looked into other APIs that could give us 
 
 *A hypothetical timelapse of the display from a top-down view*
 
+<img width="600" alt="" src="/assets/oct12-18/ambient-display-sketch.JPEG">
+
+*Container for display, potential ambient sheet?*
+
 We will have to see how to implement this programmatically, but we are happy to have a direction to move towards.
 
 ----------
