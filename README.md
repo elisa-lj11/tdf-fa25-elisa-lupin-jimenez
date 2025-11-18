@@ -11,6 +11,9 @@ Hello! I'm an MDes student at UC Berkeley, and this is my design journal for "DE
 [Week 8](#week-8)  
 [Week 9](#week-9)  
 [Week 10](#week-10)  
+[Week 11](#week-11)  
+[Week 12](#week-12)  
+[Week 13](#week-13)  
 
 ## Week 2
 *(9/2 - 9/8)*
@@ -1360,3 +1363,41 @@ For the diagrammatic analyses, I made a process architecture diagram and a syste
 *Liminal-generated diagrammatic analysis*
 
 Wow! This must be my favorite project that I've worked on so far. My reflections are mainly that the work is so much smoother when I work with a complementary expert such as Tala. She taught me so much about efficient CAD, the importance of early prototypes and testing out many different materials to get the best results. In turn, I showed Tala a lot about how to read code, understand API usage, and set up more complex circuits. We made a great team, and our work proves that together we are stronger.
+
+----------
+## Week 11
+*(11/2 - 11/8)*
+
+11/4
+- developed individual proposals
+
+11/6
+- group proposal draft
+
+-----------
+## Week 12
+*(11/9 - 11/15)*
+
+11/13
+- sautered imu: https://learn.adafruit.com/mpu6050-6-dof-accelerometer-and-gyro/arduino 
+- tested gyroscope sensor with basic_test example script
+- [imu_basic_test.ino](/scripts/imu_basic_test.ino)
+- [imu_motion_detection.ino](/scripts/imu_motion_detection.ino)
+- tested serial read into touchdesigner
+- visited explo for physical/digital form inspiration
+
+----------
+## Week 13
+*(11/16 - 11/22)*
+
+11/17
+- https://learn.sparkfun.com/tutorials/qwiic-haptic-driver-da7280-hookup-guide#example-1-i2c-mode
+- https://learn.adafruit.com/adafruit-esp32-feather-v2?view=all#stemma-qt-connector-3112257
+- Used I2C to connect haptic motor driver to ESP32
+- used [I2C_mode.ino](/scripts/I2C_mode.ino) to test
+- Didn't light up
+- held the jumper cables in place to test that the haptic driver worked at all, it did
+- needed to pull the power pin high for i2c to work
+- connected gyro and haptic together with i2c
+- used [Gemini](https://gemini.google.com/share/34327ef22b0c) to merge haptic driver example and IMU sensor example
+- [imu_motion_haptic.ino](/scripts/imu_motion_haptic.ino)
