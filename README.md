@@ -1378,6 +1378,9 @@ Wow! This must be my favorite project that I've worked on so far. My reflections
 ## Week 12
 *(11/9 - 11/15)*
 
+11/10
+- group proposal draft due
+
 11/13
 - sautered imu: https://learn.adafruit.com/mpu6050-6-dof-accelerometer-and-gyro/arduino 
 - tested gyroscope sensor with basic_test example script
@@ -1401,3 +1404,46 @@ Wow! This must be my favorite project that I've worked on so far. My reflections
 - connected gyro and haptic together with i2c
 - used [Gemini](https://gemini.google.com/share/34327ef22b0c) to merge haptic driver example and IMU sensor example
 - [imu_motion_haptic.ino](/scripts/imu_motion_haptic.ino)
+
+11/18
+- [imu_motion_haptic_v2.ino](/scripts/imu_motion_haptic_v2.ino)
+- changed the vibration to be more fluid
+
+11/20
+- set up wifi connectivity with UDP
+- https://forum.derivative.ca/t/how-to-send-sensor-data-to-touchdesigner-using-esp32/150215/4
+- https://gemini.google.com/share/be968218553a
+- [imu_motion_haptic_wifi.ino](/scripts/imu_motion_haptic_wifi.ino)
+
+11/21
+- measuring dimensions of soap box with sketch
+- ideating different shapes for box
+- hand saw roughly into soap shape
+- fit components on cardboard prototype
+- cut cardboard for good hand feel
+- drill press to carve out pocket
+
+----------
+## Week 14
+*(11/23 - 11/29)*
+
+11/24
+- sawing block of wood with table saw
+- slice in half with band saw
+- drill press for more pocket carving
+- tape components in pocket to test resonance
+
+11/25
+- taped magnets to boxes to test hold strength
+- drill holes for magnets
+- superglue into holes
+- pull saw to cut corners off wood block
+- belt sander to carve out sides
+
+11/26
+- wood stain soap box
+
+11/29
+- fixing calibration of IMU
+- https://gemini.google.com/share/d90b1d460ae7
+- [imu_motion_haptic_wifi_v2.ino](/scripts/imu_motion_haptic_wifi_v2.ino)
