@@ -14,6 +14,9 @@ Hello! I'm an MDes student at UC Berkeley, and this is my design journal for "DE
 [Week 11](#week-11)  
 [Week 12](#week-12)  
 [Week 13](#week-13)  
+[Week 14](#week-14)  
+[Week 15](#week-15)  
+[Week 16](#week-16)  
 
 ## Week 2
 *(9/2 - 9/8)*
@@ -1368,26 +1371,112 @@ Wow! This must be my favorite project that I've worked on so far. My reflections
 ## Week 11
 *(11/2 - 11/8)*
 
-11/4
-- developed individual proposals
+### 11/4 - Developing individual final project proposal, forming a final project team
 
-11/6
-- group proposal draft
+In preparation for the final project, I thought about a few ways I could squeeze [TouchDesigner](https://derivative.ca/) into my project because I knew I wanted to learn TouchDesigner but needed a good excuse to integrate it into the technology I had already learned about in TDF. I decided on an idea called "ContactDesigner," a wearable device that maps movement to a visual generated within TouchDesigner. The idea was to take away the pressure associated with collaborative dance (in some circles called [Contact Improv](https://youtu.be/TbjUPAaqkPQ)) by incorporating kinetic feedback into a visual layer. I hoped that through this visual feedback, people who wanted to dance would be able to lean into the playfulness of the visuals and thus feel more disinhibited to express themselves. I imagined the technology being a hybrid physical/digital interface that would require some fabrication to develop the wearable parts and microcontroller/sensor investigation to support the processing of kinetic data.
+
+<img width="600" alt="" src="/assets/nov2-8/poster-pitch.png">
+
+*Final project pitch poster*
+
+I took my poster to class, where we presented our individual project posters and reviewed them to find potential collaborators for our final project. I joined forces with [Tala Salman](https://docs.google.com/document/d/1xAzELF5MhFs0jRcNGU2L16vmr_OXQ1GlwQGwzJs-xYw/edit?usp=sharing) and [Paola Rodriguez Vitale](https://www.notion.so/272651e0c798804a8e60c43801d321c3?v=272651e0c79880ad9afe000ca3558b5f) since we were all interested in learning how to use TouchDesigner.
+
+<img width="600" alt="" src="/assets/nov2-8/posters-group.jpg">
+
+*Pitch posters from group, assimilating ideas*
+
+### 11/6 - Developing group project proposal
+
+Tala, Paola, and I started planning for our group project proposal. We decided to narrow in on a stress-regulating device that uses visuals to encourage mindfulness. We collected several sensors from our kit: the IMU accelerometer/gyroscope sensor, a haptic motor driver, and the ESP32. Even though we hadn't used these sensors in previous projects, we felt that they had good documentation and would serve well for our physical device. We made some sketches for the potential interactions a user could have with our device.
+
+FIXME: add early sketches
 
 -----------
 ## Week 12
 *(11/9 - 11/15)*
 
-11/10
-- group proposal draft due
+### 11/10 - Submitting the group proposal
 
-11/13
-- sautered imu: https://learn.adafruit.com/mpu6050-6-dof-accelerometer-and-gyro/arduino 
-- tested gyroscope sensor with basic_test example script
-- [imu_basic_test.ino](/scripts/imu_basic_test.ino)
-- [imu_motion_detection.ino](/scripts/imu_motion_detection.ino)
-- tested serial read into touchdesigner
-- visited explo for physical/digital form inspiration
+We wrapped up our [group proposal](https://docs.google.com/document/d/1tfLhcnEpaDdaBUoIEFkYbC_vqF9axVl7gGg9VvHPZ84/edit?usp=sharing). Our working project name was "PET Project," a play on words and an acronym of our names, and our working idea was to map embodied motion of a user to dynamic visuals rendered in TouchDesigner through a handheld physical device.
+
+Our components would include a screen (either a monitor or projector, but something with high resolution), TouchDesigner, computer vision via p5.js, the [ESP32 Feather V2](https://learn.adafruit.com/adafruit-esp32-feather-v2), the [MPU 6050 IMU sensor](https://www.adafruit.com/product/3886), and the [DA7280 Haptic Driver](https://www.sparkfun.com/sparkfun-qwiic-haptic-driver-da7280.html).
+
+We imagined use cases for PET project as the following:
+- A single user regulates their stress through intentional movement with our device that provides engaging visual feedback.
+- An artist uses our device as a medium to convey synesthetic movement to an audience.
+- An installation device used for meditation.  
+- A collective or individual biofeedback installation.
+- Multiple users collaboratively play with our device (or multiple devices) to “paint” on a digital canvas.
+
+We also proposed six experiments to guide us in our process to reaching the final product:
+1. IMU calibration + filtering
+2. Testing the serial communication between TouchDesigner & ESP32
+3. Mock ESP32 sensor data to TD and design a dynamic visual
+4. Building the visual interface and Haptic Feedback
+5. Alternative Motion Input Testing via p5.js
+6. Physical Form - Enclosure Prototype Test
+
+We also created a system architecture for our proposal.
+
+<img width="600" alt="" src="/assets/nov9-15/proposal-system-architecture.png">
+
+*Proposed system architecture for PET project*
+
+[Full PDF of proposal available here](/assets/nov9-15/PET%20Project%20Proposal%20-%20Elisa,%20Tala,%20Paola.pdf)
+
+We had our work cut out for us, but at least we had some places to start!
+
+### 11/13 - Testing the IMU sensor
+
+I started with an unsoldered MPU 6050 IMU sensor.
+
+<img width="600" alt="" src="/assets/nov9-15/mpu-pre-solder.jpg">
+
+*IMU sensor before soldering*
+
+<img width="600" alt="" src="/assets/nov9-15/mpu-post-solder.jpg">
+
+*IMU sensor after soldering*
+
+I followed this [Adafruit guide](https://learn.adafruit.com/mpu6050-6-dof-accelerometer-and-gyro/arduino) to set up the wiring with the ESP32.
+
+I tested the IMU gyroscope and accelerometer with [imu_basic_test.ino](/scripts/imu_basic_test.ino), and it worked just as expected!
+
+<img width="600" alt="" src="/assets/nov9-15/imu_test.jpg">
+
+*IMU wiring*
+
+<img width="600" alt="" src="/assets/nov9-15/imu-test.gif">
+
+*Quite responsive!*
+
+[Link to IMU test full video](/assets/nov9-15/imu-test.mp4)
+
+I updated the basic test into a new sketch [imu_motion_detection.ino](/scripts/imu_motion_detection.ino) that printed out a serial string with accelerometer and gyroscope data. I then set up TouchDesigner to read this serial printed data, and it pretty much worked out of the box using a Serial DAT operator. I used [Gemini](https://gemini.google.com/share/02e3a5b47374) to help me set up this Touch node network (called a patch). 
+
+<img width="600" alt="" src="/assets/nov9-15/td-esp32-connection.png">
+
+*Serial DAT operator reading ESP32 printouts*
+
+<img width="600" alt="" src="/assets/nov9-15/imu-touch.gif">
+
+*Plug and chug!*
+
+[Link to IMU TouchDesigner test full video](/assets/nov9-15/imu-touch.mp4)
+
+----------
+
+Later that day, Tala, Paola, and I took a trip to the Exploratorium for inspiration on visuals and physical interactions.
+
+<img width="600" alt="" src="/assets/nov9-15/team-at-explo.jpg">
+
+*Field trip!*
+
+We stumbled upon this exhibit which felt like the vibe we wanted to go for. It was a huge projection displaying some sort of vapor, and the vapor would drift based on the knobs being turned. We liked the size of the experience and the ambience of the vapor drifting across the screen.
+
+<img width="600" alt="" src="/assets/nov9-15/explo.jpg">
+
+*Nice and ambient*
 
 ----------
 ## Week 13
@@ -1447,3 +1536,26 @@ Wow! This must be my favorite project that I've worked on so far. My reflections
 - fixing calibration of IMU
 - https://gemini.google.com/share/d90b1d460ae7
 - [imu_motion_haptic_wifi_v2.ino](/scripts/imu_motion_haptic_wifi_v2.ino)
+
+----------
+## Week 15
+*(11/30 - 12/6)*
+
+12/2
+- screwed in components
+
+12/3
+- assist from Jeff with calibration sensor
+- [calibration script](/scripts/mpu6050_calibration2.ino)
+
+12/5
+- looked at MPU spec: https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf
+- fixed gyroscope movement
+- updating td
+
+----------
+## Week 16
+*(12/7 - 12/12)*
+
+12/8
+- Final touches on TouchDesigner, testing of wifi
