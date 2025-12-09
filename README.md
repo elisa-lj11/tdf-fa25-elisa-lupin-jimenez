@@ -1628,7 +1628,7 @@ We used the drill press again to get the precise diameter and depth of the hole 
 
 <img width="600" alt="" src="/assets/nov23-29/drill-press-magnets.jpg">
 
-*It worked*
+*Such a heavy-duty machine for what seems like a simple task...*
 
 We superglued the magnets into place, then we sawed off the edges around the shape we had drawn into the wood blocks. We taped the halves together, then we used the belt sander to carve out the perfect shape for our container.
 
@@ -1712,7 +1712,7 @@ I wanted to take the IMU readings to the next level by using the accelerometer a
 
 We played around more with the particle effects to find the right movement/color schemes.
 
-<img width="600" alt="" src="/assets/nov30-dec6/touch-colors-1.mp4">
+<img width="600" alt="" src="/assets/nov30-dec6/touch-colors-1.gif">
 
 *Rainbow*
 
@@ -1760,4 +1760,4 @@ Ultimately, we needed to downsize to a monitor since we would be sharing the sho
 
 <img width="600" alt="" src="/assets/dec7-12/flow-monitor.gif">
 
-*flow looks beautiful when it's massive!*
+*flow still looks really cool even on the smaller screen*
