@@ -1389,8 +1389,6 @@ I took my poster to class, where we presented our individual project posters and
 
 Tala, Paola, and I started planning for our group project proposal. We decided to narrow in on a stress-regulating device that uses visuals to encourage mindfulness. We collected several sensors from our kit: the IMU accelerometer/gyroscope sensor, a haptic motor driver, and the ESP32. Even though we hadn't used these sensors in previous projects, we felt that they had good documentation and would serve well for our physical device. We made some sketches for the potential interactions a user could have with our device.
 
-FIXME: add early sketches
-
 -----------
 ## Week 12
 *(11/9 - 11/15)*
@@ -1532,6 +1530,8 @@ After some trial and error with our code in [imu_motion_haptic_wifi.ino](/script
 
 [Link to WiFi test full video](/assets/nov16-22/wifi-test.mp4)
 
+[Link to TouchDesigner file](/scripts/touchdesigner/esp_wifi_test.toe)
+
 ### 11/21 - Testing container shapes
 
 We measured the dimensions of our components, then we sketched our component layout. We wanted our components to go into each half of the container, which could be closed like a clam shell
@@ -1578,48 +1578,186 @@ We taped around the organic shape to give the prototype contour.
 
 ### 11/24 - Carving our project case out of wood
 
+Feeling confident about the shape of our prototype, we cut out some blocks of wood that we could later carve with the table saw.
 
+<img width="600" alt="" src="/assets/nov23-29/table-saw.jpg">
 
-11/24
-- sawing block of wood with table saw
-- slice in half with band saw
-- drill press for more pocket carving
-- tape components in pocket to test resonance
+*Look at that form*
 
-11/25
-- taped magnets to boxes to test hold strength
-- drill holes for magnets
-- superglue into holes
-- pull saw to cut corners off wood block
-- belt sander to carve out sides
+We then sliced our block of wood in half with a band saw so that we could drill out a pocket in the middle of each half to fit the components.
 
-11/26
-- wood stain soap box
+<img width="600" alt="" src="/assets/nov23-29/band-saw.jpg">
 
-11/29
-- fixing calibration of IMU
-- https://gemini.google.com/share/d90b1d460ae7
-- [imu_motion_haptic_wifi_v2.ino](/scripts/imu_motion_haptic_wifi_v2.ino)
+*Hm, maybe that's not my hand...*
+
+Then we used the drill press to carve out the inner pocket hole by hole.
+
+<img width="600" alt="" src="/assets/nov23-29/drill-press.jpg">
+
+*This takes way too long*
+
+We finished making the pocket for one half of the wood block and tested fitting our components inside to see if we could feel the vibration through the wood.
+
+<img width="600" alt="" src="/assets/nov23-29/components-in-pocket.jpg">
+
+*Halfway there*
+
+We couldn't be "pressed" (hah) to go through another drill press iteration, so we switched to using an impact driver with the hole-cutter bit.
+
+<img width="600" alt="" src="/assets/nov23-29/get-er-done.jpg">
+
+*Had to take things into my own hands*
+
+We fit the components into each of the pockets and tested the clam shell fit.
+
+<img width="600" alt="" src="/assets/nov23-29/components-in-each-pocket.jpg">
+
+*Making progress*
+
+### 11/25 - Placing magnets into the shell
+
+We wanted the halves to snap together using magnets, so we taped magnets of different sizes to the halves to see which would have the best hold.
+
+<img width="600" alt="" src="/assets/nov23-29/magnets.jpg">
+
+<img width="600" alt="" src="/assets/nov23-29/magnets-2.jpg">
+
+*It worked*
+
+We used the drill press again to get the precise diameter and depth of the hole to fit our magnets.
+
+<img width="600" alt="" src="/assets/nov23-29/drill-press-magnets.jpg">
+
+*It worked*
+
+We superglued the magnets into place, then we sawed off the edges around the shape we had drawn into the wood blocks. We taped the halves together, then we used the belt sander to carve out the perfect shape for our container.
+
+<img width="600" alt="" src="/assets/nov23-29/belt-sander.jpg">
+
+*A risky maneuver but we got there*
+
+<img width="600" alt="" src="/assets/nov23-29/belt-sander.gif">
+
+*Carving out the sides*
+
+[Link to belt sander full video](/assets/nov23-29/belt-sander.mp4)
+
+<img width="600" alt="" src="/assets/nov23-29/before-after-sanding.jpg">
+
+<img width="600" alt="" src="/assets/nov23-29/before-after-sanding-2.jpg">
+
+*Before and after we carved the sides out*
+
+The form of our project was nearly complete! We would just need to put the final touches on it with some hand sanding and wood stain.
+
+<img width="600" alt="" src="/assets/nov23-29/finished-carving.gif">
+
+*Looks like we pulled it out of the river*
+
+[Link to belt sander full video](/assets/nov23-29/finished-carving.mp4)
+
+### 11/26 - Wood staining the container
+
+This was a quick step in our process, but an essential one aesthetically. We added a wood stain paint to bring out the natural rings in our wood block.
+
+<img width="600" alt="" src="/assets/nov23-29/wood-stain.jpg">
+
+*It really pops now!*
+
+### 11/29 - Refining IMU sensor
+
+I worked on updating the haptic feedback to flow more continuously because in the previous script it would stop mid-movement. I switched the logic with help from [Gemini](https://gemini.google.com/share/d90b1d460ae7) so that the haptic driver would always vibrate unless no movement was detected, which ended up working better. The sketch is [imu_motion_haptic_wifi_v2.ino](/scripts/imu_motion_haptic_wifi_v2.ino).
+
+<img width="600" alt="" src="/assets/nov23-29/continuous-vibes.gif">
+
+*Much better*
+
+[Link to continuous vibration full video](/assets/nov23-29/belt-sander.mp4)
 
 ----------
 ## Week 15
 *(11/30 - 12/6)*
 
-12/2
-- screwed in components
+### 12/2 - Fixing the components into the shell
 
-12/3
-- assist from Jeff with calibration sensor
-- [calibration script](/scripts/mpu6050_calibration2.ino)
+We screwed in our components into the pocket of the carved wood using a regular screwdriver (since the wood was soft enough to do so).
 
-12/5
-- looked at MPU spec: https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf
-- fixed gyroscope movement
-- updating td
+<img width="600" alt="" src="/assets/nov30-dec6/screwing-in.jpg">
+
+*Don't mess with a person who can use a screwdriver*
+
+<img width="600" alt="" src="/assets/nov30-dec6/screwed-components.jpg">
+
+*Nice and fixed*
+
+<img width="600" alt="" src="/assets/nov30-dec6/snap-fit.gif">
+
+*Snap fit*
+
+[Link to snap fit full video](/assets/nov30-dec6/snap-fit.mp4)
+
+### 12/3 - Last-minute IMU sensor calibration
+
+I realized I had not properly calibrated the IMU sensor yet. Luckily, Jeff provided me with a [calibration script](/scripts/mpu6050_calibration2.ino) that would persist in the ESP32 memory. I updated my code with these calibration offset values and output roll and pitch values, as seen in [imu_motion_haptic_wifi_v3.ino](/scripts/imu_motion_haptic_wifi_v3.ino).
+
+### 12/5 - More IMU sensor refinement
+
+I wanted to take the IMU readings to the next level by using the accelerometer and gyroscope data in combination to determine the translational movement of the device. As it turns out, this is an extremely difficult problem to solve given limited sensors in a process called "dead reckoning," where one must integrate acceleration data over time precisely or else the device will "drift." After spending several hours troubleshooting this with the help of [Gemini](https://gemini.google.com/share/a9c9bb723063) and examining the [official MPU 6050 specification document](https://invensense.tdk.com/wp-content/uploads/2015/02/MPU-6000-Datasheet1.pdf), I gave up on [this sketch](/scripts/imu_motion_haptic_wifi_v5_not_working.ino) and settled for [imu_motion_haptic_wifi_v4.ino](/scripts/imu_motion_haptic_wifi_v4.ino) which would output a rotational state in addition to the pitch and roll values. Using Tala's work on the [TouchDesigner file](/scripts/touchdesigner/Tala_PET_jml.8.toe), I integrated the pitch and roll values and mapped them to x and y coordinates.
+
+<img width="600" alt="" src="/assets/nov30-dec6/touch-initial-visual-imu.gif">
+
+*Moves the particles beautifully*
+
+[Link to touch visual testing full video](/assets/nov30-dec6/touch-initial-visual-imu.mp4)
+
+We played around more with the particle effects to find the right movement/color schemes.
+
+<img width="600" alt="" src="/assets/nov30-dec6/touch-colors-1.mp4">
+
+*Rainbow*
+
+[Link to touch colors full video](/assets/nov30-dec6/touch-colors-1.mp4)
+
+<img width="600" alt="" src="/assets/nov30-dec6/touch-colors-2.gif">
+
+*Ocean*
+
+[Link to touch colors full video](/assets/nov30-dec6/touch-colors-2.mp4)
+
+[TouchDesigner final file](/scripts/touchdesigner/flow.toe)
 
 ----------
 ## Week 16
 *(12/7 - 12/12)*
 
-12/8
-- Final touches on TouchDesigner, testing of wifi
+### 12/7 - Testing bases for the device
+
+We made a few CAD models for the base that would present our device. We compared several options side-by-side for stability and aesthetic.
+
+<img width="600" alt="" src="/assets/dec7-12/bases.jpg">
+
+*We love a good iteration*
+
+We moved forward with the black circular stand because we wanted to create a strong visual contrast with the light wood of our device. Having the gap in the front ledge of the device prevented it from looking like a smiley face.
+
+<img width="600" alt="" src="/assets/dec7-12/base-cad.png">
+
+*A sleek finish for a sleek device*
+
+### 12/8 - Preparing for the showcase
+
+<img width="600" alt="" src="/assets/dec7-12/flow-2.JPG">
+
+*Our final product: flow*
+
+We brought our device which we finally named "flow" up to the showcase room and tested it on the projector screen.
+
+<img width="600" alt="" src="/assets/dec7-12/flow-projector.gif">
+
+*flow looks beautiful when it's massive!*
+
+Ultimately, we needed to downsize to a monitor since we would be sharing the showcase room with other teams, so we migrated our setup to a side room.
+
+<img width="600" alt="" src="/assets/dec7-12/flow-monitor.gif">
+
+*flow looks beautiful when it's massive!*
