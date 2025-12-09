@@ -1482,39 +1482,103 @@ We stumbled upon this exhibit which felt like the vibe we wanted to go for. It w
 ## Week 13
 *(11/16 - 11/22)*
 
-11/17
-- https://learn.sparkfun.com/tutorials/qwiic-haptic-driver-da7280-hookup-guide#example-1-i2c-mode
-- https://learn.adafruit.com/adafruit-esp32-feather-v2?view=all#stemma-qt-connector-3112257
-- Used I2C to connect haptic motor driver to ESP32
-- used [I2C_mode.ino](/scripts/I2C_mode.ino) to test
-- Didn't light up
-- held the jumper cables in place to test that the haptic driver worked at all, it did
-- needed to pull the power pin high for i2c to work
-- connected gyro and haptic together with i2c
-- used [Gemini](https://gemini.google.com/share/34327ef22b0c) to merge haptic driver example and IMU sensor example
-- [imu_motion_haptic.ino](/scripts/imu_motion_haptic.ino)
+### 11/17 - Setting up the haptic driver
 
-11/18
-- [imu_motion_haptic_v2.ino](/scripts/imu_motion_haptic_v2.ino)
-- changed the vibration to be more fluid
+Filled with determination, I set up the haptic driver with the ESP32. I used a [SparkFun guide](https://learn.sparkfun.com/tutorials/qwiic-haptic-driver-da7280-hookup-guide) to use the I2C (a serial, two-wire communication protocol used for short-distance communication between integrated circuits) so later I would not need to use a breadboard or a protoboard for the sensors.
 
-11/20
-- set up wifi connectivity with UDP
-- https://forum.derivative.ca/t/how-to-send-sensor-data-to-touchdesigner-using-esp32/150215/4
-- https://gemini.google.com/share/be968218553a
-- [imu_motion_haptic_wifi.ino](/scripts/imu_motion_haptic_wifi.ino)
+I tried connecting the I2C wire from the ESP32 to the haptic driver and ran [I2C_mode.ino](/scripts/I2C_mode.ino) but it didn't power up. I troubleshooted by plugging some jumper wires into my breadboard and holding them in the right pins, then it lit up.
 
-11/21
-- measuring dimensions of soap box with sketch
-- ideating different shapes for box
-- hand saw roughly into soap shape
-- fit components on cardboard prototype
-- cut cardboard for good hand feel
-- drill press to carve out pocket
+<img width="600" alt="" src="/assets/nov16-22/haptic-manual-wiring.png">
+
+*So the component isn't defective...*
+
+I troubleshooted a bit and discovered that I needed to manually pull the power pin high in the code for I2C to work on the ESP32 (thanks [Adafruit](https://learn.adafruit.com/adafruit-esp32-feather-v2?view=all#stemma-qt-connector-3112257) for the detailed explanation on power modes).
+
+I connected the IMU sensor and the haptic driver together using I2C, then I used [Gemini](https://gemini.google.com/share/34327ef22b0c) to merge the haptic driver example and IMU sensor example, contained in [imu_motion_haptic.ino](/scripts/imu_motion_haptic.ino)
+
+<img width="600" alt="" src="/assets/nov16-22/imu-haptic-test.gif">
+
+*All of our components working together*
+
+[Link to IMU haptic test full video](/assets/nov16-22/imu-haptic-test.mp4)
+
+I cleaned up the code a bit so that the haptic feedback would be a bit more fluid, as seen in [imu_motion_haptic_v2.ino](/scripts/imu_motion_haptic_v2.ino).
+
+### 11/18 - Initial prototypes for the device case
+
+We wanted to get a sense for how small we could make our device to enclose all the necessary components. We taped all our pieces together to a cardboard cutout
+
+<img width="600" alt="" src="/assets/nov16-22/taped-components.jpg">
+
+*We could get it pretty thin, but the battery takes up the greatest area*
+
+We crafted a small finger-joint box to fit around the components (thanks Paola for CADing that up!)
+
+<img width="600" alt="" src="/assets/nov16-22/components-box.jpg">
+
+*Not as small as we hoped...*
+
+The box felt fairly bulky, but everything fit inside. We would have to try more prototypes out to get the right hand-feel for our device.
+
+### 11/20 - Setting up WiFi connectivity
+
+I read the [Derivative forum](https://forum.derivative.ca/t/how-to-send-sensor-data-to-touchdesigner-using-esp32/150215/4) for information about sending signals to TouchDesigner via WiFi since we wanted our device to be completely wireless to allow for more freedom of movement. After consulting the forum and [Gemini](https://gemini.google.com/share/be968218553a), I decided to move forward with UDP (User Datagram Protocol) because we only needed a one-way data stream (from ESP32 to TouchDesigner), and it would be more straightforward to set up than WebSockets, the other option.
+
+After some trial and error with our code in [imu_motion_haptic_wifi.ino](/scripts/imu_motion_haptic_wifi.ino), we were able to get the ESP32 to send the IMU data wirelessly, which required me to use hotspot so that both my computer and the ESP32 operated on the same WiFi, a requirement for using UDP.
+
+<img width="600" alt="" src="/assets/nov16-22/wifi-test.gif">
+
+*Sending data wirelessly is working!!!*
+
+[Link to WiFi test full video](/assets/nov16-22/wifi-test.mp4)
+
+### 11/21 - Testing container shapes
+
+We measured the dimensions of our components, then we sketched our component layout. We wanted our components to go into each half of the container, which could be closed like a clam shell
+
+<img width="600" alt="" src="/assets/nov16-22/component-layout-sketch.jpg">
+
+*Top and side views*
+
+We then sketched some options for the outside aesthetic of the case.
+
+<img width="600" alt="" src="/assets/nov16-22/outside-sketches.jpg">
+
+*Perhaps something evoking a cuddlefish?*
+
+We laid our components on a piece of paper and sketched around them to get a more realistic sense of the layout and sizing of the container.
+
+<img width="600" alt="" src="/assets/nov16-22/sketch-around-components.jpg">
+
+*Looking a bit computer mouse-like*
+
+We then cut out a couple ovals in cardboard and wrapped them around our components to get a feel for how our device would handle with this shape.
+
+<img width="600" alt="" src="/assets/nov16-22/cardboard-ovals.jpg">
+
+*Feels better than the box already*
+
+We tried a few cardboard shapes to see if one felt better than another, using Illustrator to precisely laser-cut them.
+
+<img width="600" alt="" src="/assets/nov16-22/cardboard-ovals-2.jpg">
+
+<img width="600" alt="" src="/assets/nov16-22/cardboard-ovals-3.jpg">
+
+*The more organic shape felt the best*
+
+We taped around the organic shape to give the prototype contour.
+
+<img width="600" alt="" src="/assets/nov16-22/taped-oval.jpg">
+
+*Now that's a promising hand-feel*
 
 ----------
 ## Week 14
 *(11/23 - 11/29)*
+
+### 11/24 - Carving our project case out of wood
+
+
 
 11/24
 - sawing block of wood with table saw
