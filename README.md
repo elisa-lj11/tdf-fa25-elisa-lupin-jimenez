@@ -1389,6 +1389,10 @@ I took my poster to class, where we presented our individual project posters and
 
 Tala, Paola, and I started planning for our group project proposal. We decided to narrow in on a stress-regulating device that uses visuals to encourage mindfulness. We collected several sensors from our kit: the IMU accelerometer/gyroscope sensor, a haptic motor driver, and the ESP32. Even though we hadn't used these sensors in previous projects, we felt that they had good documentation and would serve well for our physical device. We made some sketches for the potential interactions a user could have with our device.
 
+<img width="600" alt="" src="/assets/nov2-8/early-sketch.JPEG">
+
+*Early form ideas*
+
 -----------
 ## Week 12
 *(11/9 - 11/15)*
