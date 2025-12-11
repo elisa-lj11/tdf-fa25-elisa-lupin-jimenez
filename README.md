@@ -1738,7 +1738,7 @@ We made a few CAD models for the base that would present our device. We compared
 
 *We love a good iteration*
 
-We moved forward with the black circular stand because we wanted to create a strong visual contrast with the light wood of our device. Having the gap in the front ledge of the device prevented it from looking like a smiley face.
+We moved forward with the [black circular stand](/assets/dec7-12/Round_notsmiley.stl) because we wanted to create a strong visual contrast with the light wood of our device. Having the gap in the front ledge of the device prevented it from looking like a smiley face.
 
 <img width="600" alt="" src="/assets/dec7-12/base-cad.png">
 
