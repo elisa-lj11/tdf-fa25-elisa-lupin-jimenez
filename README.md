@@ -1761,3 +1761,29 @@ Ultimately, we needed to downsize to a monitor since we would be sharing the sho
 <img width="600" alt="" src="/assets/dec7-12/flow-monitor.gif">
 
 *flow still looks really cool even on the smaller screen*
+
+We made some final touches to our [TouchDesigner file](/scripts/touchdesigner/flow.2.toe) since we could test in the actual showcase setting with correct lighting.
+
+### 12/9 - Showcase!
+
+The showcase went swimmingly! People loved the wooden form of the device and were entranced by the visuals.
+
+We got feedback that people would have loved to see "flow" control music as well. Some people were also curious to see the applications of "flow" beyond an artistic sense, perhaps for folks with sensory needs or folks who want to play around more with audiovisual modulation. There is a lot for us to consider!
+
+I am so pleased with how "flow" turned out. It was the culmination of a semester of microcontroller/fabrication experience, and I'm happy that I was able to learn TouchDesigner on top of the TDF fundamentals. I hope that I can continue to build on "flow" to make even more compelling visuals, perhaps even create a family of flows so that multiple people can relax or play together.
+
+<img width="600" alt="" src="/assets/dec7-12/flow-process-architecture-diagram.png">
+
+*Process architecture diagram*
+
+<img width="600" alt="" src="/assets/dec7-12/system-architecture-diagram.jpg">
+
+*System architecture diagram*
+
+[Link to project video](https://drive.google.com/file/d/1_E3wbFRwetbi1ODV1SxZZNixo0NolC1u/view?usp=sharing)
+
+<img width="600" alt="" src="/assets/dec7-12/flow-group.jpg">
+
+*Thanks to my amazing team for bringing this idea to life!*
+
+Thank you to Jeff, Dr. Sudhu, and Chris for all of the incredible support throughout the semester! Also, thank you to Roopa and Lauryn for being an amazing GSI team.
